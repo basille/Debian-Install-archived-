@@ -3,8 +3,8 @@
 #+BEGIN_QUOTE
 *Table of Contents*
 - [[#download-and-install-debian][Download and install Debian]]
-- [[#systeme][Système]]
-- [[#general][Général]]
+  - [[#bash-setup][Bash setup]]
+  - [[#system][System]]
 #+END_QUOTE
 
 
@@ -17,82 +17,87 @@
   : $ sudo dd if=debian-testing-amd64-CD-1.iso of=/dev/sdX
 - Boot on the USB stick and follow instructions.
   #+BEGIN_QUOTE
-  Swap = RAM × 2 si 4 Go max de RAM, sinon = RAM
+  Swap = RAM × 2 up to 4 GB of RAM, otherwise Swap = RAM
   #+END_QUOTE
 - If necessary, adds a [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][SWAP file]].
+- Install =sudo= if necessary:
+  : # adduser mathieu sudo
+- Then relog:
+  : # su - mathieu
+- Deactivate root account:
+  : $ sudo passwd -l root
+- To re-activate root account (if necessary):
+  : $ sudo passwd -u root
+
+# • Enlever le bip système :
+# ∘ https://wiki.archlinux.org/index.php/Disable_PC_Speaker_Beep
+# ∘ Ce qui a marché pour moi (Gnome 3.8) :
+# xset -b
+# ‣ Mettre dans les applications au démarrage :
+# $ gnome-session-properties
+# Beep system OFF
+# xset -b
+# ∘ Gnome 3.12 : Paramètres > Son > Effets sonores > Volume 0
+
+- Install the complete and functional system (if necessary):
+  : $ sudo tasksel install gnome-desktop --new-install
+  #+BEGIN_QUOTE
+  or =$ sudo aptitude install gnome-desktop-environment=
+  #+END_QUOTE
+  : $ sudo aptitude install gnome
+  : $ sudo tasksel install desktop
+  : $ sudo tasksel install laptop
+  : $ sudo aptitude install gnome-session
+  : $ sudo aptitude install gnome-terminal
+  : $ sudo aptitude install gdm3
 
 
-** Système
+*** Bash setup
 
-• Au démarrage, installer sudo si besoin :
-# adduser mathieu sudo
-∘ Puis reloguer :
-# su - mathieu
+- Remove menu, set up text colors and transparent background: in the
+  options.
+- Autocompletion as root, Ctrl-N keeps current directory, Manpage with
+  colors, Aliases (which allow =sudo=), Ctrl-PageUp/Down to
+  autocomplete based on history, Screen (server version), add or
+  uncomment the following lines:
 
-• Enlever le bip système :
-∘ https://wiki.archlinux.org/index.php/Disable_PC_Speaker_Beep
-∘ Ce qui a marché pour moi (Gnome 3.8) :
-xset -b
-‣ Mettre dans les applications au démarrage :
-$ gnome-session-properties
-Beep system OFF
-xset -b
-∘ Gnome 3.12 : Paramètres > Son > Effets sonores > Volume 0
+  : $ sudo nano /etc/bash.bashrc
+  : ---------------------------------------------------------------------
+  : if [ -f /etc/bash_completion ]; then
+  : . /etc/bash_completion
+  : fi
+  : ### Ctrl-N keeps current directory
+  : export PS1='\[$(__vte_ps1)\]'$PS1
+  : ### Manpages with colors
+  : export MANPAGER="/usr/bin/most -s"
+  : ### Alias upgrade
+  : alias upgrade='sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude clean && sudo aptitude autoclean && sudo aptitude purge ~c'
+  : ### Alias VPN UF
+  : alias vpnuf='echo -n "<password>" | sudo openconnect -u <UF-email> --passwd-on-stdin https://vpn.ufl.edu/'
+  : ### Alias wake-on-lan
+  : alias wol='wakeonlan -i <IP> <MAC>'
+  : ### Alias app (find the name of an application)
+  : alias app='ps --no-header -o comm -p $(xwininfo -all | grep "Process id:" | cut -d":" -f2 | cut -d" " -f2)' 
+  : ### When using sudo, use alias expansion (otherwise sudo ignores your aliases)
+  : alias sudo='sudo '
+  : ### Prevent screen to turn off (server only)
+  : xset s off # Disable X windows screen saver
+  : xset -dpms # Disable display power management system
+  : ### Bash history with Ctrl + page up/down
+  : nano .inputrc
+  : "\e[5~": history-search-backward
+  : "\e[6~": history-search-forward
+  : # "\e[A": history-search-backward
+  : # "\e[B": history-search-forward
+  : set show-all-if-ambiguous on
+  : set completion-ignore-case on
+  : "\e[1;5C": forward-word
+  : "\e[1;5D": backward-word
+  : ---------------------------------------------------------------------
 
-• Modifier le bash : 
-∘ Menu, couleurs, fond transparent via les options
-∘ Autocomplétion en root + Ctrl + N garde le répertoire courant + Manpage en couleurs + Alias upgrade + Alias VPN UF + Alias wake-on-lan + Alias appli (trouver le nom d'une application) + Utilisation des alias avec sudo + Ctrl + page up/down recherche une complétion dans l'historique + screen (pour serveur)
-$ sudo nano /etc/bash.bashrc
-∘ Ajouter ou décommenter les lignes suivantes :
----------------------------------------------------------------------
-if [ -f /etc/bash_completion ]; then
-. /etc/bash_completion
-fi
-### Ctrl + N garde le répertoire courant
-export PS1='\[$(__vte_ps1)\]'$PS1
-### Manpages en couleurs
-export MANPAGER="/usr/bin/most -s"
-### Alias upgrade
-alias upgrade='sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude clean && sudo aptitude autoclean && sudo aptitude purge ~c'
-### Alias VPN UF
-alias vpnuf='echo -n ">iNX9(b8,MpX" | sudo openconnect -u basille@ufl.edu --passwd-on-stdin https://vpn.ufl.edu/'
-### Alias wake-on-lan
-alias wol='wakeonlan -i 10.251.3.175 18:03:73:3c:cb:4d'
-### Alias appli (trouver le nom d'une application)
-alias appli='ps --no-header -o comm -p $(xwininfo -all | grep "Process id:" | cut -d":" -f2 | cut -d" " -f2)' 
-### When using sudo, use alias expansion (otherwise sudo ignores your aliases)
-alias sudo='sudo '
-### Prevent screen to turn off (server only)
-xset s off # Disable X windows screen saver
-xset -dpms # Disable display power management system
-### Bash history with Ctrl + page up/down
-nano .inputrc
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
-# "\e[A": history-search-backward
-# "\e[B": history-search-forward
-set show-all-if-ambiguous on
-set completion-ignore-case on
-"\e[1;5C": forward-word
-"\e[1;5D": backward-word
----------------------------------------------------------------------
 
-• Reloguer... puis désactiver le compte root si tout va bien :
-$ sudo passwd -l root
-∘ Pour réactiver le compte root :
-$ sudo passwd -u root
+*** System
 
-• Puis installer le système complet et fonctionnel :
-$ sudo tasksel install gnome-desktop --new-install
-(ou $ sudo aptitude install gnome-desktop-environment
-∘ Et pour finir :
-$ sudo aptitude install gnome
-∘ Si besoin:
-$ sudo tasksel install desktop
-$ sudo tasksel install laptop
-$ sudo aptitude install gnome-session
-$ sudo aptitude install gnome-terminal
-$ sudo aptitude install gdm3
 
 • Problème de luminosité ? 
 ∘ http://ihisham.com/2013/12/fix-gnome-screen-brightness-keys-bug/
