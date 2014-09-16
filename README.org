@@ -10,19 +10,19 @@
 
 ** Image Debian
 
-1) Récupérer [[http://cdimage.debian.org/debian-cd/current-live/amd64/usb-hdd/][image USB/HDD]]. 
-2) Vérifier les sommes md5.
-3) Copier l'image sur une clé usb vierge (attention, ça efface tout !) :
+- Récupérer [[http://cdimage.debian.org/debian-cd/current-live/amd64/usb-hdd/][image USB/HDD]]. 
+- Vérifier les sommes md5.
+- Copier l'image sur une clé usb vierge (attention, ça efface tout !) :
 
-     $ sudo dd if=debian-live-6.0.6-amd64-gnome-desktop.img of=/dev/sdX
-     $ sudo dd if=debian-XXXXXX-live-rc1-amd64-gnome-desktop+nonfree.iso of=/dev/sdb
+   : $ sudo dd if=debian-live-6.0.6-amd64-gnome-desktop.img of=/dev/sdX
+   : $ sudo dd if=debian-XXXXXX-live-rc1-amd64-gnome-desktop+nonfree.iso of=/dev/sdb
 
-4) Booter sur la clé !
-5) Lancer l'install et suivre les instructions...
+- Booter sur la clé !
+- Lancer l'install et suivre les instructions...
 
-#+BEGIN_QUOTE
-Swap = RAM × 2 si 4 Go max de RAM, sinon = RAM
-#+END_QUOTE
+   #+BEGIN_QUOTE
+   Swap = RAM × 2 si 4 Go max de RAM, sinon = RAM
+   #+END_QUOTE
 
 - Si besoin, ajout d'un [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][ficher de SWAP]].
 
