@@ -2,29 +2,24 @@
 
 #+BEGIN_QUOTE
 *Table of Contents*
-- [[#image-debian][Image Debian]]
+- [[#download-and-install-debian][Download and install Debian]]
 - [[#systeme][Système]]
 - [[#general][Général]]
 #+END_QUOTE
 
 
-** Image Debian
+** Download and install Debian
 
-- Récupérer [[http://cdimage.debian.org/debian-cd/current-live/amd64/usb-hdd/][image USB/HDD]]. 
-- Vérifier les sommes md5.
-- Copier l'image sur une clé usb vierge (attention, ça efface tout !) :
-
-   : $ sudo dd if=debian-live-6.0.6-amd64-gnome-desktop.img of=/dev/sdX
-   : $ sudo dd if=debian-XXXXXX-live-rc1-amd64-gnome-desktop+nonfree.iso of=/dev/sdb
-
-- Booter sur la clé !
-- Lancer l'install et suivre les instructions...
-
-   #+BEGIN_QUOTE
-   Swap = RAM × 2 si 4 Go max de RAM, sinon = RAM
-   #+END_QUOTE
-
-- Si besoin, ajout d'un [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][ficher de SWAP]].
+- Download an image of the [[https://www.debian.org/devel/debian-installer/][Debian Installer]]. 
+- Check [[http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/MD5SUMS][md5 sums]]:
+  : $ md5sum debian-testing-amd64-CD-1.iso 
+- Copy the iso on a USB stick (warning, this formats the stick):
+  : $ sudo dd if=debian-testing-amd64-CD-1.iso of=/dev/sdX
+- Boot on the USB stick and follow instructions.
+  #+BEGIN_QUOTE
+  Swap = RAM × 2 si 4 Go max de RAM, sinon = RAM
+  #+END_QUOTE
+- If necessary, adds a [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][SWAP file]].
 
 
 ** Système
