@@ -15,9 +15,12 @@
   : $ md5sum debian-testing-amd64-CD-1.iso 
 - Copy the iso on a USB stick (warning, this formats the stick):
   : $ sudo dd if=debian-testing-amd64-CD-1.iso of=/dev/sdX
+  (where =sdX= is given by =df=).
 - Boot on the USB stick and follow instructions.
   #+BEGIN_QUOTE
   Swap = RAM × 2 up to 4 GB of RAM, otherwise Swap = RAM
+
+  Space kept for root on /home: 3%
   #+END_QUOTE
 - If necessary, adds a [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][SWAP file]].
 - Install =sudo= if necessary:
@@ -28,7 +31,6 @@
   : $ sudo passwd -l root
 - To re-activate root account (if necessary):
   : $ sudo passwd -u root
-
 # • Enlever le bip système :
 # ∘ https://wiki.archlinux.org/index.php/Disable_PC_Speaker_Beep
 # ∘ Ce qui a marché pour moi (Gnome 3.8) :
@@ -38,7 +40,6 @@
 # Beep system OFF
 # xset -b
 # ∘ Gnome 3.12 : Paramètres > Son > Effets sonores > Volume 0
-
 - Install the complete and functional system (if necessary):
   : $ sudo tasksel install gnome-desktop --new-install
   #+BEGIN_QUOTE
@@ -60,7 +61,6 @@
   colors, Aliases (which allow =sudo=), Ctrl-PageUp/Down to
   autocomplete based on history, Screen (server version), add or
   uncomment the following lines:
-
   : $ sudo nano /etc/bash.bashrc
   : ---------------------------------------------------------------------
   : if [ -f /etc/bash_completion ]; then
@@ -98,42 +98,39 @@
 
 *** System
 
+- Use only SWAP when 100% of RAM is used
+  : $ sudo nano /etc/sysctl.conf
+  : ---------------------------------------------------------------------
+  : # SWAP after 100% RAM used 
+  : vm.swappiness = 0
+  : ---------------------------------------------------------------------
+- To empty SWAP (switch to RAM only--requires that enough RAM is available): 
+  : $ sudo swapoff -av
+  : $ sudo swapon -av
+- If step skiped during install, set up space for root on /home (3%
+  instead of 5%):
+  : $ sudo tune2fs -m 3 /dev/XXX
+  (where =XXX= is given by =df= and corresponds to =/home=; =-l= to check).
+- Automount external discs:
+  : $ sudo nano /etc/fstab/media/usb0 
+  and uncomment the line =/media/usb0=.
+- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
+  - [[http://doc.ubuntu-fr.org/ssd_solid_state_drive#diminuer_la_frequence_d_ecriture_des_partitions][Reduce write frequency]] + boost performance:
+    : $ sudo nano /etc/fstab
+    Add the =noatime= and =discard= options for every SSD partition.
+  - =/tmp= in RAM:
+    : $ sudo nano /etc/fstab
+    : ---------------------------------------------------------------------
+    # /tmp dans la RAM
+    tmpfs      /tmp            tmpfs        defaults,size=1g
+    : ---------------------------------------------------------------------
+  - Init settings:
+    : $ sudo update-initramfs -u -k all
+  - Remove =.xsession-errors=
+    : $ sudo echo 'ln -fs /dev/null "$HOME"/.xsession-errors' > /etc/X11/Xsession.d/00disable-xsession-errors
 
-• Problème de luminosité ? 
-∘ http://ihisham.com/2013/12/fix-gnome-screen-brightness-keys-bug/
 
-• Régler la SWAP pour être utilisée quand 100% de la RAM est utilisée :
-$ sudo nano /etc/sysctl.conf
-∘ Ajouter : 
----------------------------------------------------------------------
-# SWAP after 100% RAM used 
-vm.swappiness = 0
----------------------------------------------------------------------
-• Si besoin de basculer la SWAP sur la RAM (nécessite autant de RAM disponible que de SWAP utilisée) : 
-$ sudo swapoff -av
-$ sudo swapon -av
-
-• Si pas fait pendant l'install, régler espace réservé pour root dans la partition home (passer de 5% à 3%) :
-$ sudo tune2fs -m 3 /dev/XXX
-∘ (où XXX est donné par 'df' et correspond au 'home') (pour vérifier -l)
-
-• Automount de disques externes :
-$ sudo nano /etc/fstab
-∘ Commenter la ligne du disque USB.
-
-• Optimiser le disque SSD
-∘ https://wiki.debian.org/SSDOptimization
-∘ Diminuer la fréquence d'écriture des partitions + Améliorer les performances + Placer /tmp dans la RAM
-‣ http://doc.ubuntu-fr.org/ssd_solid_state_drive#diminuer_la_frequence_d_ecriture_des_partitions
-$ sudo nano /etc/fstab
-‣ Rajouter l'option 'noatime' pour chaque partition SSD
-‣ Rajouter l'option 'discard' pour chaque partition SSD
-# /tmp dans la RAM
-tmpfs      /tmp            tmpfs        defaults,size=1g
-‣ Mettre à jour les réglages :
-$ sudo update-initramfs -u -k all
-∘ Supprimer le fichier .xsession-errors
-# echo 'ln -fs /dev/null "$HOME"/.xsession-errors' > /etc/X11/Xsession.d/00disable-xsession-errors
+*** APT 
 
 • Sources.list : 
 ∘ http://wiki.debian-facile.org/manuel:sources.list-df
