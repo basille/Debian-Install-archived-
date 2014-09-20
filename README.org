@@ -1,4 +1,4 @@
-* Debian Testing (Jessie) post-install
+* Debian Testing (Jessie) install
 
 #+BEGIN_QUOTE
 *Table of Contents*
@@ -7,6 +7,7 @@
   - [[#system][System]]
   - [[#apt-and-upgrade][APT and upgrade]]
 - [[#software][Software]]
+  - [[#rockbox-utility][Rockbox utility]]
 #+END_QUOTE
 
 
@@ -152,9 +153,23 @@
   : $ sudo aptitude install firmware-iwlwifi
   : $ sudo modprobe -r iwlwifi
   : $ sudo modprobe iwlwifi
-
+  
 
 ** Software
+
+
+**** Rockbox utility
+
+- Download [[http://www.rockbox.org/download/][Rockbox utility]]
+- Unzip file, and copy RockboxUtility in =/usr/local/bin/=:
+  : tar xvjf RockboxUtility-v1.4.0-64bit.tar.bz2
+  : sudo mv RockboxUtility-v1.4.0-64bit/RockboxUtility /usr/local/bin/rockbox
+  : sudo chmod 755 /usr/local/bin/rockbox 
+  : rm -R RockboxUtility-v1.4.0-64bit
+- Launch =rockbox=
+- Install Ambiance theme (activate icons)
+
+
 
 # $ sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
 # Pour libreoffice 3.5 (actuellement 3.4) : libreoffice-gtk3
@@ -559,12 +574,6 @@
 # $ mkdir ~/.unison/bkp
 
 
-# Rockbox utility
-# Download Rockbox utility: http://www.rockbox.org/download/
-# Dézipper le fichier, puis copier RockboxUtility dans /usr/local/bin/
-# # mv RockboxUtility /usr/local/bin/rockbox
-# # chmod 755 /usr/local/bin/rockbox 
-# Thème Ambiance (activer les icones)
 
 
 # Ajouter un logiciel dans la liste Ouvrir avec...
