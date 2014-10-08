@@ -131,6 +131,8 @@
     : $ sudo update-initramfs -u -k all
   - Remove =.xsession-errors=
     : $ sudo echo 'ln -fs /dev/null "$HOME"/.xsession-errors' > /etc/X11/Xsession.d/00disable-xsession-errors
+- Bug with =Super+H= opening =baobab= instead of =Nautilus=:
+    : $ xdg-mime default nautilus.desktop inode/directory
 
 
 *** APT and upgrade
@@ -303,6 +305,16 @@
 # Exec=skype %U
 # par
 # Exec=/usr/bin/env PULSE_LATENCY_MSEC=30 /usr/bin/skype %U
+
+# Don't mute sound (music) when Skype (VoIP) calls or other
+# notifications:
+# 
+#   : $ sudo nano /etc/pulse/default.pa 
+# 
+# and comment the line:
+# 
+#   : ### Cork music/video streams when a phone stream is active
+#   : #load-module module-role-cork
 
 
 # Adobe Reader (dans dmo)
@@ -618,4 +630,4 @@
 # > Copier RSync dans .scripts/RSync
 # > Raccourci bureau vers les 2 avec les icones dans .scripts/Icones
 
-# ### GCStar
+     # ### GCStar
