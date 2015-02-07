@@ -7,7 +7,13 @@
   - [[#system][System]]
   - [[#apt-and-upgrade][APT and upgrade]]
 - [[#software][Software]]
-  - [[#rockbox-utility][Rockbox utility]]
+  - [[#general][General]]
+  - [[#web][Web]]
+  - [[#multimedia][Multimedia]]
+  - [[#other][Other]]
+    - [[#google-earth][Google Earth]]
+    - [[#skype][Skype]]
+    - [[#rockbox-utility][Rockbox utility]]
 #+END_QUOTE
 
 
@@ -15,25 +21,21 @@
 
 - Download an image of the [[https://www.debian.org/devel/debian-installer/][Debian Installer]]. 
 - Check [[http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/MD5SUMS][md5 sums]]:
-  : $ md5sum debian-testing-amd64-CD-1.iso 
+  : md5sum debian-testing-amd64-CD-1.iso 
 - Copy the iso on a USB stick (warning, this formats the stick):
-  : $ sudo dd if=debian-testing-amd64-CD-1.iso of=/dev/sdX
+  : sudo dd if=debian-testing-amd64-CD-1.iso of=/dev/sdX
   (where =sdX= is given by =df=).
-- Boot on the USB stick and follow instructions.
-  #+BEGIN_QUOTE
-  Swap = RAM × 2 up to 4 GB of RAM, otherwise Swap = RAM
-
-  Space kept for root on /home: 3%
-  #+END_QUOTE
-- If necessary, adds a [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][SWAP file]].
-- Install =sudo= if necessary:
+- Boot on the USB stick and follow instructions. Swap = RAM × 2 up to
+  4 GB of RAM, otherwise Swap = RAM. Space kept for root on /home: 3%
+  - If necessary, adds a [[http://www.linux.com/learn/tutorials/442430-increase-your-available-swap-space-with-a-swap-file][SWAP file]].
+- Install =sudo= (if necessary):
   : # adduser mathieu sudo
-- Then relog:
+  - Then relog:
   : # su - mathieu
-- Deactivate root account:
-  : $ sudo passwd -l root
-- To re-activate root account (if necessary):
-  : $ sudo passwd -u root
+  - Deactivate root account:
+  : sudo passwd -l root
+  - To re-activate root account (if necessary):
+  : sudo passwd -u root
 # • Enlever le bip système :
 # ∘ https://wiki.archlinux.org/index.php/Disable_PC_Speaker_Beep
 # ∘ Ce qui a marché pour moi (Gnome 3.8) :
@@ -44,16 +46,14 @@
 # xset -b
 # ∘ Gnome 3.12 : Paramètres > Son > Effets sonores > Volume 0
 - Install the complete and functional system (if necessary):
-  : $ sudo tasksel install gnome-desktop --new-install
-  #+BEGIN_QUOTE
+  : sudo tasksel install gnome-desktop --new-install
   or =$ sudo aptitude install gnome-desktop-environment=
-  #+END_QUOTE
-  : $ sudo aptitude install gnome
-  : $ sudo tasksel install desktop
-  : $ sudo tasksel install laptop
-  : $ sudo aptitude install gnome-session
-  : $ sudo aptitude install gnome-terminal
-  : $ sudo aptitude install gdm3
+  : sudo aptitude install gnome
+  : sudo tasksel install desktop
+  : sudo tasksel install laptop
+  : sudo aptitude install gnome-session
+  : sudo aptitude install gnome-terminal
+  : sudo aptitude install gdm3
 
 
 *** Bash setup
@@ -64,8 +64,8 @@
   colors, Aliases (which allow =sudo=), Ctrl-PageUp/Down to
   autocomplete based on history, Screen (server version), add or
   uncomment the following lines:
-  : $ sudo nano /etc/bash.bashrc
-  : ---------------------------------------------------------------------
+  : sudo nano /etc/bash.bashrc
+  #+BEGIN_QUOTE
   : if [ -f /etc/bash_completion ]; then
   : . /etc/bash_completion
   : fi
@@ -96,68 +96,193 @@
   : set completion-ignore-case on
   : "\e[1;5C": forward-word
   : "\e[1;5D": backward-word
-  : ---------------------------------------------------------------------
+  #+END_QUOTE
 
 
 *** System
 
 - Use only SWAP when 100% of RAM is used
-  : $ sudo nano /etc/sysctl.conf
-  : ---------------------------------------------------------------------
+  : sudo nano /etc/sysctl.conf
+  #+BEGIN_QUOTE
   : # SWAP after 100% RAM used 
   : vm.swappiness = 0
-  : ---------------------------------------------------------------------
-- To empty SWAP (switch to RAM only--requires that enough RAM is available): 
-  : $ sudo swapoff -av
-  : $ sudo swapon -av
+  #+END_QUOTE
+  - To empty SWAP (switch to RAM only--requires that enough RAM is available): 
+  : sudo swapoff -av
+  : sudo swapon -av
 - If step skiped during install, set up space for root on /home (3%
   instead of 5%):
-  : $ sudo tune2fs -m 3 /dev/XXX
+  : sudo tune2fs -m 3 /dev/XXX
   (where =XXX= is given by =df= and corresponds to =/home=; =-l= to check).
-- Automount external discs:
-  : $ sudo nano /etc/fstab/media/usb0 
-  and uncomment the line =/media/usb0=.
+# - Automount external discs:
+#   : sudo nano /etc/fstab
+#   and uncomment the line =/media/usb0=.
 - [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
   - [[http://doc.ubuntu-fr.org/ssd_solid_state_drive#diminuer_la_frequence_d_ecriture_des_partitions][Reduce write frequency]] + boost performance:
-    : $ sudo nano /etc/fstab
+    : sudo nano /etc/fstab
     Add the =noatime= and =discard= options for every SSD partition.
   - =/tmp= in RAM:
-    : $ sudo nano /etc/fstab
-    : ---------------------------------------------------------------------
+    : sudo nano /etc/fstab
+    #+BEGIN_QUOTE
     # /tmp dans la RAM
     tmpfs      /tmp            tmpfs        defaults,size=1g
-    : ---------------------------------------------------------------------
+    #+END_QUOTE
   - Init settings:
-    : $ sudo update-initramfs -u -k all
+    : sudo update-initramfs -u -k all
   - Remove =.xsession-errors=
-    : $ sudo echo 'ln -fs /dev/null "$HOME"/.xsession-errors' > /etc/X11/Xsession.d/00disable-xsession-errors
+    : sudo echo 'ln -fs /dev/null "$HOME"/.xsession-errors' > /etc/X11/Xsession.d/00disable-xsession-errors
 - Bug with =Super+H= opening =baobab= instead of =Nautilus=:
-    : $ xdg-mime default nautilus.desktop inode/directory
+    : xdg-mime default nautilus.desktop inode/directory
 
 
 *** APT and upgrade
 
-- Put =sources.list= and =preferences= in =/etc/apt/=.
+- Copy =sources.list= and =preferences= in =/etc/apt/=.
+  : sudo cp etc/apt/sources.list /etc/apt
+  : sudo cp etc/apt/preferences /etc/apt
 - Avoid downloading translation indexes:
-  : $ sudo nano /etc/apt/apt.conf.d/apt.conf
-  : ---------------------------------------------------------------------
+  : sudo nano /etc/apt/apt.conf.d/apt.conf
+  #+BEGIN_QUOTE
   : Acquire::Languages "none";
-  : ---------------------------------------------------------------------
+  #+END_QUOTE
 - Complete upgrade + install:
-  : $ sudo aptitude update
-  : $ sudo aptitude install deb-multimedia-keyring
-  : $ sudo aptitude install apt-listbugs
-  : $ sudo apt-cache policy
-  : $ sudo aptitude safe-upgrade
-  : $ sudo aptitude full-upgrade
-  : $ upgrade
+  : sudo aptitude update
+  : sudo aptitude install deb-multimedia-keyring
+  : sudo aptitude install apt-listbugs
+  : sudo apt-cache policy
+  : sudo aptitude safe-upgrade
+  : sudo aptitude full-upgrade
+  : upgrade
 - [[http://wiki.debian.org/fr/iwlwifi][WIFI Firmware support]]:
-  : $ sudo aptitude install firmware-iwlwifi
-  : $ sudo modprobe -r iwlwifi
-  : $ sudo modprobe iwlwifi
+  : sudo aptitude install firmware-iwlwifi
+  : sudo modprobe -r iwlwifi
+  : sudo modprobe iwlwifi
   
 
 ** Software
+
+*** General
+
+  : sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies detox disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-gnome libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc privoxy python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
+
+
+*** Web
+
+- Mozilla software
+  : sudo aptitude install iceweasel iceweasel-l10n-fr icedove icedove-l10n-fr iceowl-extension iceowl-l10n-fr torbrowser-launcher
+- Icedove integration with Gnome calendar 
+  : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
+# Créer un faux compte sous Evolution ; puis Fichier > Nouveau > Agenda ; Type : CalDAV, Nom : Agenda calDav, « Marquer comme agenda par défaut », URL : caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/default%20calendar/ (ou mettre caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/ et rechercher les calendriers), Rafraichir aux 15 minutes, Appliquer. Fermer Evolution...
+# Intégration à Gnome :
+# * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
+# * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
+- Suppression des liens des dicos fr_*
+  : sudo rm /usr/share/hunspell/fr_*
+  : sudo rm /usr/share/myspell/dicts/fr_*
+  In case of trouble, just reinstal =hunspell-fr=.
+- Privoxy : 
+  : sudo aptitude install privoxy
+  Paramètres Gnome / Réseau / Serveur mandataire : HTTP/HTTPS = localhost:8118
+
+
+*** Multimedia
+
+  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick inkscape darktable rawtherapee phatch qtpfsgui cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede easytag oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-ampache sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain xbmc sweethome3d qarte chromium-bsu
+
+# Slowmo : http://slowmovideo.granjow.net/
+# Récupérer package for Ubuntu Raring
+# Dépendances :
+# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
+# (attention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
+# Puis
+# $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
+
+
+*** Emacs / LaTeX / PDF
+
+  : sudo aptitude install emacs24 ispell texlive-full bibtex2html rubber jabref latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal
+# (emacs emacs-goodies-el ess org-mode)
+# (ocrfeeder ocrodjvu)
+Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
+=texlive-full=; =pdfmanipulate= comes with =calibre=.
+
+**** Emacs
+
+- Different font between Emacs and other software (e.g. gedit): gnome-tweak-tool > Polices > Optimisation > Full
+- To get Emacs in the list of available software (contextual menu):
+  : nano /home/mathieu/.local/share/applications/emacs.desktop
+  #+BEGIN_QUOTE
+  : [Desktop Entry]
+  : Version=1.0
+  : Name=Emacs
+  : GenericName=Text Editor
+  : Comment=View and edit files
+  : MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;te$
+  : Exec=/usr/bin/emacs %F
+  : TryExec=emacs
+  : Icon=/usr/share/icons/hicolor/scalable/apps/emacs.svg
+  : Type=Application
+  : Terminal=false
+  : Categories=Utility;Development;TextEditor;
+  #+END_QUOTE
+- Install a package (e.g. =moderncv=)
+  : sudo nano /etc/texmf/texmf.d/03local.cnf
+  #+BEGIN_QUOTE
+  : TEXMFHOME = ~/.emacs.d/texmf
+  #+END_QUOTE
+  : sudo update-texmf
+  Check with:
+  : kpsewhich --var-value TEXMFHOME
+  Copy packages in =~/.emacs.d/texmf/tex/latex/= and complete install
+  when necessary, e.g.:
+  : latex moderntimeline.ins
+  : latex moderntimeline.dtx
+- Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=, then update the TeX index: 
+  : sudo texhash
+
+
+**** PDF
+
+- Adobe Reader (in dmo)
+  : sudo aptitude install acroread:i386
+
+
+*** Other
+
+**** Google Earth
+
+The Debian way:
+  : sudo aptitude install googleearth-package
+  : sudo dpkg --add-architecture i386
+  : sudo apt-get install alien ia32-libs-gtk lib32nss-mdns libfreeimage3 lsb-core msttcorefonts pax rpm ttf-dejavu ttf-bitstream-vera
+  : make-googleearth-package --force
+  : sudo dpkg -i googleearth*.deb
+But impossible to install =ia32-libs=... Solution: get offical .deb @ Google, then: 
+  : dpkg-deb -R google-earth-stable_current_amd64.deb gg
+To extract files, remove dependence to =ia32-libs= in DEBIAN/Control before recreating the archive: 
+  : dpkg-deb -b gg google-earth-stable_current_amd64_mod.deb
+  : sudo dpkg -i google-earth-stable_current_amd64_mod.deb
+
+
+**** Skype
+
+[[http://wiki.debian.org/skype][Information]]
+
+  : sudo dpkg --add-architecture i386
+  : sudo aptitude update
+  : wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
+  : sudo dpkg -i skype-install.deb
+  : sudo aptitude -f install
+If necessary, install dependencies manually:
+  : sudo aptitude install libc6:i386 libgcc1:i386 libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386 libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386 libstdc++6:i386 libx11-6:i386 libxext6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386 libpulse0:i386 libasound2-plugins:i386
+
+Don't mute sound (music) when Skype (VoIP) calls or other notifications:
+  : sudo nano /etc/pulse/default.pa 
+and comment the line:
+  #+BEGIN_QUOTE
+  : ### Cork music/video streams when a phone stream is active
+  : #load-module module-role-cork
+  #+END_QUOTE
 
 
 **** Rockbox utility
@@ -169,56 +294,13 @@
   : sudo chmod 755 /usr/local/bin/rockbox 
   : rm -R RockboxUtility-v1.4.0-64bit
 - Launch =rockbox=
-- Install Ambiance theme (activate icons)
+- Install Ambiance theme (activate icons).
 
-
-
-# $ sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
-# Pour libreoffice 3.5 (actuellement 3.4) : libreoffice-gtk3
-# (icedtea6-plugin)
-# (nautilus-open-terminal)
-# (python-evolution)
-# (transmission-daemon)
-
-# Reporting tool for i3, i5, i7
-# sudo aptitude install i7z i7z-gui
-
-# Mozilla + web
-# sudo aptitude install iceweasel iceweasel-l10n-fr icedove icedove-l10n-fr iceowl-extension iceowl-l10n-fr torbrowser-launcher
-# * User agent de Icedove : 
-# Options > Avancé > Éditeur de configuration
-# Ajouter une chaine de caractères 'general.useragent.override' avec : Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/17.0 Thunderbird/17.0
-# (le user agent normal étant : Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/17.0 Icedove/17.0)
-# À mettre à jour à chaque nouvelle version...
-# * Calendrier
-# gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
-# Créer un faux compte sous Evolution ; puis Fichier > Nouveau > Calendrier ; Type : CalDAV, Nom : Agenda calDav, « Marquer comme calendrier par défaut », URL : caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/default%20calendar/ (ou mettre caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/ et rechercher les calendriers), Rafraichir aux 15 minutes, Appliquer. Fermer Evolution...
-# Intégration à Gnome :
-# * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
-# * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
-
-# Suppression des liens des dicos fr_*
-# $ sudo rm /usr/share/hunspell/fr_*
-# $ sudo rm /usr/share/myspell/dicts/fr_*
-# En cas de problème, réinstaller hunspell-fr
-
-
-# Images / photos / multimédia / jeux
-# $ sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick inkscape darktable rawtherapee phatch qtpfsgui cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede easytag oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-ampache sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain xbmc sweethome3d qarte chromium-bsu
-
-
-# Slowmo : http://slowmovideo.granjow.net/
-# Récupérer package for Ubuntu Raring
-# Dépendances :
-# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
-# (qgis 2.0 time managerattention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
-# Puis
-# $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
 
 
 # QGIS, GEOS, GDAL, PROJ.4
 # $ sudo aptitude install libgdal-dev libgeos-dev gdal-bin qgis python-qgis libproj-dev proj-bin
-
+# (qgis 2.0 time manager)
 
 # R
 # $ sudo aptitude install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
@@ -239,93 +321,6 @@
 # > install_github("basille/hab")
 # > install_github("basille/seasonality")
 # > install_github("basille/rpostgis")
-
-
-# Emacs + LaTeX + pdf (biblatex est dans texlive-bibtex-extra qui vient avec texlive-full / pdfmanipulate vient avec calibre)
-# $ sudo aptitude install emacs24 ispell texlive-full bibtex2html rubber jabref latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal
-# (emacs emacs-goodies-el ess org-mode)
-# (ocrfeeder ocrodjvu)
-
-# Police différente dans Emacs et gedit (par exemple) : gnome-tweak-tool > Polices > Optimisation > Full)
-# $ nano /home/mathieu/.local/share/applications/emacs.desktop
-# [Desktop Entry]
-# Version=1.0
-# Name=Emacs
-# GenericName=Text Editor
-# Comment=View and edit files
-# MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;te$
-# Exec=/usr/bin/emacs %F
-# TryExec=emacs
-# Icon=/usr/share/icons/hicolor/scalable/apps/emacs.svg
-# Type=Application
-# Terminal=false
-# Categories=Utility;Development;TextEditor;
-
-# Installer un package perso (par exemple moderncv)
-# $ sudo nano /etc/texmf/texmf.d/03local.cnf
-# TEXMFHOME = ~/.emacs.d/texmf
-# $ sudo update-texmf
-# Pour vérifier :
-# $ kpsewhich --var-value TEXMFHOME
-# Puis placer les packages dans ~/.emacs.d/texmf/tex/latex/, terminer l'installation si besoin, e.g.:
-# $ latex moderntimeline.ins
-# $ latex moderntimeline.dtx
-# Placer les polices dans ~/.emacs.d/texmf/fonts/truetype/
-# Puis mettre à jour l'index TeX :
-# $ sudo texhash
-
-
-# Google Earth
-# The Debian way:
-# $ sudo aptitude install googleearth-package
-# $ sudo dpkg --add-architecture i386
-# $ sudo apt-get install alien ia32-libs-gtk lib32nss-mdns libfreeimage3 lsb-core msttcorefonts pax rpm ttf-dejavu ttf-bitstream-vera
-# $ make-googleearth-package --force
-# $ sudo dpkg -i googleearth*.deb
-# Mais ia32-libs impossible à installer... Solution : récupérer .deb officiel chez Google, puis :
-# $ dpkg-deb -R google-earth-stable_current_amd64.deb gg
-# Pour extraire les fichiers, aller dans DEBIAN et modifier Control (enlever la dépendance à ia32-libs), puis recréer l'archive :
-# $ dpkg-deb -b gg google-earth-stable_current_amd64_mod.deb
-# $ sudo dpkg -i google-earth-stable_current_amd64_mod.deb
-
-
-# Skype
-# http://wiki.debian.org/skype
-# $ sudo dpkg --add-architecture i386
-# $ sudo aptitude update
-# $ wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
-# $ sudo dpkg -i skype-install.deb
-# $ sudo aptitude -f install
-# Si besoin, installer les dépendances à la main :
-# $ sudo aptitude install libc6:i386 libgcc1:i386 libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386 libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386 libstdc++6:i386 libx11-6:i386 libxext6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386 libpulse0:i386 libasound2-plugins:i386
-# Intégration DBus ? https://gist.github.com/nzjrs/1006316
-# Problème de son avec libpulse : https://bugs.archlinux.org/task/35690
-# $ sudo nano /usr/share/applications/skype.desktop
-# Remplacer :
-# Exec=skype %U
-# par
-# Exec=/usr/bin/env PULSE_LATENCY_MSEC=30 /usr/bin/skype %U
-
-# Don't mute sound (music) when Skype (VoIP) calls or other
-# notifications:
-# 
-#   : $ sudo nano /etc/pulse/default.pa 
-# 
-# and comment the line:
-# 
-#   : ### Cork music/video streams when a phone stream is active
-#   : #load-module module-role-cork
-
-
-# Adobe Reader (dans dmo)
-# $ sudo aptitude install acroread:i386
-
-
-
-
-# Evince comme visionneur par défaut sur le web :
-# # nano /etc/mozpluggerrc
-# Puis placer la ligne evince en tête des applications PDF
 
 
 # Virer Mono
@@ -378,8 +373,8 @@
 # ======================================================
 # Quelques insultes pour les erreurs de mots de passe :
 # 	sudo visudo
-# Changer la ligne : 
-# 	Defaults    env_reset,insults
+# Rajouter, en début de fichier, la ligne : 
+# 	Defaults    insults
 
 
 # * Nautilus
@@ -397,26 +392,34 @@
 # - Régler les applications préférées (Menu perso > Paramètres système > Informations système > Applications par défaut)
 # - Date dans l'horloge : gsettings set org.gnome.desktop.interface clock-show-date true
 # - Raccourcis clavier (Basculer l'état d'agrandissement : Super+Entrée ; Client de messagerie : Super+E ; Navigateur Web : Super+W ; Dossier personnel : Super+H ; Masquer toutes les fenêtres normales : Super+D ; Verrouiller l'écran : Ctrl+Échap ; Raccourcis perso : Terminator : Super+T)
-# - Applications au démarrage :
-# (si besoin, créer le dossier : $ mkdir ~/.config/autostart )
-# * Ctrl droit pour accéder au menu contextuel : 
-# $ nano ~/.config/autostart/ctrl_r.desktop
-# [Desktop Entry]
-# Type=Application
-# Exec=xmodmap -e 'keycode 105 = Menu'
-# Hidden=false
-# X-GNOME-Autostart-enabled=true
-# Name=Ctrl droit pour accéder au menu contextuel
-# * Shift droit pour avoir le caractère supérieur (clavier US) :
-# $ nano ~/.config/autostart/shift_r.desktop
-# [Desktop Entry]
-# Type=Application
-# Exec=xmodmap -e 'keycode 62 = less greater'
-# Hidden=false
-# X-GNOME-Autostart-enabled=true
-# Name=Shift droit pour avoir le caractère supérieur (clavier US)
 # - Conserver l'activation du pavé numérique entre sessions :
 # $ gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+# - Applications au démarrage : gnote/gtg
+# (si besoin, créer le dossier : mkdir ~/.config/autostart )
+
+# - Keyboard layout
+# https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions
+#
+# French keyboard: use (and modify): 'xkb_symbols "oss_latin9"' / 'name[Group1]="French (alternative, Latin-9 only)"'
+# Changes marked with '// #####'
+# * AltGr + Shift + 4 pour apostrophe arrondie (’)
+# * AltGr + Shift + 6 pour tiret semi-cadratin (en dash –)
+# * AltGr + Shift + 8 pour tiret cadratin (em dash —)
+# * AltGr + Shift + : pour points de suspension (…)
+# * AltGr (+ Shift) + Espace pour espace insécable
+# * Shift droit pour inférieur / supérieur
+# * Ctrl droit pour menu contextuel
+#
+# US keyboard: use (and modify): 'xkb_symbols "basic"' / 'name[Group1]= "English (US)"'
+# Changes marked with '// #####'
+# * AltGr (+ Shift) + Space for non-breaking space
+# * Right Shift for less/greater
+# * Right Ctrl for contextual menu
+#
+# $ sudo mv /usr/share/X11/xkb/symbols/fr /usr/share/X11/xkb/symbols/fr.bkp
+# $ sudo cp keyboard\ layout/fr /usr/share/X11/xkb/symbols/
+# $ sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
+# $ sudo cp keyboard\ layout/us /usr/share/X11/xkb/symbols/
 
 
 # * Conky
@@ -611,6 +614,9 @@
 # ## Vignettes
 # sudo aptitude install ufraw ufraw-batch gimp-dcraw
 # sudo nano /usr/share/thumbnailers/raw.thumbnailer
+# Plus nécessaire :
+# $ sudo aptitude install libopenrawgnome1
+
 
 # [Thumbnailer Entry]
 # Exec=/usr/bin/ufraw-batch --embedded-image --out-type=png --size=%s %u --overwrite --silent --output=%o
