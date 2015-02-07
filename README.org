@@ -208,6 +208,11 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 
 **** Emacs
 
+Config:
+
+: cp -R .emacs.d ~
+: xrdb -merge ~/.Xresources
+
 - Different font between Emacs and other software (e.g. gedit): gnome-tweak-tool > Polices > Optimisation > Full
 - To get Emacs in the list of available software (contextual menu):
   : nano /home/mathieu/.local/share/applications/emacs.desktop
@@ -239,6 +244,21 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
   : latex moderntimeline.dtx
 - Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=, then update the TeX index: 
   : sudo texhash
+
+
+**** JabRef
+
+- Import preferences (PrefJabRef-2014-XX-XX)
+- Use =/home/mathieu/Work/biblio/PDF/= as main file folder (External
+  programs)
+- GTK look & feel: Options > Preferences > Advanced > Class name:
+  "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+- Link folder of main BibTeX file to the Tex install:
+  : mkdir ~/.texmf-var/
+  : mkdir ~/.texmf-var/bibtex/
+  : ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
+  Check with:
+  : kpsewhich -show-path=.bib
 
 
 **** PDF
@@ -321,6 +341,26 @@ and comment the line:
 # > install_github("basille/hab")
 # > install_github("basille/seasonality")
 # > install_github("basille/rpostgis")
+
+# * R
+
+# $ mkdir ~/.R-site
+# $ mkdir ~/.R-site/site-library
+# $ cp .Renviron ~
+# $ cp .Rprofile ~
+# Copier le contenu de .R-site (sauf site-library)
+# Packages (après installation de GEOS & GDAL)
+# /!\ en 'sudo R' pour les avoir pour tous les utilisateurs...
+# > install.packages("adehabitatHS", dep = TRUE)
+# > install.packages(c("adehabitat", "rgdal", "raster"))
+# > install.packages(c("beanplot", "Cairo", "clusterSim", "ggplot2", "MuMIn", "lme4", "rms"))
+
+# Pour utiliser un plus haut niveau de la pile C, sous emacs : lancer un shell (M-x shell)
+# $ ulimit -s 30000
+# $ R
+# Associer le R : M-x ess-remote RET r RET
+
+
 
 
 # Virer Mono
@@ -525,47 +565,6 @@ and comment the line:
 # X-GNOME-Autostart-enabled=true
 # Name=Gnote
 # Comment[fr_FR.UTF-8]=Prendre des notes, relier des idées, rester organisé
-
-
-# * R
-
-# $ mkdir ~/.R-site
-# $ mkdir ~/.R-site/site-library
-# $ cp .Renviron ~
-# $ cp .Rprofile ~
-# Copier le contenu de .R-site (sauf site-library)
-# Packages (après installation de GEOS & GDAL)
-# /!\ en 'sudo R' pour les avoir pour tous les utilisateurs...
-# > install.packages("adehabitatHS", dep = TRUE)
-# > install.packages(c("adehabitat", "rgdal", "raster"))
-# > install.packages(c("beanplot", "Cairo", "clusterSim", "ggplot2", "MuMIn", "lme4", "rms"))
-
-# Pour utiliser un plus haut niveau de la pile C, sous emacs : lancer un shell (M-x shell)
-# $ ulimit -s 30000
-# $ R
-# Associer le R : M-x ess-remote RET r RET
-
-
-# * Emacs
-
-# $ cp -R .emacs-site ~
-# $ cp .emacs ~
-# $ cp .xpdfrc ~
-# $ cp .Xresources ~
-# $ xrdb -merge ~/.Xresources
-
-
-# * JabRef
-
-# Importer préférences (PrefJabRef-2014-XX-XX)
-# Lier le répertoire de biblio à /home/mathieu/Work/biblio/PDF/
-# Pour avoir un aspect GTK, dans Options > Préférences > Avancé renseigner la classe avec "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-# Mettre dans ~/.texmf-var/bibtex/ (créer le répertoire si besoin) un lien 'bib' vers le répertoire de biblio (/home/mathieu/Work/biblio/ par exemple)
-# $ mkdir ~/.texmf-var/
-# $ mkdir ~/.texmf-var/bibtex/
-# $ ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
-# Vérifier les dossiers de biblio avec: 
-# $ kpsewhich -show-path=.bib
 
 
 # * VPNC + SSH
