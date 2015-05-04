@@ -83,6 +83,10 @@
   : alias app='ps --no-header -o comm -p $(xwininfo -all | grep "Process id:" | cut -d":" -f2 | cut -d" " -f2)' 
   : ### When using sudo, use alias expansion (otherwise sudo ignores your aliases)
   : alias sudo='sudo '
+  : ### Git in English
+  : alias git='LANG=en_US git'
+  : ### Alias getwd = pwd
+  : alias getwd='pwd'
   : ### Prevent screen to turn off (server only)
   : xset s off # Disable X windows screen saver
   : xset -dpms # Disable display power management system
@@ -163,7 +167,7 @@
 
 *** General
 
-  : sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies detox disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-gnome libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc privoxy python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
+  : sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies deja-dup detox disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-gnome libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc privoxy python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
 
 
 *** Web
@@ -315,6 +319,57 @@ and comment the line:
   : rm -R RockboxUtility-v1.4.0-64bit
 - Launch =rockbox=
 - Install Ambiance theme (activate icons).
+
+
+
+**** Samba share
+
+Credential file:
+
+nano .smb
+username=basille
+password=*****
+chmod 600 .smb
+
+sudo mkdir /mnt/ecored
+sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/mathieu/.smb,uid=mathieu,gid=mathieu
+
+mkdir MabLab
+mkdir MabLab/bkp
+mkdir MabLab/bkp/mathieu
+mkdir MabLab/bkp/mathieu/home
+
+#!/bin/sh
+#################################################
+##                                             ##
+##  rsync home Micmac on Ecored                ##
+##                                             ##
+#################################################
+
+#################################################
+##                                             ##
+##  -n pour tester le script sans modifs !     ##
+##                                             ##
+#################################################
+
+
+### Mount Ecored
+sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/mathieu/.smb,uid=mathieu,gid=mathieu
+
+### Save file ACLs (permission, ownership)
+cd ~
+getfacl -R . > .file-acl
+### Restore file ACLs
+# cd Bkp/
+# setfacl --restore=.file-acl
+
+### tout home sauf Photos, Musique, Vidéos, caches/thumbnails, .extraswap, emacs.d/elpa/, .R-site/site-library/, Torbrowser, Trash
+###  --modify-window=1 to consider rounded timestamp 
+rsync -avz --progress --delete-during --modify-window=1 --exclude=Musique --exclude=Images/Photos --exclude=Vidéos --exclude=.local/share/torbrowser --exclude=.cache --exclude=.extraswap --exclude=.gftp/cache --exclude=.googleearth/Cache/ --exclude=.thumbnails --exclude=.emacs.d/elpa --exclude=.R-site/site-library/ --exclude=.local/share/Trash /home/mathieu/ /mnt/ecored/MabLab/bkp/mathieu/home/
+
+### Unmount Ecored
+sudo umount /mnt/ecored/
+
 
 
 
