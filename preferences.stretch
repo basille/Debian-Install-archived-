@@ -1,0 +1,117 @@
+## ======================================================= ##
+##                                                         ##
+##                 OFFICIAL DEBIAN SERVERS                 ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: release o=Debian,n=jessie
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,n=jessie-updates
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,n=jessie-proposed-updates
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,n=stretch
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Debian,n=stretch-updates
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Debian,n=sid
+Pin-Priority: 90
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                DEB-MULTIMEDIA (MARILLAT)                ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: release o=Unofficial Multimedia Packages,a=stable
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Unofficial Multimedia Packages,a=stable-backports
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Unofficial Multimedia Packages,a=testing
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Unofficial Multimedia Packages,a=unstable
+Pin-Priority: 90
+
+Package: *
+Pin: release o=Unofficial Multimedia Packages,a=experimental
+Pin-Priority: 1
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                          MOZILLA                        ##
+##                                                         ##
+## ======================================================= ##
+
+#Package: *
+#Pin: origin mozilla.debian.net
+#Pin-Priority: 901
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                            R                            ##
+##                                                         ##
+## ======================================================= ##
+
+#Package: r-base r-base-core r-base-dev r-recommended r-cran-boot r-cran-cluster r-cran-class r-cran-codetools r-cran-foreign r-cran-kernsmooth r-cran-lattice r-cran-mass r-cran-matrix r-cran-mgcv r-cran-nlme r-cran-nnet r-cran-rmatrix r-cran-rpart r-cran-spatial r-cran-survival r-cran-tkrplot littler
+#Pin: release o=Debian,n=sid
+#Pin-Priority: 902
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                        POSTGRESQL                       ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin apt.postgresql.org
+Pin-Priority: 903
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                          QGIS                           ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin qgis.org
+Pin-Priority: 904
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                  PIPELIGHT (SILVERLIGHT)                ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin repos.fds-team.de
+Pin-Priority: 905

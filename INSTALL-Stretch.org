@@ -1,0 +1,673 @@
+* Debian Testing (Stretch) install
+
+#+BEGIN_QUOTE
+*Table of Contents*
+- [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
+  - [[#download-the-installer][Download the installer]]
+    - [[#the-debian-way][The Debian way]]
+    - [[#the-easy-way][The easy way]]
+  - [[#install_debian][Install Debian]]
+    - [[#terminal-setup][Terminal setup]]
+    - [[#system-settings][System settings]]
+    - [[#apt-and-upgrade][APT and upgrade]]
+    - [[#hardware][Hardware]]
+    - Keyboard
+- [[#installing-a-full-system][Installing a full system]]
+  - [[#miscellaneous][Miscellaneous]]
+  - [[#web][Web]]
+  - Internet admin
+  - [[#multimedia][Multimedia]]
+  - [[#office][Office]]
+    - Fonts
+    - LaTeX and PDF
+    - Emacs configuration
+    - JabRef configuration
+    - Gnote configuration
+  - R, PostGIS and QGIS
+  - Gnome Extensions
+  - [[#other][Other]]
+    - [[#google][Google Stuff]]
+    - [[#skype][Skype]]
+    - [[#rockbox-utility][Rockbox utility]]
+  - Final stage
+#+END_QUOTE
+
+
+** Installing Debian with the base Gnome desktop
+
+
+*** Download the installer
+
+
+**** The Debian way
+
+Start by downloading an image of the [[https://www.debian.org/devel/debian-installer/][Debian Installer]] for Debian
+Testing (Stretch), according to the platform of the computer. A good
+choice is the Network install (=netinst=), which will fetch all system
+packages directly on-line when installing. In this case, the file to
+download is the netinst weekly snapshot for amd64
+(=debian-testing-amd64-netinst.iso=). Then check MD5 sums to guarantee
+the integrity of the file:
+
+#+BEGIN_SRC sh
+md5sum debian-testing-amd64-netinst.iso 
+#+END_SRC
+#+RESULTS:
+  : 0ae2ef8a422522eca17d38bade946ec0  debian-testing-amd64-netinst.iso
+
+The next step is to copy the ISO on a USB flash drive. First check
+on which device the flash drive is mounted:
+
+#+BEGIN_SRC sh
+df -h
+#+END_SRC
+#+RESULTS:
+  : Filesystem      Size  Used Avail Use% Mounted on
+  : /dev/sda1        28G   15G   12G  55% /
+  : ...
+  : /dev/sda3       204G  195G  2.8G  99% /home
+  : tmpfs           789M   40K  789M   1% /run/user/1000
+  : /dev/sdb1       7.5G  184K  7.5G   1% /media/<user>/<FLASH>
+
+In this case, this shows that the flash drive is associated to
+=sdb1=. We can then use it to overwrite the flash drive with the ISO
+(WARNING #1: This formats the entire stick! WARNING #2: Change the
+value of =sdb1= accordingly!):
+
+#+BEGIN_SRC sh
+sudo dd if=debian-testing-amd64-netinst.iso of=/dev/sdb1
+#+END_SRC
+#+RESULTS:
+  : 587776+0 records in
+  : 587776+0 records out
+  : 300941312 bytes (301 MB) copied, 104.177 s, 2.9 MB/s
+
+Now unmount the flash drive, and from now on, all other steps will be
+on the 'target' computer.
+
+  : sudo umount /dev/sdb1 
+
+
+**** The easy way
+
+*NOTE:* For a reason, the standard procedure above failed for me this
+time, with the system being unable to boot on the flash drive… A
+workaround is simply to use =Unetbootin= GUI to create the USB bootable
+image (using Debian testing), and move directly to the next step.
+
+
+*** Install Debian
+
+You can now boot the computer on the USB flash drive (on a modern DELL
+laptop, that requires to turn off UEFI Security Boot, in favor of
+Legacy boot) and follow the instructions. General guidelines:
+
+- *Root:* Leave the password empty — that way, root permissions are
+  given to the first user using =sudo=.
+- *Partitions:* Use *Guided - use entire disk and set up encrypted LVM*,
+  with separate =/home= partition. When required to do so, enter a good
+  passphrase (it will be required on every boot, but not when resuming
+  from sleep). The partitioner will allocate 30 GB for the system
+  (which is plenty) and 8 GB for the swap (equal to RAM amount). One
+  good modification is to keep only 3 % of reserved blocks for root
+  (maintenance) on =/home=.
+- It's a good idea to participate in the package usage survey (results
+  are encrypted).
+- Chose GNOME for the desktop, and leave =print server= and =standard
+  system utilities=.
+- Finally, install the GRUB boot loader to the master boot record on
+  the first hard drive (pick the hard drive, not the USB flash
+  drive!).
+- Time to restart!
+
+
+*** Terminal setup
+
+- Bash configuration:
+  : sudo nano /etc/bash.bashrc
+  - *Autocompletion:* uncomment the following lines:
+  : if ! shopt -oq posix; then
+  :   if [ -f /usr/share/bash-completion/bash_completion ]; then
+  :     . /usr/share/bash-completion/bash_completion
+  :   elif [ -f /etc/bash_completion ]; then
+  :     . /etc/bash_completion
+  :   fi
+  : fi
+  - *Other:* add the following at the end of the file:
+  : # Ctrl-N keeps current directory
+  : export PS1='\[$(__vte_ps1)\]'$PS1
+  : 
+  : # Manpages with colors
+  : export MANPAGER="/usr/bin/most -s"
+  : 
+  : # Alias upgrade & upgrade-full
+  : alias upgrade='sudo apt update && sudo apt upgrade'
+  : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
+- Install Terminator, Nautilus-Actions and most (Man needs most):
+  :  sudo apt install terminator nautilus-actions most
+  - Terminator configuration (in Profiles): General: Do not show title
+    bar; Colors: White on black; Background: Transparent 0.7)
+  - Terminator by default (should already be the case):
+  : sudo update-alternatives --config x-terminal-emulator 
+  - 'Open in Terminator' in Nautilus: open
+    *nautilus-actions-config-tool*, and add a new action called 'Open in
+    Terminator', check 'Display item in location context menu'; in the
+    Command tab, enter '/usr/bin/terminator' in the path, and
+    '--working-directory=%d/%b' in the parameters. In the Preferences
+    of Nautilus Actions, uncheck 'Create a root 'Nautilus-Actions'
+    menu'.
+- Get insulted on errors for password:
+  : sudo visudo
+  Add this line at the beginning of the file:
+  : Defaults        insults
+
+
+*** System settings
+
+- Remove the system beep: in Settings > Sound > Sound Effects, turn
+  off the Alert volume.
+- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
+  - =/tmp= in RAM:
+  : sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+  : sudo systemctl enable tmp.mount
+- Use only SWAP when 100% of RAM is used:
+  : sudo nano /etc/sysctl.conf
+  Add at the end of the file:
+  #+BEGIN_QUOTE
+  : # SWAP after 100% RAM used 
+  : vm.swappiness = 0
+  #+END_QUOTE
+- Date in the top bar with time, and calendar displaying the week
+  number:
+  : gsettings set org.gnome.desktop.interface clock-show-date true
+  : gsettings set org.gnome.desktop.calendar show-weekdate true
+- Keyboard shortcuts:
+  - Home folder: Super+H ; 
+  - Hide all normal windows: Super+D ; 
+  - Lock screen: Ctrl+Echap ; 
+  - Toggle maximization state: Super+Return
+  - Custom shortcut: Terminator: Super+T
+- Keep numpad activated between sessions:
+  : gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+- Nautilus: Preferences > Views: Sort folders before files
+
+
+*** APT and upgrade
+
+- Copy =sources.list= and =preferences= in =/etc/apt/=:
+  : sudo cp sources.list.stretch /etc/apt/sources.list
+  : sudo cp preferences.stretch /etc/apt/preferences
+- Avoid downloading translation indexes:
+  : sudo nano /etc/apt/apt.conf.d/apt.conf
+  And add:
+  #+BEGIN_QUOTE
+  : Acquire::Languages "none";
+  #+END_QUOTE
+- Enable the installation of i386 packages:
+  : sudo dpkg --add-architecture i386
+- Update the indexes and keys:
+  : sudo apt update
+  : sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring
+  : wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  : wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+  : wget --quiet -O - http://repos.fds-team.de/Release.key | sudo apt-key add -
+  : sudo apt install apt-listbugst
+- Check the preferences (no repository should be left at 500):
+  : sudo apt-cache policy
+- First upgrade
+  : sudo apt upgrade
+  : sudo apt full-upgrade
+  : upgrade-full
+
+
+
+*** Hardware
+
+- *Laptop stuff* (battery, wifi, non-free firmware):
+  : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi firmware-brcm80211 tlp tlp-rdw 
+  : sudo modprobe -r brcmsmac ; sudo modprobe brcmsmac
+  *Note:* TLP seems like a better alternative to =laptop-mode-tools=.
+
+- *Graphical boot:* use Plymouth.
+  : sudo apt install plymouth plymouth-themes
+  Then edit =/etc/initramfs-tools/modules=:
+  : sudo nano /etc/initramfs-tools/modules
+  and add the following lines:
+  : # KMS
+  : intel_agp
+  : drm
+  : i915 modeset=1
+  Then edit =/etc/default/grub=:
+  : sudo nano /etc/default/grub
+  and add this line:
+  : GRUB_GFXMODE=1920x1080
+  And edit the GRUB_CMDLINE_LINUX_DEFAULT line to read:
+  : GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+  Update Grub to pick up the changes:
+  : sudo update-grub2
+  Set the default theme to lines:
+  : sudo /usr/sbin/plymouth-set-default-theme lines
+  And finally apply the changes:
+  : sudo update-initramfs -u
+
+
+*** Keyboard layout
+
+# https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions
+#
+# List of character here: /usr/include/X11/keysymdef.h
+#
+# French keyboard: use (and modify): 'xkb_symbols "oss_latin9"' / 'name[Group1]="French (alternative, Latin-9 only)"'
+# Changes marked with '// #####'
+# * AltGr + Shift + 4 pour apostrophe arrondie (’)
+# * AltGr + Shift + 6 pour tiret semi-cadratin (en dash –)
+# * AltGr + Shift + 8 pour tiret cadratin (em dash —)
+# * AltGr + Shift + : pour points de suspension (…)
+# * AltGr + Shift + ! pour cœur (♥)
+# * AltGr (+ Shift) + Espace pour espace insécable
+# * Shift droit pour inférieur / supérieur
+# * Ctrl droit pour menu contextuel
+#
+# US keyboard: use (and modify): 'xkb_symbols "basic"' / 'name[Group1]= "English (US)"'
+# Changes marked with '// #####'
+# * AltGr (+ Shift) + Space for non-breaking space
+# * Right Shift for less/greater<>
+# * Right Ctrl for contextual menu
+#
+# $ sudo mv /usr/share/X11/xkb/symbols/fr /usr/share/X11/xkb/symbols/fr.bkp
+# $ sudo cp Keyboard/fr /usr/share/X11/xkb/symbols/
+# $ sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
+# $ sudo cp Keyboard/us /usr/share/X11/xkb/symbols/
+
+
+** Installing a full system
+
+
+*** Miscellaneous
+
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dosbox elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy revelation subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+
+
+*** Web
+
+  : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser flashplugin-nonfree mozplugger
+
+# - Icedove integration with Gnome calendar 
+#   : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
+# Créer un faux compte sous Evolution ; puis Fichier > Nouveau > Agenda ; Type : CalDAV, Nom : Agenda calDav, « Marquer comme agenda par défaut », URL : caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/default%20calendar/ (ou mettre caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/ et rechercher les calendriers), Rafraichir aux 15 minutes, Appliquer. Fermer Evolution...
+# Intégration à Gnome :
+# * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
+# * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
+
+#- Privoxy:
+#  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
+
+#- Enigmail (needs version >= 1.8):
+#  Then change Gnome settings for the passphrase:
+#  : gsettings list-recursively org.gnome.crypto.cache
+#  Lists relevant settings: the method can be `session` (never
+#  expires during the session), `idle` (timer is reset each time
+#  there's activity on the computer) or `timeout` (simple timer since
+#  entering the passphrase). We set it to `timeout` with 5 minutes of
+#  delay: 
+#  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
+#  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
+
+- Pipelight:
+sudo aptitude install pipelight-multi
+sudo pipelight-plugin --update
+
+
+*** Internet admin
+
+  : sudo apt install gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome rsync screen unison
+
+
+**** VPN
+
+In Settings > Network, add a 'Cisco AnyConnect Compatible VPN
+(openconnect)'. Simply enter the 'Gateway': =vpn.ufl.edu= and leave all
+other empty. To turn the VPN on, click VPN in the top-right corner
+menu:
+- Username: GatorLink account (with @ufl.edu)
+- Password: GatorLink password (check 'Save passwords')
+
+
+**** SSH
+
+Copy the entire folder =.ssh= in =/home=. It contains key configuration
+for basille.net, Gargantua, MabLab server, as well as the keys for
+GitHub.
+
+
+**** Gftp
+
+Simply copy the =bookmarks= file from the =.gftp= folder in =/home/= (it
+contains all bookmarks and passwords).
+
+
+**** ownCloud and Dropbox
+
+  : sudo aptitude install owncloud-client nautilus-owncloud nautilus-dropbox
+
+Then install the proprietary deamon for Dropbox:
+
+  : dropbox start -i
+
+And follow the instructions (UF has a single sign-in process that
+works by just adding the UF address without password, with a passcode
+generated on the web).
+
+
+**** Windows share
+
+#Credential file:
+
+#nano .smb
+#username=basille
+#password=*****
+#chmod 600 .smb
+
+#sudo mkdir /mnt/ecored
+#sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
+
+#mkdir MabLab
+#mkdir MabLab/bkp
+#mkdir MabLab/bkp/mathieu
+#mkdir MabLab/bkp/mathieu/home
+
+
+**** Backup
+
+#deja-dup 
+
+
+*** Multimedia
+
+- Pictures
+  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
+- Audio/video
+  : sudo apt install cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-ampache sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
+- Leisure
+  : sudo apt install marble sweethome3d chromium-bsu stellarium
+
+# Slowmo : http://slowmovideo.granjow.net/
+# Récupérer package for Ubuntu Raring
+# Dépendances :
+# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
+# (attention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
+# Puis
+# $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
+
+# Fichiers RAW
+
+# ## DCRAW 9.16 (version courante)
+# sudo aptitude install libjasper-dev libjpeg8-dev liblcms1-dev liblcms2-dev
+# sudo ldconfig
+# mkdir dcraw
+# cd dcraw
+# wget http://www.cybercom.net/~dcoffin/dcraw/dcraw.c
+# gcc -o dcraw -O4 dcraw.c -lm -ljasper -ljpeg -llcms
+# sudo mv dcraw /usr/bin
+# cd ..
+# rm -R dcraw
+
+# ## Vignettes
+# sudo aptitude install ufraw ufraw-batch gimp-dcraw
+# sudo nano /usr/share/thumbnailers/raw.thumbnailer
+# Plus nécessaire :
+# $ sudo aptitude install libopenrawgnome1
+
+# [Thumbnailer Entry]
+# Exec=/usr/bin/ufraw-batch --embedded-image --out-type=png --size=%s %u --overwrite --silent --output=%o
+# MimeType=image/x-3fr;image/x-adobe-dng;image/x-arw;image/x-bay;image/x-canon-cr2;image/x-canon-crw;image/x-cap;image/x-cr2;image/x-crw;image/x-dcr;image/x-dcraw;image/x-dcs;image/x-dng;image/x-drf;image/x-eip;image/x-erf;image/x-fff;image/x-fuji-raf;image/x-iiq;image/x-k25;image/x-kdc;image/x-mef;image/x-minolta-mrw;image/x-mos;image/x-mrw;image/x-nef;image/x-nikon-nef;image/x-nrw;image/x-olympus-orf;image/x-orf;image/x-panasonic-raw;image /x-pef;image/x-pentax-pef;image/x-ptx;image/x-pxn;image/x-r3d;image/x-raf;image/x-raw;image/x-rw2;image/x-rwl;image/x-rwz;image/x-sigma-x3f;image/x-sony-arw;image/x-sony-sr2;image/x-sony-srf;image/x-sr2;image/x-srf;image/x-x3f;
+
+
+*** Office
+
+  : sudo apt install aspell aspell-fr aspell-en emacs24 gnote inkscape hunspell-en-ca hunspell-en-us hunspell-fr jabref libreoffice-gnome libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+
+- Need to remove all links to French dictionaries:
+  : sudo rm /usr/share/hunspell/fr_*
+  : sudo rm /usr/share/myspell/dicts/fr_*
+  In case of trouble, just reinstal =hunspell-fr=.
+- Change Icon style of LibreOffice (Tools > Options > LibreOffice > View) to Breeze, and possibly Show Icons in menus.
+
+
+**** Fonts
+
+  : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
+
+#- Use gnome-tweak-tool to change non-proportional font to Hack Regular 11. (not working in gedit!)
+- [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS  fonts) : Carlito and Caladea. Once installed, in LibreOffice: Options > Fonts, check 'Apply replacement table', and add a replacement rule for each (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked (Always and screen only).
+
+
+**** LaTeX and PDF
+
+  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
+# (emacs emacs-goodies-el ess org-mode)
+# (ocrfeeder ocrodjvu)
+Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
+=texlive-full=; =pdfmanipulate= comes with =calibre=.
+
+- Adobe Reader (in dmo)
+  : sudo aptitude install acroread:i386
+
+- Install a package (e.g. =moderncv=)
+  : sudo nano /etc/texmf/texmf.d/03local.cnf
+  #+BEGIN_QUOTE
+  : TEXMFHOME = ~/.emacs.d/texmf
+  #+END_QUOTE
+  : sudo update-texmf
+  Check with:
+  : kpsewhich --var-value TEXMFHOME
+  Copy packages in =~/.emacs.d/texmf/tex/latex/= and complete install
+  when necessary, e.g.:
+  : latex moderntimeline.ins
+  : latex moderntimeline.dtx
+- Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=, then update the TeX index: 
+  : sudo texhash
+
+
+**** Emacs configuration
+
+Config:
+
+: cp -R .emacs.d ~
+: xrdb -merge ~/.Xresources
+
+- Different font between Emacs and other software (e.g. gedit): gnome-tweak-tool > Polices > Optimisation > Full
+- To get Emacs in the list of available software (contextual menu):
+  : nano /home/mathieu/.local/share/applications/emacs.desktop
+  #+BEGIN_QUOTE
+  : [Desktop Entry]
+  : Version=1.0
+  : Name=Emacs
+  : GenericName=Text Editor
+  : Comment=View and edit files
+  : MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;te$
+  : Exec=/usr/bin/emacs %F
+  : TryExec=emacs
+  : Icon=/usr/share/icons/hicolor/scalable/apps/emacs.svg
+  : Type=Application
+  : Terminal=false
+  : Categories=Utility;Development;TextEditor;
+  #+END_QUOTE
+
+
+**** JabRef configuration
+
+- Import preferences (PrefJabRef-2014-XX-XX)
+- Use =/home/mathieu/Work/biblio/PDF/= as main file folder (External
+  programs)
+- GTK look & feel: Options > Preferences > Advanced > Class name:
+  "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+- Link folder of main BibTeX file to the Tex install:
+  : mkdir ~/.texmf-var/
+  : mkdir ~/.texmf-var/bibtex/
+  : ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
+  Check with:
+  : kpsewhich -show-path=.bib
+
+
+**** Gnote configuration
+
+# Copier les contenus des dossiers .local/share/gnote et .local/share/gtg
+# Applications au démarrage : GTG (regarder dans les options) ; Gnotes :
+# $ nano ~/.config/autostart/gnote.desktop
+# [Desktop Entry]
+# Type=Application
+# Exec=/usr/bin/gnote %u
+# Hidden=false
+# X-GNOME-Autostart-enabled=true
+# Name=Gnote
+# Comment[fr_FR.UTF-8]=Prendre des notes, relier des idées, rester organisé
+
+
+*** R, PostGIS and QGIS
+
+
+**** GDAL, GEOS and PROJ.4
+
+  : sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
+
+
+**** R
+
+  : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
+
+Configuration via Git:
+  : mkdir ~/.R-site
+  : mkdir ~/.R-site/site-library
+  : git ...
+  : ln -s ~/.R-site/.Rprofile ~/.Rprofile
+  : ln -s ~/.R-site/.Renviron ~/.Renviron
+
+set up profile
+
+install packages
+
+
+# QGIS, GEOS, GDAL, PROJ.4
+# $ sudo aptitude install libgdal-dev libgeos-dev gdal-bin qgis python-qgis libproj-dev proj-bin
+# (qgis 2.0 time manager)
+
+
+
+*** Gnome extensions
+
+List: https://extensions.gnome.org/local/
+
+(o Installed; x Installed but not activated)
+
+x Alt-Alt+Tab (outdated)
+x AlternateTab
+x Applications Menu
+o Auto Move Windows
+o Disconnect Wifi 
+o Drop Down Terminal
+x Gnote/Tomboy Integration (outdated)
+x gTile (outdated)
+o Hibernate Status Button
+x Launch new instance
+o Media player indicator (reinstall from source after media install)
+x Modern Calc (outdated)
+x Native Window Placement
+o OpenWeather
+x Places Status Indicator
+o Refresh Wifi Connections
+x Removable Drive Menu
+x Remove Dropdown Arrows (outdated)
+x Return to Monitor (outdated)
+x Screenshot Window Sizer
+o SincroDirs
+o Skype Integration
+o Suspend Button
+o TopIcons Plus
+x User Themes
+x Window List
+o windowNavigator
+x Workspace Indicator
+x workspaceAltTab (outdated)
+
+
+*** Other
+
+**** Google Stuff
+
+1) Google Earth
+
+The Debian way:
+  : sudo aptitude install googleearth-package
+  : sudo dpkg --add-architecture i386
+  : sudo apt-get install alien ia32-libs-gtk lib32nss-mdns libfreeimage3 lsb-core msttcorefonts pax rpm ttf-dejavu ttf-bitstream-vera
+  : make-googleearth-package --force
+  : sudo dpkg -i googleearth*.deb
+But impossible to install =ia32-libs=... Solution: get offical .deb @ Google, then: 
+  : dpkg-deb -R google-earth-stable_current_amd64.deb gg
+To extract files, remove dependence to =ia32-libs= in DEBIAN/Control before recreating the archive: 
+  : dpkg-deb -b gg google-earth-stable_current_amd64_mod.deb
+  : sudo dpkg -i google-earth-stable_current_amd64_mod.deb
+
+2) Google Chrome
+
+Add Google Chrome repository (sources.list + preferences), then:
+
+$ sudo aptitude install google-chrome-stable
+
+
+
+**** Skype
+
+[[http://wiki.debian.org/skype][Information]]
+
+  : sudo dpkg --add-architecture i386
+  : sudo aptitude update
+  : wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
+  : sudo dpkg -i skype-install.deb
+  : sudo aptitude -f install
+If necessary, install dependencies manually:
+  : sudo aptitude install libc6:i386 libgcc1:i386 libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386 libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386 libstdc++6:i386 libx11-6:i386 libxext6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386 libpulse0:i386 libasound2-plugins:i386
+
+Don't mute sound (music) when Skype (VoIP) calls or other notifications:
+  : sudo nano /etc/pulse/default.pa 
+and comment the line:
+  #+BEGIN_QUOTE
+  : ### Cork music/video streams when a phone stream is active
+  : #load-module module-role-cork
+  #+END_QUOTE
+
+
+**** Rockbox utility
+
+- Download [[http://www.rockbox.org/download/][Rockbox utility]]
+- Unzip file, and copy RockboxUtility in =/usr/local/bin/=:
+  : tar xvjf RockboxUtility-v1.4.0-64bit.tar.bz2
+  : sudo mv RockboxUtility-v1.4.0-64bit/RockboxUtility /usr/local/bin/rockbox
+  : sudo chmod 755 /usr/local/bin/rockbox 
+  : rm -R RockboxUtility-v1.4.0-64bit
+- Launch =rockbox=
+- Install Ambiance theme (activate icons).
+
+
+*** Final stage
+
+- Check default applications (Settings > ...)
+- Check applications on startup (icedove, firefox, nautilus, gnote)
+- Purge Mono
+  : sudo aptitude purge mono-runtime cli-common mono-4.0-gac
+- *Francisation:*
+  : sudo dpkg-reconfigure locales
+  Select =en-GB.UTF-8=, =en-US.UTF-8= (default), =fr-FR.UTF-8=, =fr-CA.UTF-8=
+- Remove unnecessary locales:
+  : sudo apt install localepurge
+  : sudo localepurge
+- Final cleaning:
+  : upgrade-full
+
+
+
+** Useful resources:
+
+- [[https://github.com/konklone/debian/blob/master/installing.md][Installing Debian 8 on a Dell XPS]]
+- [[https://wiki.archlinux.org/index.php/Dell_XPS_13_(2016)][ArchLinux: Dell XPS 13 (2016)]]

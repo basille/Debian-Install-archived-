@@ -11,7 +11,7 @@
   - [[#web][Web]]
   - [[#multimedia][Multimedia]]
   - [[#other][Other]]
-    - [[#google-earth][Google Earth]]
+    - [[#google][Google Stuff]]
     - [[#skype][Skype]]
     - [[#rockbox-utility][Rockbox utility]]
 #+END_QUOTE
@@ -51,6 +51,7 @@
   : sudo aptitude install gnome
   : sudo tasksel install desktop
   : sudo tasksel install laptop
+  : sudo aptitude install laptop-mode-tools
   : sudo aptitude install gnome-session
   : sudo aptitude install gnome-terminal
   : sudo aptitude install gdm3
@@ -104,6 +105,9 @@
 
 
 *** System
+
+
+Problème de luminosité ? http://ihisham.com/2013/12/fix-gnome-screen-brightness-keys-bug/
 
 - Use only SWAP when 100% of RAM is used
   : sudo nano /etc/sysctl.conf
@@ -167,7 +171,7 @@
 
 *** General
 
-  : sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential chromium-browser cmake cmake-curses-gui conky-all debian-goodies deja-dup detox disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-gnome libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc privoxy python-vte revelation rsync screen stellarium subversion telepathy-haze terminator transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unison units unrar vpnc wakeonlan yafc
+  : sudo aptitude install aspell aspell-fr aspell-en autoconf bijiben build-essential cadaver chromium-browser cmake cmake-curses-gui conky-all cowsay debian-goodies deja-dup detox disper dosbox elinks epiphany-browser espeak firmware-linux-free flashplugin-nonfree fonts-crosextra-carlito fonts-crosextra-caladea fortune gcstar gftp gir1.2-gweather-3.0 git gkbd-capplet gnome-shell-extensions gnome-tweak-tool gnote gparted gtg gtick gtk2-engines-pixbuf gvncviewer hibernate hunspell-en-ca hunspell-en-us hunspell-fr libreoffice-gnome libreoffice-pdfimport marble most mozplugger myspell-en-gb network-manager-openconnect-gnome network-manager-vpnc-gnome ntp pandoc pandoc-citeproc privoxy python-vte revelation rsync screen stellarium subversion telepathy-haze terminator tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra transmission tree ttf-mscorefonts-installer ttf-arphic-ukai ttf-arphic-uming ttf-arphic-gkai00mp ttf-arphic-gbsn00lp ttf-arphic-bkai00mp ttf-arphic-bsmi00lp ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unetbootin unifont unison units unrar vpnc wakeonlan yafc
 
 
 *** Web
@@ -187,11 +191,22 @@
 - Privoxy : 
   : sudo aptitude install privoxy
   Paramètres Gnome / Réseau / Serveur mandataire : HTTP/HTTPS = localhost:8118
+- Enigmail (needs version >= 1.8):
+  : sudo aptitude install -t unstable enigmail
+  Then change Gnome settings for the passphrase:
+  : gsettings list-recursively org.gnome.crypto.cache
+  Lists relevant settings: the method can be `session` (never
+  expires during the session), `idle` (timer is reset each time
+  there's activity on the computer) or `timeout` (simple timer since
+  entering the passphrase). We set it to `timeout` with 5 minutes of
+  delay: 
+  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
+  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
 
 
 *** Multimedia
 
-  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick inkscape darktable rawtherapee phatch qtpfsgui cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede easytag oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-ampache sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain xbmc sweethome3d qarte chromium-bsu
+  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick inkscape darktable rawtherapee phatch qtpfsgui cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede easytag mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-ampache sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain xbmc sweethome3d qarte chromium-bsu
 
 # Slowmo : http://slowmovideo.granjow.net/
 # Récupérer package for Ubuntu Raring
@@ -202,9 +217,21 @@
 # $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
 
 
+*** Polices
+
+Hack: http://sourcefoundry.org/hack/
+Copy OTF files in /usr/local/share/fonts and check permissions:
+$ sudo cp * /usr/local/share/fonts/
+$ sudo chmod -R 777 /usr/local/share/fonts
+Use gnome-tweak-tools to change non-proportional font to Hack Regular 11
+
+Calibri/Cambria : https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts
+Install Carlito and Caladea, + LibreOffice font substitution (nothing checked though)
+
+
 *** Emacs / LaTeX / PDF
 
-  : sudo aptitude install emacs24 ispell texlive-full bibtex2html rubber jabref latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal
+  : sudo aptitude install emacs24 gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber jabref latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 # (emacs emacs-goodies-el ess org-mode)
 # (ocrfeeder ocrodjvu)
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
@@ -273,7 +300,9 @@ Config:
 
 *** Other
 
-**** Google Earth
+**** Google Stuff
+
+1) Google Earth
 
 The Debian way:
   : sudo aptitude install googleearth-package
@@ -286,6 +315,13 @@ But impossible to install =ia32-libs=... Solution: get offical .deb @ Google, th
 To extract files, remove dependence to =ia32-libs= in DEBIAN/Control before recreating the archive: 
   : dpkg-deb -b gg google-earth-stable_current_amd64_mod.deb
   : sudo dpkg -i google-earth-stable_current_amd64_mod.deb
+
+2) Google Chrome
+
+Add Google Chrome repository (sources.list + preferences), then:
+
+$ sudo aptitude install google-chrome-stable
+
 
 
 **** Skype
@@ -322,7 +358,21 @@ and comment the line:
 
 
 
-**** Samba share
+**** ownCloud and Dropbox
+
+sudo aptitude install owncloud-client nautilus-owncloud cadaver
+
+(or from backports:
+
+sudo aptitude install -t jessie-backports owncloud-client nautilus-owncloud
+
+sudo aptitude install nautilus-dropbox
+## To install deamon
+dropbox start -i
+
+
+
+**** Windows share
 
 Credential file:
 
@@ -378,7 +428,7 @@ sudo umount /mnt/ecored/
 # (qgis 2.0 time manager)
 
 # R
-# $ sudo aptitude install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
+# $ sudo aptitude install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
 
 # Copie des fichiers de config (.Renviron, .Rprofile, dossier .R-site)
 
@@ -495,12 +545,15 @@ sudo umount /mnt/ecored/
 # - Keyboard layout
 # https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions
 #
+# List of character here: /usr/include/X11/keysymdef.h
+#
 # French keyboard: use (and modify): 'xkb_symbols "oss_latin9"' / 'name[Group1]="French (alternative, Latin-9 only)"'
 # Changes marked with '// #####'
 # * AltGr + Shift + 4 pour apostrophe arrondie (’)
 # * AltGr + Shift + 6 pour tiret semi-cadratin (en dash –)
 # * AltGr + Shift + 8 pour tiret cadratin (em dash —)
 # * AltGr + Shift + : pour points de suspension (…)
+# * AltGr + Shift + ! pour cœur (♥)
 # * AltGr (+ Shift) + Espace pour espace insécable
 # * Shift droit pour inférieur / supérieur
 # * Ctrl droit pour menu contextuel
@@ -508,13 +561,13 @@ sudo umount /mnt/ecored/
 # US keyboard: use (and modify): 'xkb_symbols "basic"' / 'name[Group1]= "English (US)"'
 # Changes marked with '// #####'
 # * AltGr (+ Shift) + Space for non-breaking space
-# * Right Shift for less/greater
+# * Right Shift for less/greater<>
 # * Right Ctrl for contextual menu
 #
 # $ sudo mv /usr/share/X11/xkb/symbols/fr /usr/share/X11/xkb/symbols/fr.bkp
-# $ sudo cp keyboard\ layout/fr /usr/share/X11/xkb/symbols/
+# $ sudo cp Keyboard/fr /usr/share/X11/xkb/symbols/
 # $ sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
-# $ sudo cp keyboard\ layout/us /usr/share/X11/xkb/symbols/
+# $ sudo cp Keyboard/us /usr/share/X11/xkb/symbols/
 
 
 # * Conky
