@@ -361,12 +361,15 @@ generated on the web).
 
 **** Windows share
 
-#Credential file:
-
-#nano .smb
-#username=basille
-#password=*****
-#chmod 600 .smb
+First create a credential file:
+  : nano .smb
+With the following information:
+  #+BEGIN_QUOTE
+  : username=basille
+  : password=<GatorLink password>
+  #+END_QUOTE
+And reduce permissions on it:
+  : chmod 600 .smb
 
 #sudo mkdir /mnt/ecored
 #sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
@@ -438,7 +441,7 @@ generated on the web).
 
   : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
 
-#- Use gnome-tweak-tool to change non-proportional font to Hack Regular 11. (not working in gedit!)
+- Use =gnome-tweak-tool= to change Monospace font to Hack Regular 11.
 - [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS  fonts) : Carlito and Caladea. Once installed, in LibreOffice: Options > Fonts, check 'Apply replacement table', and add a replacement rule for each (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked (Always and screen only).
 
 
@@ -452,6 +455,13 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 
 - Adobe Reader (in dmo)
   : sudo aptitude install acroread:i386
+
+- Link folder of main BibTeX file to the Tex install:
+  : mkdir ~/.texmf-var/
+  : mkdir ~/.texmf-var/bibtex/
+  : ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
+  Check with:
+  : kpsewhich -show-path=.bib
 
 - Install a package (e.g. =moderncv=)
   : sudo nano /etc/texmf/texmf.d/03local.cnf
@@ -471,28 +481,12 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 
 **** Emacs configuration
 
-Config:
+Configuration via Git:
+  : git clone git@github.com:basille/.emacs.d ~/.emacs.d/
+  : cp ~/.emacs.d/emacs.Xresources ~/.Xresources
+  : xrdb -merge ~/.Xresources
 
-: cp -R .emacs.d ~
-: xrdb -merge ~/.Xresources
-
-- Different font between Emacs and other software (e.g. gedit): gnome-tweak-tool > Polices > Optimisation > Full
-- To get Emacs in the list of available software (contextual menu):
-  : nano /home/mathieu/.local/share/applications/emacs.desktop
-  #+BEGIN_QUOTE
-  : [Desktop Entry]
-  : Version=1.0
-  : Name=Emacs
-  : GenericName=Text Editor
-  : Comment=View and edit files
-  : MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;te$
-  : Exec=/usr/bin/emacs %F
-  : TryExec=emacs
-  : Icon=/usr/share/icons/hicolor/scalable/apps/emacs.svg
-  : Type=Application
-  : Terminal=false
-  : Categories=Utility;Development;TextEditor;
-  #+END_QUOTE
+And load Emacs, potentially several times until all packages are installed.
 
 
 **** JabRef configuration
@@ -502,18 +496,12 @@ Config:
   programs)
 - GTK look & feel: Options > Preferences > Advanced > Class name:
   "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-- Link folder of main BibTeX file to the Tex install:
-  : mkdir ~/.texmf-var/
-  : mkdir ~/.texmf-var/bibtex/
-  : ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
-  Check with:
-  : kpsewhich -show-path=.bib
 
 
 **** Gnote configuration
 
-# Copier les contenus des dossiers .local/share/gnote et .local/share/gtg
-# Applications au démarrage : GTG (regarder dans les options) ; Gnotes :
+# Copier les contenus des dossiers .local/share/gnote
+# Applications au démarrage : Gnotes :
 # $ nano ~/.config/autostart/gnote.desktop
 # [Desktop Entry]
 # Type=Application
@@ -524,7 +512,7 @@ Config:
 # Comment[fr_FR.UTF-8]=Prendre des notes, relier des idées, rester organisé
 
 
-*** R, PostGIS and QGIS
+*** R, QGIS and PostGIS
 
 
 **** GDAL, GEOS and PROJ.4
@@ -537,20 +525,26 @@ Config:
   : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
 
 Configuration via Git:
-  : mkdir ~/.R-site
+  : git clone git@github.com:basille/R ~/.R-site/
   : mkdir ~/.R-site/site-library
-  : git ...
-  : ln -s ~/.R-site/.Rprofile ~/.Rprofile
   : ln -s ~/.R-site/.Renviron ~/.Renviron
 
-set up profile
+Then in R:
+  : gdal <- TRUE; options(repos = c(CRAN = "http://cran.r-project.org/")); source("~/.R-site/install.selected.R")
 
-install packages
+And finally link to the R profile:
+  : ln -s ~/.R-site/.Rprofile ~/.Rprofile
 
 
-# QGIS, GEOS, GDAL, PROJ.4
-# $ sudo aptitude install libgdal-dev libgeos-dev gdal-bin qgis python-qgis libproj-dev proj-bin
-# (qgis 2.0 time manager)
+**** QGIS and PostGIS
+
+  : sudo apt install qgis python-qgis
+
+Or if it fails due to a missing package (gdal-abi-2), then prefer the install from Debian repositories:
+
+  : sudo apt install -t o=Debian,n=stretch qgis python-qgis
+
+Then, from inside QGIS, install the Time manager plugin.
 
 
 
@@ -593,28 +587,26 @@ x workspaceAltTab (outdated)
 
 *** Other
 
+
 **** Google Stuff
 
 1) Google Earth
 
 The Debian way:
-  : sudo aptitude install googleearth-package
-  : sudo dpkg --add-architecture i386
-  : sudo apt-get install alien ia32-libs-gtk lib32nss-mdns libfreeimage3 lsb-core msttcorefonts pax rpm ttf-dejavu ttf-bitstream-vera
-  : make-googleearth-package --force
+  : sudo apt install googleearth-package
+  : make-googleearth-package
   : sudo dpkg -i googleearth*.deb
-But impossible to install =ia32-libs=... Solution: get offical .deb @ Google, then: 
-  : dpkg-deb -R google-earth-stable_current_amd64.deb gg
-To extract files, remove dependence to =ia32-libs= in DEBIAN/Control before recreating the archive: 
-  : dpkg-deb -b gg google-earth-stable_current_amd64_mod.deb
-  : sudo dpkg -i google-earth-stable_current_amd64_mod.deb
+  : sudo apt -f install
+
+But dependencies impossible to reconcile (libcurl3:i386)... Solution: get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then: 
+  : sudo dpkg -i google-earth-stable_current_amd64.deb
+  : sudo apt -f install
 
 2) Google Chrome
 
 Add Google Chrome repository (sources.list + preferences), then:
 
-$ sudo aptitude install google-chrome-stable
-
+$ sudo apt install google-chrome-stable
 
 
 **** Skype
@@ -626,8 +618,6 @@ $ sudo aptitude install google-chrome-stable
   : wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
   : sudo dpkg -i skype-install.deb
   : sudo aptitude -f install
-If necessary, install dependencies manually:
-  : sudo aptitude install libc6:i386 libgcc1:i386 libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386 libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386 libstdc++6:i386 libx11-6:i386 libxext6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386 libpulse0:i386 libasound2-plugins:i386
 
 Don't mute sound (music) when Skype (VoIP) calls or other notifications:
   : sudo nano /etc/pulse/default.pa 
