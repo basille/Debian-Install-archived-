@@ -38,7 +38,8 @@
     - [[#skype][Skype]]
     - [[#rockbox-utility][Rockbox utility]]
   - [[#final-stage][Final stage]]
-  - [[#useful-resources][Useful resources]]
+- [[#recovery][Recovery]]
+- [[#useful-resources][Useful resources]]
 #+END_QUOTE
 
 
@@ -711,6 +712,87 @@ and comment the line:
 - Final cleaning:
   : upgrade-full
 
+
+** Recovery
+
+There is currently an important bug with the absence of a root user
+(due to the use of =sudo=): recovery mode (from GRUBS) fails to load,
+arguing that root is locked (it is actually absent). So there is
+currently no way to load recovery mode directly from the system.
+
+One alternative is to use a Live USB to load a working system, mount
+the computer file system, and do the necessary modifications from
+there. A very good candidate is the [[https://tails.boum.org/index.en.html][Tails]] live OS, which is security
+and privacy oriented (a good distribution to always have on a flash
+drive).
+
+To [[https://tails.boum.org/install/debian/usb/index.en.html][install Tails on a flash drive]], follow the Debian way:
+  : sudo apt install tails-installer
+
+Download the Tails ISO image, start the Tails Installer Launcher, and
+follow the instructions. When the flash drive is ready to use, plug it
+into the laptop and boot on it. Don't forget to give a root password
+on login (check the options).
+
+The key here is to be able to [[https://ubuntuforums.org/showthread.php?t=940904][mount an encrypted partition in
+Tails]]. It can be all achieved in command line, so first open a
+terminal. The first step is to identify existing partitions:
+  : sudo lsblk
+The interesting part looks like the following:
+  #+BEGIN_QUOTE
+  : nvme0n1     … 238.5G … disk
+  : ├─nvme0n1p1 …   243M … part	
+  : ├─nvme0n1p2 …     1K … part
+  : └─nvme0n1p5 … 238.2G … part
+  #+END_QUOTE
+
+Let's now access the encrypted volume, that we will call =crypt= from
+now on:
+  : sudo modprobe dm-crypt
+  : sudo cryptsetup luksOpen /dev/nvme0n1p5 crypt
+This requires to enter the passphrase AND the root password from
+Tails.
+  : sudo lsblk
+  #+BEGIN_QUOTE
+  : nvme0n1     … 238.5G … disk
+  : ├─nvme0n1p1 …   243M … part	
+  : ├─nvme0n1p2 …     1K … part
+  : └─nvme0n1p5 … 238.2G … part
+  :   └─crypt   … 238.2G … crypt
+  #+END_QUOTE
+The encrypted volume is now visible. Let's see what's inside, and
+activate the proper volume:
+  : sudo modprobe dm-mod
+  : sudo vgscan
+  #+BEGIN_QUOTE
+  : Found volume group "mablap2-vg" using metadata type lvm2
+  #+END_QUOTE
+  : sudo vgchange -a y mablap2-vg
+  #+BEGIN_QUOTE
+  : 3 logical volume(s) in volume group "mablap2-vg" now active
+  #+END_QUOTE
+
+The last step is to look at the partitions inside, and mount what is
+necessary (here the =/root= partition):
+  : sudo lvscan
+  #+BEGIN_QUOTE
+  : ACTIVE  '/dev/mablap2-vg/root' [27.94 GiB] inherit
+  : ACTIVE  '/dev/mablap2-vg/swap' [7.61 GiB] inherit
+  : ACTIVE  '/dev/mablap2-vg/home' [202.68 GiB] inherit
+  #+END_QUOTE
+  : sudo mkdir /media/root
+  : sudo mount /dev/mablap-vg/root /media/root
+  : cd /media/root
+  : ls
+  #+BEGIN_QUOTE
+  : bin boot etc …
+  #+END_QUOTE
+
+The system is now ready for any modifications. When it's done, it's
+time to close everything:
+  : sudo umount /media/root
+  : sudo vgchange -a n mablap2-vg 
+  : sudo cryptsetup luksClose crypt
 
 
 ** Useful resources:
