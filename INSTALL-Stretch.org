@@ -331,9 +331,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 *** Gnome extensions
 
-List: https://extensions.gnome.org/local/
-
-(o Installed; x Installed but not activated)
+[[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
 - x Alt-Alt+Tab (outdated)
 - x AlternateTab
