@@ -11,25 +11,34 @@
     - [[#system-settings][System settings]]
     - [[#apt-and-upgrade][APT and upgrade]]
     - [[#hardware][Hardware]]
-    - Keyboard
+    - [[#internationalization][Internationalization]]
 - [[#installing-a-full-system][Installing a full system]]
   - [[#miscellaneous][Miscellaneous]]
   - [[#web][Web]]
-  - Internet admin
+  - [[#internet-admin][Internet admin]]
+    - [[#vpn][VPN]]
+    - [[#ssh][SSH]]
+    - [[#gftp][Gftp]]
+    - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
+    - [[#windows-share][Windows share]]
+    - [[#backup][Backup]]
   - [[#multimedia][Multimedia]]
   - [[#office][Office]]
-    - Fonts
-    - LaTeX and PDF
-    - Emacs configuration
-    - JabRef configuration
-    - Gnote configuration
-  - R, PostGIS and QGIS
-  - Gnome Extensions
+    - [[#fonts][Fonts]]
+    - [[#latex-and-pdf][LaTeX and PDF]]
+    - [[#emacs-configuration][Emacs configuration]]
+    - [[#jabref-configuration][JabRef configuration]]
+    - [[#gnote-configuration][Gnote configuration]]
+  - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
+    - [[#r][R]]
+    - [[#qgis-and-postgis][QGIS and PostGIS]]
+  - [[#gnome-extensions][Gnome Extensions]]
   - [[#other][Other]]
     - [[#google][Google Stuff]]
     - [[#skype][Skype]]
     - [[#rockbox-utility][Rockbox utility]]
-  - Final stage
+  - [[#final-stage][Final stage]]
+  - [[#useful-resources][Useful resources]]
 #+END_QUOTE
 
 
