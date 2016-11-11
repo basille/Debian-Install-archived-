@@ -126,6 +126,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - Bash configuration:
   : sudo nano /etc/bash.bashrc
   - *Autocompletion:* uncomment the following lines:
+  #+BEGIN_QUOTE
   : if ! shopt -oq posix; then
   :   if [ -f /usr/share/bash-completion/bash_completion ]; then
   :     . /usr/share/bash-completion/bash_completion
@@ -133,7 +134,9 @@ Legacy boot) and follow the instructions. General guidelines:
   :     . /etc/bash_completion
   :   fi
   : fi
+  #+END_QUOTE
   - *Other:* add the following at the end of the file:
+  #+BEGIN_QUOTE
   : # Ctrl-N keeps current directory
   : export PS1='\[$(__vte_ps1)\]'$PS1
   : 
@@ -143,6 +146,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : # Alias upgrade & upgrade-full
   : alias upgrade='sudo apt update && sudo apt upgrade'
   : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
+  #+END_QUOTE
 - Install Terminator, Nautilus-Actions and most (Man needs most):
   :  sudo apt install terminator nautilus-actions most
   - Terminator configuration (in Profiles): General: Do not show title
@@ -159,7 +163,9 @@ Legacy boot) and follow the instructions. General guidelines:
 - Get insulted on errors for password:
   : sudo visudo
   Add this line at the beginning of the file:
+  #+BEGIN_QUOTE
   : Defaults        insults
+  #+END_QUOTE
 
 
 *** System settings
@@ -239,16 +245,22 @@ Legacy boot) and follow the instructions. General guidelines:
   Then edit =/etc/initramfs-tools/modules=:
   : sudo nano /etc/initramfs-tools/modules
   and add the following lines:
+  #+BEGIN_QUOTE
   : # KMS
   : intel_agp
   : drm
   : i915 modeset=1
+  #+END_QUOTE
   Then edit =/etc/default/grub=:
   : sudo nano /etc/default/grub
   and add this line:
+  #+BEGIN_QUOTE
   : GRUB_GFXMODE=1920x1080
+  #+END_QUOTE
   And edit the GRUB_CMDLINE_LINUX_DEFAULT line to read:
+  #+BEGIN_QUOTE
   : GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+  #+END_QUOTE
   Update Grub to pick up the changes:
   : sudo update-grub2
   Set the default theme to lines:
@@ -280,7 +292,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo cp keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
   Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
   international with dead keys)" as Input Source in Settings > Region
-  & Language.
+  & Language (for French, add "French (alternative, Latin-9 only)").
 
 
 ** Installing a full system
@@ -392,7 +404,7 @@ First create a credential file:
   : nano .smb
 With the following information:
   #+BEGIN_QUOTE
-  : username=basille
+  : username=<GatorLink account>
   : password=<GatorLink password>
   #+END_QUOTE
 And reduce permissions on it:
@@ -627,7 +639,8 @@ List: https://extensions.gnome.org/local/
 
 **** Google Stuff
 
-1) Google Earth
+
+***** Google Earth
 
 The Debian way:
   : sudo apt install googleearth-package
@@ -640,7 +653,8 @@ get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Go
   : sudo dpkg -i google-earth-stable_current_amd64.deb
   : sudo apt -f install
 
-2) Google Chrome
+
+***** Google Chrome
 
 Add Google Chrome repository (sources.list + preferences), then:
 
@@ -681,10 +695,10 @@ and comment the line:
 
 *** Final stage
 
-- Check default applications (Settings > ...)
-- Check applications on startup (icedove, firefox, nautilus, gnote)
-- Purge Mono
-  : sudo aptitude purge mono-runtime cli-common mono-4.0-gac
+- Check default applications (Settings > Details > Default
+  Applications).
+- Check applications on startup with =gnome-tweak-tool= (Startup
+  Applications: icedove, firefox, nautilus, gnote).
 - Final cleaning:
   : upgrade-full
 

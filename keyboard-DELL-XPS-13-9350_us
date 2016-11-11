@@ -92,12 +92,12 @@ xkb_symbols "intl" {
     key <AE02> { [	   2,         at,   twosuperior,          onehalf ] }; // 2 @ ² ½
     key <AE03> { [	   3, numbersign, threesuperior,         onethird ] }; // 3 # ³ ⅓
     key <AE04> { [	   4,     dollar,      EuroSign,       onequarter ] }; // 4 $ € ¼
-    key <AE05> { [	   5,    percent,      EuroSign,    threequarters ] }; // 5 % . ¾
-    key <AE06> { [    6, dead_circumflex,    onequarter,      asciicircum ] }; // 6 ^ . ^
-    key <AE07> { [	   7,  ampersand,       onehalf,	  section ] }; // 7 & . §
-    key <AE08> { [	   8,   asterisk, threequarters,      dead_ogonek ] }; // 8 * ¾ . 
-    key <AE09> { [	   9,  parenleft, leftsinglequotemark, dead_breve ] }; // 9 ( . .
-    key <AE10> { [	   0, parenright,        degree, rightsinglequotemark ] }; // 0 ) ° .
+    key <AE05> { [	   5,    percent,             5,    threequarters ] }; // 5 % . ¾
+    key <AE06> { [    6, dead_circumflex,             6,      asciicircum ] }; // 6 ^ . ^
+    key <AE07> { [	   7,  ampersand,             7,          section ] }; // 7 & . §
+    key <AE08> { [	   8,   asterisk, threequarters,                8 ] }; // 8 * ¾ . 
+    key <AE09> { [	   9,  parenleft,             9,                9 ] }; // 9 ( . .
+    key <AE10> { [	   0, parenright,        degree,                0 ] }; // 0 ) ° .
     key <AE11> { [     minus, underscore,        endash,           emdash ] }; // - _ – (en-dash) — (em-dash) 
     key <AE12> { [     equal,       plus,      notequal,         multiply ] }; // = + ≠ ×
 
@@ -106,13 +106,13 @@ xkb_symbols "intl" {
     key <AD03> { [	   e,          E,        egrave,           Egrave ] }; // e E è È
     key <AD04> { [	   r,          R,     Greek_rho,       registered ] }; // r R ρ ®
     key <AD05> { [	   t,          T,   Greek_theta,      Greek_THETA ] }; // t T θ Θ
-    key <AD06> { [	   y,          Y,   Greek_alpha,       Udiaeresis ] }; // y Y α 
+    key <AD06> { [	   y,          Y,   Greek_alpha,                Y ] }; // y Y α 
     key <AD07> { [	   u,          U,        ugrave,           Ugrave ] }; // u U ù Ù
-    key <AD08> { [	   i,          I, Greek_epsilon,           Iacute ] }; // i I ε
+    key <AD08> { [	   i,          I, Greek_epsilon,                I ] }; // i I ε
     key <AD09> { [	   o,          O,            oe,               OE ] }; // o O œ Œ
-    key <AD10> { [	   p,          P,      Greek_pi,       Odiaeresis ] }; // p P π
-    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, leftdoublequotemark ] }; // [ { 
-    key <AD12> { [bracketright, braceright, guillemotright, rightdoublequotemark ] }; // ] } 
+    key <AD10> { [	   p,          P,      Greek_pi,                P ] }; // p P π
+    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, leftdoublequotemark ] }; // [ { « “
+    key <AD12> { [bracketright, braceright, guillemotright, rightdoublequotemark ] }; // ] } » ”
     key <BKSL> { [ backslash,        bar,      division,        brokenbar ] }; // \ | ÷ ¦
 
     key <AC01> { [	   a,          A,            ae,               AE ] }; // a A æ Æ
@@ -122,7 +122,7 @@ xkb_symbols "intl" {
     key <AC05> { [	   g,          G,   Greek_gamma,      Greek_GAMMA ] }; // g G γ Γ
     key <AC06> { [	   h,          H,     Greek_phi,        Greek_PHI ] }; // h H φ Φ
     key <AC07> { [	   j,          J,     Greek_psi,        Greek_PSI ] }; // j J ψ Ψ
-    key <AC08> { [	   k,          K,   Greek_kappa,               OE ] }; // k K κ
+    key <AC08> { [	   k,          K,   Greek_kappa,                K ] }; // k K κ
     key <AC09> { [	   l,          L,  Greek_lambda,     Greek_LAMBDA ] }; // l L λ Λ
     key <AC10> { [ semicolon,      colon, guillemotleft,         ellipsis ] }; // ; : « …
     key <AC11> { [apostrophe,   quotedbl, guillemotright,  dead_diaeresis ] }; // ' " » ï (tréma)
@@ -132,8 +132,8 @@ xkb_symbols "intl" {
     key <AB03> { [	   c,          C,      ccedilla,         Ccedilla ] }; // c C ç Ç
     key <AB04> { [	   v,          V,      Greek_nu,                V ] }; // v V ν
     key <AB05> { [	   b,          B,    Greek_beta,                B ] }; // b B β
-    key <AB06> { [	   n,          N,     Greek_eta,           Ntilde ] }; // n N η
-    key <AB07> { [	   m,          M,      Greek_mu,         Greek_MU ] }; // m M μ
+    key <AB06> { [	   n,          N,     Greek_eta,                N ] }; // n N η
+    key <AB07> { [	   m,          M,      Greek_mu,                M ] }; // m M μ
     key <AB08> { [     comma,       less,     leftarrow,    lessthanequal ] }; // , < ← ≤
     key <AB09> { [    period,    greater,    rightarrow, greaterthanequal ] }; // . > → ≥
     key <AB10> { [     slash,   question,     copyright,     questiondown ] }; // / ? © ¿
