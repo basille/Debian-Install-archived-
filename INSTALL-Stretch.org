@@ -182,11 +182,17 @@ Legacy boot) and follow the instructions. General guidelines:
   : gsettings set org.gnome.desktop.interface clock-show-date true
   : gsettings set org.gnome.desktop.calendar show-weekdate true
 - Keyboard shortcuts:
-  - Home folder: Super+H ; 
-  - Hide all normal windows: Super+D ; 
-  - Lock screen: Ctrl+Echap ; 
+  - Home folder: Super+H
+  - Hide all normal windows: Super+D
+  - Save a screenshot of a window to Pictures: Shift+Ctrl+Super+P
+  - Save a screenshot of an area to Pictures: Shift+Ctrl+Shift+P
+  - Save a screenshot to Pictures: Shift+Ctrl+P
+  - Lock screen: Ctrl+Echap
   - Toggle maximization state: Super+Return
   - Custom shortcut: Terminator: Super+T
+- Right-Alt used to access key 3rd level: in =gnome-tweak-tool=, Typing
+  > Key to choose 3rd level: Right Alt (add key ='lv3:ralt_switch'= in
+  org.gnome.desktop.input-sources).
 - Keep numpad activated between sessions:
   : gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
 - Nautilus: Preferences > Views: Sort folders before files
@@ -251,33 +257,30 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo update-initramfs -u
 
 
-*** Keyboard layout
 
-# https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions
-#
-# List of character here: /usr/include/X11/keysymdef.h
-#
-# French keyboard: use (and modify): 'xkb_symbols "oss_latin9"' / 'name[Group1]="French (alternative, Latin-9 only)"'
-# Changes marked with '// #####'
-# * AltGr + Shift + 4 pour apostrophe arrondie (’)
-# * AltGr + Shift + 6 pour tiret semi-cadratin (en dash –)
-# * AltGr + Shift + 8 pour tiret cadratin (em dash —)
-# * AltGr + Shift + : pour points de suspension (…)
-# * AltGr + Shift + ! pour cœur (♥)
-# * AltGr (+ Shift) + Espace pour espace insécable
-# * Shift droit pour inférieur / supérieur
-# * Ctrl droit pour menu contextuel
-#
-# US keyboard: use (and modify): 'xkb_symbols "basic"' / 'name[Group1]= "English (US)"'
-# Changes marked with '// #####'
-# * AltGr (+ Shift) + Space for non-breaking space
-# * Right Shift for less/greater<>
-# * Right Ctrl for contextual menu
-#
-# $ sudo mv /usr/share/X11/xkb/symbols/fr /usr/share/X11/xkb/symbols/fr.bkp
-# $ sudo cp Keyboard/fr /usr/share/X11/xkb/symbols/
-# $ sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
-# $ sudo cp Keyboard/us /usr/share/X11/xkb/symbols/
+
+*** Internationalization
+
+
+- Add *French* in the list of languages:
+  : sudo dpkg-reconfigure locales
+  Select =en-CA.UTF-8, en-GB.UTF-8=, =en-US.UTF-8= (default), =fr-CA.UTF-8=,
+  =fr-FR.UTF-8=.
+- Remove unnecessary locales:
+  : sudo apt install localepurge
+  : sudo localepurge
+- [[https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions][Keyboard layout]]:
+  - The list of characters and functions can be found here:
+    =/usr/include/X11/keysymdef.h=.
+  - Custom keyboard adjusted to Dell XPS 13, including Home/End on
+    PrtScr/Insert, special characters (←≤≥→²³€°–≠×©¿¡, etc.), French
+    accents and quotes (àÀéÉèÈ, etc., «»), and most Greek letters
+    (αβγδσΔΦΨΣ, etc.):
+  : sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
+  : sudo cp keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
+  Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
+  international with dead keys)" as Input Source in Settings > Region
+  & Language.
 
 
 ** Installing a full system
@@ -291,6 +294,30 @@ Legacy boot) and follow the instructions. General guidelines:
 *** Web
 
   : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser flashplugin-nonfree mozplugger
+
+- Get a "clean" Firefox profile: Simply connect to Sync with your
+  Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
+  Add-ons and Preferences from old Firefox. Leave Firefox open for
+  some time... After all add-ons are installed, a little bit of
+  tweaking is necessary after:
+  - Enable GNOME theme (in Appearance). 
+  - *Add-ons:* Some add-ons were not synced and installed: HTTPS
+    Everywhere, Privacy Badger; some options need to be reset
+    (e.g. notifications for Self-Destructing Cookies).
+  - *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
+  - *Open tabs:* Open tabs (including permanent tabs) are not synced:
+    Close both old and new Firefox. Check the =sessionstore.js= file
+    created in old Firefox's profile when Firefox closes. Copy it in
+    the new profile.
+  - *Search engines:* Copy the =search.json= file from old to new profile.
+  - Add-on *data* is not synced: Copy necessary folders in tne new
+    profile (e.g. Scrapbook).
+  - Restart new Firefox and customize interface (buttons in the top
+    bar and menu).
+
+
+- Thunderbird (Icedove)
+
 
 # - Icedove integration with Gnome calendar 
 #   : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
@@ -434,7 +461,8 @@ And reduce permissions on it:
   : sudo rm /usr/share/hunspell/fr_*
   : sudo rm /usr/share/myspell/dicts/fr_*
   In case of trouble, just reinstal =hunspell-fr=.
-- Change Icon style of LibreOffice (Tools > Options > LibreOffice > View) to Breeze, and possibly Show Icons in menus.
+- Change Icon style of LibreOffice (Tools > Options > LibreOffice >
+  View) to Breeze, and possibly Show Icons in menus.
 
 
 **** Fonts
@@ -442,14 +470,17 @@ And reduce permissions on it:
   : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
 
 - Use =gnome-tweak-tool= to change Monospace font to Hack Regular 11.
-- [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS  fonts) : Carlito and Caladea. Once installed, in LibreOffice: Options > Fonts, check 'Apply replacement table', and add a replacement rule for each (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked (Always and screen only).
+- [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS fonts) : Carlito and
+  Caladea. Once installed, in LibreOffice: Options > Fonts, check
+  'Apply replacement table', and add a replacement rule for each
+  (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked
+  (Always and screen only).
 
 
 **** LaTeX and PDF
 
   : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
-# (emacs emacs-goodies-el ess org-mode)
-# (ocrfeeder ocrodjvu)
+
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 =texlive-full=; =pdfmanipulate= comes with =calibre=.
 
@@ -475,7 +506,8 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
   when necessary, e.g.:
   : latex moderntimeline.ins
   : latex moderntimeline.dtx
-- Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=, then update the TeX index: 
+- Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=,
+  then update the TeX index:
   : sudo texhash
 
 
@@ -486,16 +518,20 @@ Configuration via Git:
   : cp ~/.emacs.d/emacs.Xresources ~/.Xresources
   : xrdb -merge ~/.Xresources
 
-And load Emacs, potentially several times until all packages are installed.
+And load Emacs, potentially several times until all packages are
+installed.
 
 
 **** JabRef configuration
 
-- Import preferences (PrefJabRef-2014-XX-XX)
-- Use =/home/mathieu/Work/biblio/PDF/= as main file folder (External
-  programs)
-- GTK look & feel: Options > Preferences > Advanced > Class name:
-  "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+In Options > Preferences:
+- Import preferences (=JabRef-Pref-20161110.xml=). Should be enough, but
+  just in case, check the following.
+- Keep English as language.
+- External programs: Use =/home/mathieu/Work/biblio/PDF/= as main file
+  folder.
+- Advanced > Class name: "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+  for GTK look & feel.
 
 
 **** Gnote configuration
@@ -540,7 +576,8 @@ And finally link to the R profile:
 
   : sudo apt install qgis python-qgis
 
-Or if it fails due to a missing package (gdal-abi-2), then prefer the install from Debian repositories:
+Or if it fails due to a missing package (gdal-abi-2), then prefer the
+install from Debian repositories:
 
   : sudo apt install -t o=Debian,n=stretch qgis python-qgis
 
@@ -554,35 +591,35 @@ List: https://extensions.gnome.org/local/
 
 (o Installed; x Installed but not activated)
 
-x Alt-Alt+Tab (outdated)
-x AlternateTab
-x Applications Menu
-o Auto Move Windows
-o Disconnect Wifi 
-o Drop Down Terminal
-x Gnote/Tomboy Integration (outdated)
-x gTile (outdated)
-o Hibernate Status Button
-x Launch new instance
-o Media player indicator (reinstall from source after media install)
-x Modern Calc (outdated)
-x Native Window Placement
-o OpenWeather
-x Places Status Indicator
-o Refresh Wifi Connections
-x Removable Drive Menu
-x Remove Dropdown Arrows (outdated)
-x Return to Monitor (outdated)
-x Screenshot Window Sizer
-o SincroDirs
-o Skype Integration
-o Suspend Button
-o TopIcons Plus
-x User Themes
-x Window List
-o windowNavigator
-x Workspace Indicator
-x workspaceAltTab (outdated)
+- x Alt-Alt+Tab (outdated)
+- x AlternateTab
+- x Applications Menu
+- o Auto Move Windows
+- o Disconnect Wifi 
+- o Drop Down Terminal
+- x Gnote/Tomboy Integration (outdated)
+- x gTile (outdated)
+- o Hibernate Status Button
+- x Launch new instance
+- o Media player indicator (reinstall from source after media install)
+- x Modern Calc (outdated)
+- x Native Window Placement
+- o OpenWeather
+- x Places Status Indicator
+- o Refresh Wifi Connections
+- x Removable Drive Menu
+- x Remove Dropdown Arrows (outdated)
+- x Return to Monitor (outdated)
+- x Screenshot Window Sizer
+- o SincroDirs
+- o Skype Integration
+- o Suspend Button
+- o TopIcons Plus
+- x User Themes
+- x Window List
+- o windowNavigator
+- x Workspace Indicator
+- x workspaceAltTab (outdated)
 
 
 *** Other
@@ -598,7 +635,8 @@ The Debian way:
   : sudo dpkg -i googleearth*.deb
   : sudo apt -f install
 
-But dependencies impossible to reconcile (libcurl3:i386)... Solution: get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then: 
+But dependencies impossible to reconcile (libcurl3:i386)... Solution:
+get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
   : sudo dpkg -i google-earth-stable_current_amd64.deb
   : sudo apt -f install
 
@@ -619,7 +657,8 @@ $ sudo apt install google-chrome-stable
   : sudo dpkg -i skype-install.deb
   : sudo aptitude -f install
 
-Don't mute sound (music) when Skype (VoIP) calls or other notifications:
+Don't mute sound (music) when Skype (VoIP) calls or other
+notifications:
   : sudo nano /etc/pulse/default.pa 
 and comment the line:
   #+BEGIN_QUOTE
@@ -646,12 +685,6 @@ and comment the line:
 - Check applications on startup (icedove, firefox, nautilus, gnote)
 - Purge Mono
   : sudo aptitude purge mono-runtime cli-common mono-4.0-gac
-- *Francisation:*
-  : sudo dpkg-reconfigure locales
-  Select =en-GB.UTF-8=, =en-US.UTF-8= (default), =fr-FR.UTF-8=, =fr-CA.UTF-8=
-- Remove unnecessary locales:
-  : sudo apt install localepurge
-  : sudo localepurge
 - Final cleaning:
   : upgrade-full
 
