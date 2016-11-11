@@ -368,11 +368,11 @@ Legacy boot) and follow the instructions. General guidelines:
 
   : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser flashplugin-nonfree mozplugger
 
-- Get a "clean" Firefox profile: Simply connect to Sync with your
-  Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
-  Add-ons and Preferences from old Firefox. Leave Firefox open for
-  some time... After all add-ons are installed, a little bit of
-  tweaking is necessary after:
+- *Firefox*. Get a "clean" Firefox profile: Simply connect to Sync with
+  your Firefox account to synchronize Tabs, Bookmarks, Passwords,
+  History, Add-ons and Preferences from old Firefox. Leave Firefox
+  open for some time... After all add-ons are installed, a little bit
+  of tweaking is necessary after:
   - Enable GNOME theme (in Appearance). 
   - *Add-ons:* Some add-ons were not synced and installed: HTTPS
     Everywhere, Privacy Badger; some options need to be reset
@@ -388,9 +388,7 @@ Legacy boot) and follow the instructions. General guidelines:
   - Restart new Firefox and customize interface (buttons in the top
     bar and menu).
 
-
-- Thunderbird (Icedove)
-
+- *Thunderbird (Icedove)*.
 
 # - Icedove integration with Gnome calendar 
 #   : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
@@ -399,10 +397,10 @@ Legacy boot) and follow the instructions. General guidelines:
 # * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
 # * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
 
-#- Privoxy:
+# - Privoxy:
 #  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
-#- Enigmail (needs version >= 1.8):
+# - Enigmail (needs version >= 1.8):
 #  Then change Gnome settings for the passphrase:
 #  : gsettings list-recursively org.gnome.crypto.cache
 #  Lists relevant settings: the method can be `session` (never
@@ -413,7 +411,7 @@ Legacy boot) and follow the instructions. General guidelines:
 #  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
 #  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
 
-- Pipelight:
+- *Pipelight*:
 sudo aptitude install pipelight-multi
 sudo pipelight-plugin --update
 
@@ -471,18 +469,18 @@ With the following information:
 And reduce permissions on it:
   : chmod 600 .smb
 
-#sudo mkdir /mnt/ecored
-#sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
+# sudo mkdir /mnt/ecored
+# sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
 
-#mkdir MabLab
-#mkdir MabLab/bkp
-#mkdir MabLab/bkp/mathieu
-#mkdir MabLab/bkp/mathieu/home
+# mkdir MabLab
+# mkdir MabLab/bkp
+# mkdir MabLab/bkp/mathieu
+# mkdir MabLab/bkp/mathieu/home
 
 
 **** Backup
 
-#deja-dup 
+# deja-dup 
 
 
 *** Multimedia
@@ -680,8 +678,7 @@ get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Go
 ***** Google Chrome
 
 Add Google Chrome repository (sources.list + preferences), then:
-
-$ sudo apt install google-chrome-stable
+  : sudo apt install google-chrome-stable
 
 
 **** Skype
