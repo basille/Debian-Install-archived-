@@ -1,5 +1,21 @@
 * Debian Testing (Stretch) install
 
+This is a complete tutorial to install Debian Stretch. Most of the
+instructions are general enough to be applied on any computer. Keep in
+mind, however, that:
+- Hardware configuration (including keyboard layout) is tuned for a
+  laptop *DELL XPS 13 (9350)*;
+- Keyboard layout is based on QWERTY, and adds extra key combinations
+  to enable French characters and accents, as well as most Greek
+  letters.
+- The installation is geared towards an academic work, primarily based
+  on the use of Emacs, R and PostGIS (see *Office* and *R, QGIS and
+  PostGIS* sections).
+- *Internet admin* mostly deals with remote access of resources offered
+  by the University of Florida (and is thus only relevant for UF
+  members).
+
+
 #+BEGIN_QUOTE
 *Table of Contents*
 - [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
@@ -14,6 +30,7 @@
     - [[#internationalization][Internationalization]]
 - [[#installing-a-full-system][Installing a full system]]
   - [[#miscellaneous][Miscellaneous]]
+  - [[#gnome-extensions][Gnome Extensions]]
   - [[#web][Web]]
   - [[#internet-admin][Internet admin]]
     - [[#vpn][VPN]]
@@ -32,7 +49,6 @@
   - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
     - [[#r][R]]
     - [[#qgis-and-postgis][QGIS and PostGIS]]
-  - [[#gnome-extensions][Gnome Extensions]]
   - [[#other][Other]]
     - [[#google-stuff][Google Stuff]]
     - [[#skype][Skype]]
@@ -311,6 +327,43 @@ Legacy boot) and follow the instructions. General guidelines:
 *** Miscellaneous
 
   : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dosbox elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy revelation subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+
+
+*** Gnome extensions
+
+List: https://extensions.gnome.org/local/
+
+(o Installed; x Installed but not activated)
+
+- x Alt-Alt+Tab (outdated)
+- x AlternateTab
+- x Applications Menu
+- o Auto Move Windows
+- o Disconnect Wifi 
+- o Drop Down Terminal
+- x Gnote/Tomboy Integration (outdated)
+- x gTile (outdated)
+- o Hibernate Status Button
+- x Launch new instance
+- o Media player indicator (reinstall from source after media install)
+- x Modern Calc (outdated)
+- x Native Window Placement
+- o OpenWeather
+- x Places Status Indicator
+- o Refresh Wifi Connections
+- x Removable Drive Menu
+- x Remove Dropdown Arrows (outdated)
+- x Return to Monitor (outdated)
+- x Screenshot Window Sizer
+- o SincroDirs
+- o Skype Integration
+- o Suspend Button
+- o TopIcons Plus
+- x User Themes
+- x Window List
+- o windowNavigator
+- x Workspace Indicator
+- x workspaceAltTab (outdated)
 
 
 *** Web
@@ -604,44 +657,6 @@ install from Debian repositories:
   : sudo apt install -t o=Debian,n=stretch qgis python-qgis
 
 Then, from inside QGIS, install the Time manager plugin.
-
-
-
-*** Gnome extensions
-
-List: https://extensions.gnome.org/local/
-
-(o Installed; x Installed but not activated)
-
-- x Alt-Alt+Tab (outdated)
-- x AlternateTab
-- x Applications Menu
-- o Auto Move Windows
-- o Disconnect Wifi 
-- o Drop Down Terminal
-- x Gnote/Tomboy Integration (outdated)
-- x gTile (outdated)
-- o Hibernate Status Button
-- x Launch new instance
-- o Media player indicator (reinstall from source after media install)
-- x Modern Calc (outdated)
-- x Native Window Placement
-- o OpenWeather
-- x Places Status Indicator
-- o Refresh Wifi Connections
-- x Removable Drive Menu
-- x Remove Dropdown Arrows (outdated)
-- x Return to Monitor (outdated)
-- x Screenshot Window Sizer
-- o SincroDirs
-- o Skype Integration
-- o Suspend Button
-- o TopIcons Plus
-- x User Themes
-- x Window List
-- o windowNavigator
-- x Workspace Indicator
-- x workspaceAltTab (outdated)
 
 
 *** Other
