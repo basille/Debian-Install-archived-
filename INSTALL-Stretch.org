@@ -299,9 +299,11 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
   Then edit =/etc/default/grub=:
   : sudo nano /etc/default/grub
-  and add this line:
+  and add this line (note that preferred resolution is 3200x1800 by
+  default, which is painfully slow; reducing even further to 800x600
+  or 640x480 can make it slighlty more responsive):
   #+BEGIN_QUOTE
-  : GRUB_GFXMODE=1280x720
+  : GRUB_GFXMODE=1024x768
   #+END_QUOTE
   And edit the GRUB_CMDLINE_LINUX_DEFAULT line to read:
   #+BEGIN_QUOTE
