@@ -534,6 +534,8 @@ And reduce permissions on it:
   In case of trouble, just reinstal =hunspell-fr=.
 - Change Icon style of LibreOffice (Tools > Options > LibreOffice >
   View) to Breeze, and possibly Show Icons in menus.
+- Preferences for HomeBank are stored in =~/.config/homebank=. It's
+  probably safe to simply copy this folder.
 
 
 **** Fonts
