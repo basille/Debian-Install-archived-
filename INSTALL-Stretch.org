@@ -32,6 +32,8 @@ mind, however, that:
   - [[#miscellaneous][Miscellaneous]]
   - [[#gnome-extensions][Gnome Extensions]]
   - [[#web][Web]]
+    - [[#firefox][Firefox]]
+    - [[#thunderbird-icedove][Thunderbird (Icedove)]]
   - [[#internet-admin][Internet admin]]
     - [[#vpn][VPN]]
     - [[#ssh][SSH]]
@@ -368,27 +370,70 @@ Legacy boot) and follow the instructions. General guidelines:
 
   : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser flashplugin-nonfree mozplugger
 
-- *Firefox*. Get a "clean" Firefox profile: Simply connect to Sync with
-  your Firefox account to synchronize Tabs, Bookmarks, Passwords,
-  History, Add-ons and Preferences from old Firefox. Leave Firefox
-  open for some time... After all add-ons are installed, a little bit
-  of tweaking is necessary after:
-  - Enable GNOME theme (in Appearance). 
-  - *Add-ons:* Some add-ons were not synced and installed: HTTPS
-    Everywhere, Privacy Badger; some options need to be reset
-    (e.g. notifications for Self-Destructing Cookies).
-  - *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
-  - *Open tabs:* Open tabs (including permanent tabs) are not synced:
-    Close both old and new Firefox. Check the =sessionstore.js= file
-    created in old Firefox's profile when Firefox closes. Copy it in
-    the new profile.
-  - *Search engines:* Copy the =search.json= file from old to new profile.
-  - Add-on *data* is not synced: Copy necessary folders in tne new
-    profile (e.g. Scrapbook).
-  - Restart new Firefox and customize interface (buttons in the top
-    bar and menu).
+**** Firefox
 
-- *Thunderbird (Icedove)*.
+To get a "clean" Firefox profile: Simply connect to Sync with your
+Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
+Add-ons and Preferences from old Firefox. Leave Firefox open for some
+time... After all add-ons are installed, a little bit of tweaking is
+necessary after:
+- Enable GNOME theme (in Appearance). 
+- *Add-ons:* Some add-ons were not synced and installed: HTTPS
+  Everywhere, Privacy Badger; some options need to be reset
+  (e.g. notifications for Self-Destructing Cookies).
+- *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
+- *Open tabs:* Open tabs (including permanent tabs) are not synced:
+  Close both old and new Firefox. Check the =sessionstore.js= file
+  created in old Firefox's profile when Firefox closes. Copy it in the
+  new profile.
+- *Search engines:* Copy the =search.json.mozlz4= file from old to new
+  profile.
+- Add-on *data* is not synced: Copy necessary folders in tne new profile
+  (e.g. Scrapbook).
+- Restart new Firefox and customize interface (buttons in the top bar
+  and menu).
+
+Here is the full list of add-ons that I normally install:
+- Essential security and privacy:
+  - [[https://addons.mozilla.org/fr/firefox/addon/betterprivacy/][Better Privacy]] (if Flash installed)
+  - [[https://addons.mozilla.org/fr/firefox/addon/https-everywhere/][HTTPS Everywhere]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/privacy-badger-firefox/][Privacy Badger]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/self-destructing-cookies/][Self-Destructing Cookies]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/ublock-origin/][uBlock Origin]]
+- Essential functionalities:
+  - [[https://addons.mozilla.org/fr/firefox/addon/findbar-tweak/][FindBar Tweak]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/tab-groups-panorama/][Tab Groups]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/lazarus-form-recovery/][Lazarus: Form Recovery]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/scrapbook/][ScrapBook]]
+- Appearance and integration with GNOME 3:
+  - [[https://addons.mozilla.org/fr/firefox/addon/gnome-theme-tweak/][GNOME Theme Tweak]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/gnotifier/][GNotifier]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/htitle/][HTitle]] (discontinued!)
+- Videos and streaming:
+  - [[https://addons.mozilla.org/fr/firefox/addon/download-youtube/][Download YouTube Videos as MP4]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/user-agent-switcher/][User-Agent Switcher]] (useful for Netflix for instance)
+  - [[https://addons.mozilla.org/fr/firefox/addon/video-downloadhelper/][Video DownloadHelper]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/youtube-all-html5/?src=search][YouTube ALL HTML5]]
+- Others:
+  - [[https://addons.mozilla.org/fr/firefox/addon/checkcompatibility/][checkCompatibility]] (because some add-ons don't keep up with new
+    Firefox versions)
+  - [[https://addons.mozilla.org/fr/firefox/addon/clean-links/][Clean Links]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/flagfox/][Flagfox]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/nuke-anything-enhanced/][Nuke Anything Enhanced]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/qwantcom-for-firefox/][Qwant for Firefox]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/shaarli/][Shaarli]]
+  - [[https://addons.mozilla.org/en-US/firefox/addon/smart-referer/][Smart Referer]]
+
+And the list of search engines that I keep:
+- Google [by default]
+- [[https://addons.mozilla.org/fr/firefox/addon/google-fr-recherche-sur-le-web/][Google.fr (Web)]] [installed]
+- Wikipedia (en)
+- [[https://addons.mozilla.org/fr/firefox/addon/wikipedia-fr/][Wikipedia (fr)]] [installed]
+- [[https://addons.mozilla.org/fr/firefox/addon/qwant/][Qwant]] [installed]
+- Debian packages
+
+
+**** *Thunderbird (Icedove)*.
 
 # - Icedove integration with Gnome calendar 
 #   : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
@@ -396,9 +441,6 @@ Legacy boot) and follow the instructions. General guidelines:
 # Intégration à Gnome :
 # * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
 # * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
-
-# - Privoxy:
-#  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
 # - Enigmail (needs version >= 1.8):
 #  Then change Gnome settings for the passphrase:
@@ -411,9 +453,16 @@ Legacy boot) and follow the instructions. General guidelines:
 #  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
 #  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
 
-- *Pipelight*:
+
+**** Others
+
+- *[[http://pipelight.net/cms/installation.html][Pipelight]]* (Windows-only plugins inside Linux browsers,
+  e.g. Silverlight):
 sudo aptitude install pipelight-multi
 sudo pipelight-plugin --update
+
+# - Privoxy:
+#  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
 
 *** Internet admin
