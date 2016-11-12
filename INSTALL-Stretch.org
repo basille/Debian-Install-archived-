@@ -268,8 +268,24 @@ Legacy boot) and follow the instructions. General guidelines:
 - *Laptop stuff* (battery, wifi, non-free firmware):
   : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi firmware-brcm80211 tlp tlp-rdw 
   : sudo modprobe -r brcmsmac ; sudo modprobe brcmsmac
-  *Note:* TLP seems like a better alternative to =laptop-mode-tools=.
-
+  *Note:* TLP seems like a better alternative to =laptop-mode-tools=. Now
+  for other non-free firmware (missing firmware for module i915):
+  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/sklgucver61.tar.bz2 && \
+  : tar xvjf sklgucver61.tar.bz2 && cd skl_guc_ver6_1/ && sudo ./install.sh
+  : cd
+  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/kbldmcver101.tar.bz2 && \
+  : tar xjvf kbldmcver101.tar.bz2 && cd kbl_dmc_ver1_01/ && sudo ./install.sh 
+  : cd
+  : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
+  : sudo update-initramfs -u -k all
+- Keyboard set as PC 105 keys:
+  :sudo nano /etc/default/keyboard
+  and add as first line:
+  #+BEGIN_QUOTE
+  : XKBMODEL="pc105"
+  #+END_QUOTE
+  And apply the changes:
+  : sudo update-initramfs -u
 - *Graphical boot:* use Plymouth.
   : sudo apt install plymouth plymouth-themes
   Then edit =/etc/initramfs-tools/modules=:
@@ -285,7 +301,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo nano /etc/default/grub
   and add this line:
   #+BEGIN_QUOTE
-  : GRUB_GFXMODE=1920x1080
+  : GRUB_GFXMODE=1280x720
   #+END_QUOTE
   And edit the GRUB_CMDLINE_LINUX_DEFAULT line to read:
   #+BEGIN_QUOTE
