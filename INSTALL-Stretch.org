@@ -229,6 +229,8 @@ Legacy boot) and follow the instructions. General guidelines:
   org.gnome.desktop.input-sources).
 - Keep numpad activated between sessions:
   : gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+- Disable the sleep button (mapped to Fn+Insert) [doesn't work?]:
+  : gsettings set org.gnome.settings-daemon.plugins.power power-button-action "nothing"
 - Nautilus: Preferences > Views: Sort folders before files
 
 
