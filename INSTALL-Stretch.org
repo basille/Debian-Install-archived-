@@ -497,7 +497,11 @@ contains all bookmarks and passwords).
 
   : sudo aptitude install owncloud-client nautilus-owncloud nautilus-dropbox
 
-Then install the proprietary deamon for Dropbox:
+For ownCloud, configure the client: run =owncloud=, fill in the proper
+credentials, and choose what to sync and where (=.owncloud= is a good
+choice if it concerns only files for sync, and not documents per se).
+
+For DropBox, install the proprietary deamon:
 
   : dropbox start -i
 
@@ -658,16 +662,16 @@ In Options > Preferences:
 
 **** Gnote configuration
 
-# Copier les contenus des dossiers .local/share/gnote
-# Applications au démarrage : Gnotes :
-# $ nano ~/.config/autostart/gnote.desktop
-# [Desktop Entry]
-# Type=Application
-# Exec=/usr/bin/gnote %u
-# Hidden=false
-# X-GNOME-Autostart-enabled=true
-# Name=Gnote
-# Comment[fr_FR.UTF-8]=Prendre des notes, relier des idées, rester organisé
+- Synchronization using WebDav seems really complicated to set up; one
+  solution is to use ownCloud client to sync a =Gnote= folder localy,
+  and then configure it in Gnote Preferences > Synchronization using
+  Local folder as a service (and check the Automatic sync every 10
+  minutes).
+- Other preferences:
+  - General: Always open notes in new window
+  - Plugins: Enable 'Export to HTML' and 'Table of contents'.
+- Using =gnome-tweak-tool=, add Gnote to the list of Startup
+  Applications.
 
 
 *** R, QGIS and PostGIS
