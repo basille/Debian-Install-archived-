@@ -359,6 +359,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - x AlternateTab
 - x Applications Menu
 - o Auto Move Windows
+- o BackSlide
 - o Disconnect Wifi 
 - o Drop Down Terminal
 - x Gnote/Tomboy Integration (outdated)
