@@ -373,7 +373,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - x Places Status Indicator
 - o Refresh Wifi Connections
 - x Removable Drive Menu
-- x Remove Dropdown Arrows (outdated)
+- o Remove Dropdown Arrows
 - x Return to Monitor (outdated)
 - x Screenshot Window Sizer
 - o SincroDirs
