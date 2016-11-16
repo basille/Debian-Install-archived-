@@ -488,7 +488,7 @@ sudo pipelight-plugin --update
 
 *** Internet admin
 
-  : sudo apt install gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome rsync screen unison
+  : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome rsync screen unison
 
 
 **** VPN
@@ -683,11 +683,10 @@ In Options > Preferences:
 
 **** Gnote configuration
 
-- Synchronization using WebDav seems really complicated to set up; one
-  solution is to use ownCloud client to sync a =Gnote= folder localy,
-  and then configure it in Gnote Preferences > Synchronization using
-  Local folder as a service (and check the Automatic sync every 10
-  minutes).
+- +Synchronization using WebDav seems really complicated to set up; one solution is to use ownCloud client to sync a =Gnote= folder localy, and then configure it in Gnote Preferences > Synchronization using Local folder as a service (and check the Automatic sync every 10
+  minutes).+
+  - Synchronization seems to cause many crashes of Gnote… Hence simply
+    copying the note folder (=~/.local/share/gnote=) should be enough.
 - Other preferences:
   - General: Always open notes in new window
   - Plugins: Enable 'Export to HTML' and 'Table of contents'.
