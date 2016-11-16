@@ -348,7 +348,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 *** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy revelation subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree unetbootin units unrar virtualbox wakeonlan
 
 
 *** Gnome extensions
@@ -488,7 +488,7 @@ sudo pipelight-plugin --update
 
 *** Internet admin
 
-  : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome rsync screen unison
+  : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
 
 
 **** VPN
@@ -555,6 +555,16 @@ And reduce permissions on it:
 **** Backup
 
 # deja-dup 
+
+
+**** Revelation
+
+- Create a new password file in =~/.revelation= or copy an existing one
+  in this folder.
+- Change preferences:
+  * "Open file on startup:" and pick the file mentioned above;
+  * Check "Automatically save data when changed"
+  * "Length of generated passwords": 12
 
 
 *** Multimedia
