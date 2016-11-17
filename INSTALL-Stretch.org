@@ -472,42 +472,38 @@ in particular can be checked at: http://isflashinstalled.com/
 
 **** *Thunderbird (Icedove)*.
 
-# - Icedove integration with Gnome calendar 
-#   : gsettings set org.gnome.desktop.default-applications.office.calendar exec icedove
-# Créer un faux compte sous Evolution ; puis Fichier > Nouveau > Agenda ; Type : CalDAV, Nom : Agenda calDav, « Marquer comme agenda par défaut », URL : caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/default%20calendar/ (ou mettre caldav://mathieu.basille.net/cloud/remote.php/caldav/calendars/mathieu/ et rechercher les calendriers), Rafraichir aux 15 minutes, Appliquer. Fermer Evolution...
-# Intégration à Gnome :
-# * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
-# * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
+- From a previous installation, simply copy the content of the former
+  profile into the default profile folder in =~/.icedove=.
 
 - Enigmail (needs version >= 2.07):
   Then change Gnome settings for the passphrase:
   : gsettings list-recursively org.gnome.crypto.cache
-  Lists relevant settings: the method can be `session` (never expires
-  during the session), `idle` (timer is reset each time there's
-  activity on the computer) or `timeout` (simple timer since entering
-  the passphrase). We set it to `timeout` with 5 minutes of delay:
+  Lists relevant settings: the method can be 'session' (never expires
+  during the session), 'idle' (timer is reset each time there's
+  activity on the computer) or 'timeout' (simple timer since entering
+  the passphrase). We set it to 'idle' with 5 minutes of delay:
   : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
   : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
+  If it comes from a former installation, copy the =.gnupg/= folder in
+  =~/=, and ensure permissions are correct:
+  : chmod -R go-rwx ~/.gnupg
+  Check that GnuPG is installed with a version >2:
+  : gpg --version
+  And finally migrate from old version:
+  : gpg -K
+  Note that there is a bug with Enigmail 1.9.6-1 (which doesn't
+  recognize gpg); [[https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html][fixed in 1.9.6-2]]:
 
 
-Copy the =.gnupg/= folder in =~/=, and ensure permissions are correct:
+**** ownCloud
 
-chmod -R go-rwx ~/.gnupg
-
-Check that GnuPG is installed with a version >2:
-
-gpg --version
-
-Migrate from old version:
-
-gpg -K
-
-
-Bug with Enigmail 1.9.6-1 (doesn't recognize gpg); fixed in
-1.9.6-2: https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html
-
-
-
+In Settings > Online accounts, add a new ownCloud account. Simply fill
+in the server address (where ownCloud is installed, not one of the
+scripts for CalDav/CardDav), username and password, and keep it for
+Calendar, Contacts, Documents and Files. Now events should appear in
+the calendar in the top bar, contacts should be synchronized with the
+Contacts application, and Files (Nautilus) should provide a shortcut
+to the ownCloud root folder.
 
 
 **** Others
