@@ -390,7 +390,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 *** Web
 
-  : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser flashplugin-nonfree mozplugger
+  : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
 
 **** Firefox
 
@@ -454,6 +454,21 @@ And the list of search engines that I keep:
 - [[https://addons.mozilla.org/fr/firefox/addon/qwant/][Qwant]] [installed]
 - Debian packages
 
+The next step is to install additional plugins. Unfortunately, Flash
+may still be necessary for some websites, and Silverlight is necessary
+for NetFlix. The *[[http://pipelight.net/cms/installation.html][Pipelight]]* project conveniently provides Windows-only
+plugins directly inside the browsers. First update the pipelight
+plugin:
+  : sudo pipelight-plugin --update
+Just to be safe, close Firefox, then enable Flash and Silverlight:
+  : sudo pipelight-plugin --enable flash
+  : sudo pipelight-plugin --enable silverlight
+  : sudo pipelight-plugin --create-mozilla-plugins
+  : sudo pipelight-plugin --list-enabled
+After restarting Firefox, plugins can be check in the Plugins section
+of the Add-ons panel (then select "Ask to activate" for both). Flash
+in particular can be checked at: http://isflashinstalled.com/
+
 
 **** *Thunderbird (Icedove)*.
 
@@ -464,24 +479,38 @@ And the list of search engines that I keep:
 # * Thunderbird : https://github.com/gnome-integration-team/thunderbird-gnome
 # * Les deux : https://addons.mozilla.org/fr/firefox/addon/htitle/
 
-# - Enigmail (needs version >= 1.8):
-#  Then change Gnome settings for the passphrase:
-#  : gsettings list-recursively org.gnome.crypto.cache
-#  Lists relevant settings: the method can be `session` (never
-#  expires during the session), `idle` (timer is reset each time
-#  there's activity on the computer) or `timeout` (simple timer since
-#  entering the passphrase). We set it to `timeout` with 5 minutes of
-#  delay: 
-#  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
-#  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
+- Enigmail (needs version >= 2.07):
+  Then change Gnome settings for the passphrase:
+  : gsettings list-recursively org.gnome.crypto.cache
+  Lists relevant settings: the method can be `session` (never expires
+  during the session), `idle` (timer is reset each time there's
+  activity on the computer) or `timeout` (simple timer since entering
+  the passphrase). We set it to `timeout` with 5 minutes of delay:
+  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
+  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
+
+
+Copy the =.gnupg/= folder in =~/=, and ensure permissions are correct:
+
+chmod -R go-rwx ~/.gnupg
+
+Check that GnuPG is installed with a version >2:
+
+gpg --version
+
+Migrate from old version:
+
+gpg -K
+
+
+Bug with Enigmail 1.9.6-1 (doesn't recognize gpg); fixed in
+1.9.6-2: https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html
+
+
+
 
 
 **** Others
-
-- *[[http://pipelight.net/cms/installation.html][Pipelight]]* (Windows-only plugins inside Linux browsers,
-  e.g. Silverlight):
-sudo aptitude install pipelight-multi
-sudo pipelight-plugin --update
 
 # - Privoxy:
 #  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
