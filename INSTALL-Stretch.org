@@ -370,6 +370,9 @@ Legacy boot) and follow the instructions. General guidelines:
 - o Media player indicator (reinstall from source after media install)
 - x Modern Calc (outdated)
 - x Native Window Placement
+- o Nothing to say
+  Change shortcut to Super+F1:
+ : dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '["<Super>F1"]'
 - o OpenWeather
 - x Places Status Indicator
 - o Refresh Wifi Connections
@@ -379,6 +382,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - x Screenshot Window Sizer
 - o SincroDirs
 - o Skype Integration
+- o Sound Input & Output Device Chooser
 - o Suspend Button
 - o TopIcons Plus
 - x User Themes
