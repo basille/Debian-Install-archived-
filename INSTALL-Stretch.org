@@ -209,7 +209,7 @@ Legacy boot) and follow the instructions. General guidelines:
   Add at the end of the file:
   #+BEGIN_QUOTE
   : # SWAP after 100% RAM used 
-  : vm.swappiness = 0
+  : vm.swappiness = 1
   #+END_QUOTE
 - Date in the top bar with time, and calendar displaying the week
   number:
