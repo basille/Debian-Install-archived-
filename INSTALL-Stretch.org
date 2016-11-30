@@ -208,7 +208,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo nano /etc/sysctl.conf
   Add at the end of the file:
   #+BEGIN_QUOTE
-  : # SWAP after 100% RAM used 
+  : # SWAP after 99% RAM used 
   : vm.swappiness = 1
   #+END_QUOTE
 - Date in the top bar with time, and calendar displaying the week
@@ -679,7 +679,7 @@ And reduce permissions on it:
 
 *** Office
 
-  : sudo apt install aspell aspell-fr aspell-en emacs24 gnote homebank hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+  : sudo apt install abiword aspell aspell-fr aspell-en emacs24 gnote homebank hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
 
 - Need to remove all links to French dictionaries:
   : sudo rm /usr/share/hunspell/fr_*
