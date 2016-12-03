@@ -806,7 +806,9 @@ which is, on Dec 2 2016, for version 1.0.44 (check [[https://www.rstudio.com/pro
 
 (RStudio has a tendancy to mess a bit with file associations, so it
 might be necessary to clean that after if RStudio is not supposed to
-be the default R editor)
+be the default R editor; as a matter of fact, if it is the case, it is
+the easiest way to associate =.R= or =.Rmd= files to any editor, while
+keeping the association to Gedit for plain text documents)
 
 RStudio is provided with its own version of Pandoc, but it seems to
 come [[https://github.com/rstudio/rmarkdown/issues/867][with potential problems]]. The easiest way to overcome this is
