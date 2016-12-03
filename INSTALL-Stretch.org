@@ -808,6 +808,13 @@ which is, on Dec 2 2016, for version 1.0.44 (check [[https://www.rstudio.com/pro
 might be necessary to clean that after if RStudio is not supposed to
 be the default R editor)
 
+RStudio is provided with its own version of Pandoc, but it seems to
+come [[https://github.com/rstudio/rmarkdown/issues/867][with potential problems]]. The easiest way to overcome this is
+simply to rename the Pandoc executable provided by RStudio (requests
+will then fallback on the system Pandoc):
+
+  : sudo mv /usr/lib/rstudio/bin/pandoc/pandoc /usr/lib/rstudio/bin/pandoc/pandoc.bkp
+
 Note that RStudio is not adapted to very high resolution (for instance
 Retina) and may look very tiny in this case.
 
