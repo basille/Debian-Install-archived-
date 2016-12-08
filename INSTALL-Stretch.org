@@ -750,14 +750,35 @@ installed.
 
 **** JabRef configuration
 
+Debian is currently lagging behind for JabRef (but they are working on
+it). To install the latest stable (3.7 as of December 8 2016), first
+download the independant runnable JAR from [[https://www.fosshub.com/JabRef.html][FossHub.com]], then:
+
+  : sudo mv /usr/share/java/jabref.jar /usr/share/java/jabref.jar.bkp
+  : sudo mv JabRef-3.7.jar /usr/share/java/jabref.jar
+
+(note that there is still an issue when closing JabRef: the Java
+process does actually not stop... The easiest at the moment is to run
+=jabref= from the command line, and simply =Ctrl+C= it when done...)
+
 In Options > Preferences:
-- Import preferences (=JabRef-Pref-20161110.xml=). Should be enough, but
+- Import preferences (=JabRef-Pref-20161206.xml=). Should be enough, but
   just in case, check the following.
 - Keep English as language.
 - External programs: Use =/home/mathieu/Work/biblio/PDF/= as main file
   folder.
 - Advanced > Class name: "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
   for GTK look & feel.
+
+Finally, install Zotero and JabFox add-ons for Firefox, and then
+adjust JabFox and JabRef preferences:
+- Create a script to correctly catch the call:
+  : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
+  : sudo chmod +x /usr/share/java/jabref.sh
+- JabFox: Adjust the path to the JabRef script above
+  ('extensions.@jabfox.jabRefPath' preference of Firefox);
+- JabFox: Export format to BibTeX;
+- JabRef: Activate "Remote operation" under the Advanced tab.
 
 
 **** Gnote configuration
