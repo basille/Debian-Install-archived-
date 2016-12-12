@@ -102,8 +102,8 @@ xkb_symbols "intl" {
     key <AE12> { [     equal,       plus,      notequal,         multiply ] }; // = + ≠ ×
 
     key <AD01> { [	   q,          Q,            ae,               AE ] }; // q Q æ Æ
-    key <AD02> { [	   w,          W,        egrave,           Egrave ] }; // w W è È
-    key <AD03> { [	   e,          E,        eacute,           Eacute ] }; // e E é É
+    key <AD02> { [	   w,          W,        eacute,           Eacute ] }; // w W é É
+    key <AD03> { [	   e,          E,        egrave,           Egrave ] }; // e E è È
     key <AD04> { [	   r,          R,     Greek_rho,       registered ] }; // r R ρ ®
     key <AD05> { [	   t,          T,   Greek_theta,      Greek_THETA ] }; // t T θ Θ
     key <AD06> { [	   y,          Y,   Greek_alpha,                Y ] }; // y Y α 
