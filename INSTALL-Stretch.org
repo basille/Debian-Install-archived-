@@ -215,7 +215,7 @@ Legacy boot) and follow the instructions. General guidelines:
   number:
   : gsettings set org.gnome.desktop.interface clock-show-date true
   : gsettings set org.gnome.desktop.calendar show-weekdate true
-- Week starting on Monday, not Sunday:
+- Week starting on Monday, not Sunday: [DOESN'T WORK!]
   First check locales:
   : locale$ locale
   #+BEGIN_QUOTE
