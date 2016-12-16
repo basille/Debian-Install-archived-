@@ -771,11 +771,19 @@ installed.
 **** JabRef configuration
 
 Debian is currently lagging behind for JabRef (but they are working on
-it). To install the latest stable (3.7 as of December 8 2016), first
-download the independant runnable JAR from [[https://www.fosshub.com/JabRef.html][FossHub.com]], then:
+it). As the date of writing (Dec 16 2016), the most recent JabRef
+version available for Stretch is 2.10; but it is 3.6 for Sid and 3.8
+for Experimental. To install one of the two 3.x series, use one of the
+following commands:
 
-  : sudo mv /usr/share/java/jabref.jar /usr/share/java/jabref.jar.bkp
-  : sudo mv JabRef-3.7.jar /usr/share/java/jabref.jar
+  : sudo apt install -t unstable jabref
+  : sudo apt install -t experimental jabref
+
+# To install the latest stable (3.7 as of December 8 2016), first
+# download the independant runnable JAR from [[https://www.fosshub.com/JabRef.html][FossHub.com]], then:
+
+#   : sudo mv /usr/share/java/jabref.jar /usr/share/java/jabref.jar.bkp
+#   : sudo mv JabRef-3.7.jar /usr/share/java/jabref.jar
 
 (note that there is still an issue when closing JabRef: the Java
 process does actually not stop... The easiest at the moment is to run
