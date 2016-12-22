@@ -910,22 +910,19 @@ Add Google Chrome repository (sources.list + preferences), then:
 
 **** Skype
 
-[[http://wiki.debian.org/skype][Information]]
+At last, Microsoft now provides a decent version of Skype for Linux
+(based on their new web version), currently in its alpha stage. The
+application seems to work fine, and can be concurrently installed with
+the 'legacy' version (it's called "Skype for Linux" and the binary is
+=skypeforlinux=):
 
-  : sudo dpkg --add-architecture i386
-  : sudo aptitude update
-  : wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
-  : sudo dpkg -i skype-install.deb
-  : sudo aptitude -f install
+  : wget https://repo.skype.com/latest/skypeforlinux-64-alpha.deb
+  : sudo dpkg -i skypeforlinux-64-alpha.deb 
+  : sudo apt -f install
+  : rm skypeforlinux-64-alpha.deb 
 
-Don't mute sound (music) when Skype (VoIP) calls or other
-notifications:
-  : sudo nano /etc/pulse/default.pa 
-and comment the line:
-  #+BEGIN_QUOTE
-  : ### Cork music/video streams when a phone stream is active
-  : #load-module module-role-cork
-  #+END_QUOTE
+Note that alternatives exist, such as [[https://github.com/stanfieldr/ghetto-skype][Ghetto Skype]] (which does not
+currently provide video calls).
 
 
 **** Rockbox utility
