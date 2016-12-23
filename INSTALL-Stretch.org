@@ -175,10 +175,16 @@ Legacy boot) and follow the instructions. General guidelines:
   : alias upgrade='sudo apt update && sudo apt upgrade'
   : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
   :
-  : # For Terminix
+  : # For Terminix and Powerline
   : # https://github.com/gnunn1/terminix/wiki/VTE-Configuration-Issue
   : if [[ $TERMINIX_ID ]]; then
-  :        source /etc/profile.d/vte.sh
+  :         . /etc/profile.d/vte.sh
+  : fi
+  : if [ -f `which powerline-daemon` ]; then
+  :         powerline-daemon -q
+  :         POWERLINE_BASH_CONTINUATION=1
+  :         POWERLINE_BASH_SELECT=1
+  :         . /usr/share/powerline/bindings/bash/powerline.sh
   : fi
   #+END_QUOTE
 # - Install Terminator, Nautilus-Actions and most (=man= needs most):
@@ -194,16 +200,16 @@ Legacy boot) and follow the instructions. General guidelines:
 #     '--working-directory=%d/%b' in the parameters. In the Preferences
 #     of Nautilus Actions, uncheck 'Create a root 'Nautilus-Actions'
 #     menu'.
-- Install Terminix and most (=man= needs most):
-  :  sudo apt install terminix most
-  * Terminix configuration (in Window menu > Preferences): 
+- Install Terminix, powerline and most (=man= needs most):
+  :  sudo apt install terminix python-powerline most
+  * Terminix configuration (in Window menu > Preferences):
+    * Global: Automatically copy text to clipboard when selecting
     * Appearance: Terminal title style: none, Theme variant: dark
     * Quake: Set hint for window manager to disable animation
     * Shortcuts: Ctrl+Shift+D for Add terminal down; Ctrl+Shift+R
       for Add terminal right
     * Profile: Edit Default
       * General: Terminal bell: Icon
-      * Command: Run command as login shell
       * Color: Color scheme: Linux, and add some transparency
   * 'Open Terminix here...' in Nautilus comes with =python-nautilus= and
     =libnautilus-extension1a=, which should be there already.
