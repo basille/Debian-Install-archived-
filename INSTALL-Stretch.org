@@ -203,7 +203,8 @@ Legacy boot) and follow the instructions. General guidelines:
 - Install Terminix, powerline and most (=man= needs most):
   :  sudo apt install terminix python-powerline most
   * Terminix configuration (in Window menu > Preferences):
-    * Global: Automatically copy text to clipboard when selecting
+    * Global: Uncheck Warn when attempting unsafe paste, check
+      Automatically copy text to clipboard when selecting
     * Appearance: Terminal title style: none, Theme variant: dark
     * Quake: Set hint for window manager to disable animation
     * Shortcuts: Ctrl+Shift+D for Add terminal down; Ctrl+Shift+R
