@@ -174,20 +174,43 @@ Legacy boot) and follow the instructions. General guidelines:
   : # Alias upgrade & upgrade-full
   : alias upgrade='sudo apt update && sudo apt upgrade'
   : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
+  :
+  : # For Terminix
+  : # https://github.com/gnunn1/terminix/wiki/VTE-Configuration-Issue
+  : if [[ $TERMINIX_ID ]]; then
+  :        source /etc/profile.d/vte.sh
+  : fi
   #+END_QUOTE
-- Install Terminator, Nautilus-Actions and most (Man needs most):
-  :  sudo apt install terminator nautilus-actions most
-  - Terminator configuration (in Profiles): General: Do not show title
-    bar; Colors: White on black; Background: Transparent 0.7)
-  - Terminator by default (should already be the case):
-  : sudo update-alternatives --config x-terminal-emulator 
-  - 'Open in Terminator' in Nautilus: open
-    *nautilus-actions-config-tool*, and add a new action called 'Open in
-    Terminator', check 'Display item in location context menu'; in the
-    Command tab, enter '/usr/bin/terminator' in the path, and
-    '--working-directory=%d/%b' in the parameters. In the Preferences
-    of Nautilus Actions, uncheck 'Create a root 'Nautilus-Actions'
-    menu'.
+# - Install Terminator, Nautilus-Actions and most (=man= needs most):
+#   :  sudo apt install terminator nautilus-actions most
+#   - Terminator configuration (in Profiles): General: Do not show title
+#     bar; Colors: White on black; Background: Transparent 0.7)
+#   - Terminator by default (should already be the case):
+#   : sudo update-alternatives --config x-terminal-emulator 
+#   - 'Open in Terminator' in Nautilus: open
+#     *nautilus-actions-config-tool*, and add a new action called 'Open in
+#     Terminator', check 'Display item in location context menu'; in the
+#     Command tab, enter '/usr/bin/terminator' in the path, and
+#     '--working-directory=%d/%b' in the parameters. In the Preferences
+#     of Nautilus Actions, uncheck 'Create a root 'Nautilus-Actions'
+#     menu'.
+- Install Terminix and most (=man= needs most):
+  :  sudo apt install terminix most
+  * Terminix configuration (in Window menu > Preferences): 
+    * Appearance: Terminal title style: none
+    * Quake: Set hint for window manager to disable animation
+    * Shortcuts: Ctrl+Shift+D for Add terminal down; Ctrl+Shift+R
+      for Add terminal right
+    * Profile: Edit Default
+      * General: Terminal bell: Icon
+      * Command: Run command as login shell
+      * Color: Color scheme: Orchis, and add some transparency
+  * 'Open Terminix here...' in Nautilus comes with =python-nautilus= and
+    =libnautilus-extension1a=, which should be there already.
+  * Shortcuts: in Gnome preferences > Keyboard, add two Custom
+    shortcuts (at the bottom of the list):
+    * Terminix / =terminix= / Super+T
+    * Terminix (Quake mode) / =terminix --quake= / ~
 - Get insulted on errors for password:
   : sudo visudo
   Add this line at the beginning of the file:
