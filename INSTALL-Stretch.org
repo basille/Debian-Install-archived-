@@ -197,7 +197,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - Install Terminix and most (=man= needs most):
   :  sudo apt install terminix most
   * Terminix configuration (in Window menu > Preferences): 
-    * Appearance: Terminal title style: none
+    * Appearance: Terminal title style: none, Theme variant: dark
     * Quake: Set hint for window manager to disable animation
     * Shortcuts: Ctrl+Shift+D for Add terminal down; Ctrl+Shift+R
       for Add terminal right
@@ -793,24 +793,9 @@ installed.
 
 **** JabRef configuration
 
-Debian is currently lagging behind for JabRef (but they are working on
-it). As the date of writing (Dec 16 2016), the most recent JabRef
-version available for Stretch is 2.10; but it is 3.6 for Sid and 3.8
-for Experimental. To install one of the two 3.x series, use one of the
-following commands:
-
-  : sudo apt install -t unstable jabref
-  : sudo apt install -t experimental jabref
-
-# To install the latest stable (3.7 as of December 8 2016), first
-# download the independant runnable JAR from [[https://www.fosshub.com/JabRef.html][FossHub.com]], then:
-
-#   : sudo mv /usr/share/java/jabref.jar /usr/share/java/jabref.jar.bkp
-#   : sudo mv JabRef-3.7.jar /usr/share/java/jabref.jar
-
-(note that there is still an issue when closing JabRef: the Java
-process does actually not stop... The easiest at the moment is to run
-=jabref= from the command line, and simply =Ctrl+C= it when done...)
+Debian recently integrated the 3.x series in the official
+repositories, with JabRef 3.6 available for Stretch and 3.8 for Sid at
+the time of writing (Dec 22 2016).
 
 In Options > Preferences:
 - Import preferences (=JabRef-Pref-20161206.xml=). Should be enough, but
