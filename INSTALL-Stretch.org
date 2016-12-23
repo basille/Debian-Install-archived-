@@ -204,7 +204,7 @@ Legacy boot) and follow the instructions. General guidelines:
     * Profile: Edit Default
       * General: Terminal bell: Icon
       * Command: Run command as login shell
-      * Color: Color scheme: Orchis, and add some transparency
+      * Color: Color scheme: Linux, and add some transparency
   * 'Open Terminix here...' in Nautilus comes with =python-nautilus= and
     =libnautilus-extension1a=, which should be there already.
   * Shortcuts: in Gnome preferences > Keyboard, add two Custom
