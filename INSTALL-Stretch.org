@@ -138,7 +138,7 @@ Legacy boot) and follow the instructions. General guidelines:
   from sleep). The partitioner will allocate 30 GB for the system
   (which is plenty) and 8 GB for the swap (equal to RAM amount). One
   good modification is to keep only 3 % of reserved blocks for root
-  (maintenance) on =/home=.
+  (maintenance) on =/home=, as well as increasing =/boot= to 512MB.
 - It's a good idea to participate in the package usage survey (results
   are encrypted).
 - Chose GNOME for the desktop, and leave =print server= and =standard
