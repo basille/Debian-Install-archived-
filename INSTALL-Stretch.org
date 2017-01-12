@@ -529,6 +529,9 @@ After restarting Firefox, plugins can be check in the Plugins section
 of the Add-ons panel (then select "Ask to activate" for both). Flash
 in particular can be checked at: http://isflashinstalled.com/
 
+If BetterPrivacy is installed too, use =~/.wine-pipelight= as the
+Flash-Data directory.
+
 
 **** *Thunderbird (Icedove)*.
 
@@ -993,7 +996,7 @@ The interesting part looks like the following:
   : ├─nvme0n1p1 …   243M … part	
   : ├─nvme0n1p2 …     1K … part
   : └─nvme0n1p5 … 238.2G … part
-  #+END_QUOTE
+  #+END_QUOTEd
 
 Let's now access the encrypted volume, that we will call =crypt= from
 now on:
