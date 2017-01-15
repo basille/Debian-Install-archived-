@@ -732,7 +732,7 @@ And reduce permissions on it:
 
 *** Office
 
-  : sudo apt install abiword aspell aspell-fr aspell-en emacs24 gnote homebank hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
 
 - Need to remove all links to French dictionaries:
   : sudo rm /usr/share/hunspell/fr_*
@@ -756,9 +756,9 @@ And reduce permissions on it:
   (Always and screen only).
 
 
-**** LaTeX and PDF
+**** Emacs, LaTeX and PDF
 
-  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
+  : sudo aptitude install emacs24 elpa-pdf-tools gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 =texlive-full=; =pdfmanipulate= comes with =calibre=.
