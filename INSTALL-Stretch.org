@@ -732,7 +732,7 @@ And reduce permissions on it:
 
 *** Office
 
-  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
 
 - Need to remove all links to French dictionaries:
   : sudo rm /usr/share/hunspell/fr_*
@@ -756,9 +756,9 @@ And reduce permissions on it:
   (Always and screen only).
 
 
-**** Emacs, LaTeX and PDF
+**** LaTeX and PDF
 
-  : sudo aptitude install emacs24 elpa-pdf-tools gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
+  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 =texlive-full=; =pdfmanipulate= comes with =calibre=.
@@ -766,31 +766,35 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 - Adobe Reader (in dmo)
   : sudo aptitude install acroread:i386
 
-- Link folder of main BibTeX file to the Tex install:
-  : mkdir ~/.texmf-var/
-  : mkdir ~/.texmf-var/bibtex/
-  : ln -s ~/Work/biblio/ ~/.texmf-var/bibtex/bib
-  Check with:
+- Link folder of main BibTeX file to the Tex install. First check
+  with:
   : kpsewhich -show-path=.bib
-
+  It should include
+  =/home/<user>/.texlive2016/texmf-var/bibtex/bib//=. The trick is
+  then to create this path as a link to the main bibliographic
+  directory. For instance:
+  : mkdir -p ~/.texlive2016/texmf-var/bibtex/bib
+  : ln -s ~/Work/Biblio/ ~/.texlive2016/texmf-var/bibtex/bib
 - Install a package (e.g. =moderncv=)
   : sudo nano /etc/texmf/texmf.d/03local.cnf
   #+BEGIN_QUOTE
-  : TEXMFHOME = ~/.emacs.d/texmf
+  : TEXMFHOME = ~/.texlive2016/texmf
   #+END_QUOTE
   : sudo update-texmf
   Check with:
   : kpsewhich --var-value TEXMFHOME
-  Copy packages in =~/.emacs.d/texmf/tex/latex/= and complete install
-  when necessary, e.g.:
+  Copy packages in =~/.texlive2016/texmf/tex/latex/= and complete
+  install when necessary, e.g.:
   : latex moderntimeline.ins
   : latex moderntimeline.dtx
-- Install a font: copy the font in =~/.emacs.d/texmf/fonts/truetype/=,
-  then update the TeX index:
+- Install a font: copy the font in
+  =~/.texlive2016.d/texmf/fonts/truetype/=, then update the TeX index:
   : sudo texhash
 
 
-**** Emacs configuration
+**** Emacs
+
+  : sudo aptitude install emacs25 libpoppler-glib-dev
 
 [[https://github.com/basille/.emacs.d][Configuration via Git]]:
   : git clone git@github.com:basille/.emacs.d ~/.emacs.d/
