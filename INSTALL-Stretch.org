@@ -854,7 +854,7 @@ adjust JabFox and JabRef preferences:
 
 **** R
 
-  : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libxt-dev
+  : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libssl-dev libxt-dev
 
 [[https://github.com/basille/R][Configuration via Git]]:
   : git clone git@github.com:basille/R ~/.R-site/
