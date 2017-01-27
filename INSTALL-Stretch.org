@@ -532,8 +532,20 @@ in particular can be checked at: http://isflashinstalled.com/
 If BetterPrivacy is installed too, use =~/.wine-pipelight= as the
 Flash-Data directory.
 
+*Update January 2017:* Pipelight is not maintained anymore. The good
+news is that now Adobe ships the latest Flash version for Linux too!
+Disable Flash from Pipelight (if it was installed/enabled), and simply
+install the =flashplugin-nonfree= from Debian repositories, or
+=flashplayer-mozilla= and =flashplayer-chromium= from Debian
+Multimedia repositories (the later allowing for Flash updates through
+general system update):
 
-**** *Thunderbird (Icedove)*.
+  : pipelight-plugin --disable flash
+  : pipelight-plugin --list-enabled
+  : sudo apt install flashplayer-mozilla flashplayer-chromium
+
+
+**** Thunderbird (Icedove).
 
 - From a previous installation, simply copy the content of the former
   profile into the default profile folder in =~/.icedove=.
