@@ -408,6 +408,11 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Gnome extensions
 
+To be able to install Gnome extensions from Firefox ≥v.52, a Debian
+package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][Firefox extension]] are required:
+
+  : sudo apt install chrome-gnome-shell
+
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
 - x Alt-Alt+Tab (outdated)
@@ -415,8 +420,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - x Applications Menu
 - o Auto Move Windows
 - o BackSlide
-- o Disconnect Wifi 
-- o Drop Down Terminal
+- o Disconnect Wifi
 - x Gnote/Tomboy Integration (outdated)
 - x gTile (outdated)
 - o Hibernate Status Button
@@ -443,6 +447,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - o SincroDirs
 - o Skype Integration
 - o Sound Input & Output Device Chooser
+- o Super+Tab Launcher
 - o Suspend Button
 - o TopIcons Plus
 - x User Themes
@@ -495,6 +500,7 @@ Here is the full list of add-ons that I normally install:
   - [[https://addons.mozilla.org/fr/firefox/addon/gnome-theme-tweak/][GNOME Theme Tweak]]
   - [[https://addons.mozilla.org/fr/firefox/addon/gnotifier/][GNotifier]]
   - [[https://addons.mozilla.org/fr/firefox/addon/htitle/][HTitle]] (discontinued!)
+  - [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][GNOME Shell integration]]
 - Videos and streaming:
   - [[https://addons.mozilla.org/fr/firefox/addon/download-youtube/][Download YouTube Videos as MP4]]
   - [[https://addons.mozilla.org/fr/firefox/addon/user-agent-switcher/][User-Agent Switcher]] (useful for Netflix for instance)
