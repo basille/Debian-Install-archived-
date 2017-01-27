@@ -1,4 +1,5 @@
-* Debian Testing (Stretch) install
+#+TITLE: Debian Testing (Stretch) install
+#+AUTHOR: Mathieu Basille
 
 This is a complete tutorial to install Debian Stretch. Most of the
 instructions are general enough to be applied on any computer. Keep in
@@ -16,58 +17,59 @@ mind, however, that:
   members).
 
 
-#+BEGIN_QUOTE
-*Table of Contents*
-- [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
-  - [[#download-the-installer][Download the installer]]
-    - [[#the-debian-way][The Debian way]]
-    - [[#the-easy-way][The easy way]]
-  - [[#install-debian][Install Debian]]
-    - [[#terminal-setup][Terminal setup]]
-    - [[#system-settings][System settings]]
-    - [[#apt-and-upgrade][APT and upgrade]]
-    - [[#hardware][Hardware]]
-    - [[#internationalization][Internationalization]]
-- [[#installing-a-full-system][Installing a full system]]
-  - [[#miscellaneous][Miscellaneous]]
-  - [[#gnome-extensions][Gnome Extensions]]
-  - [[#web][Web]]
-    - [[#firefox][Firefox]]
-    - [[#thunderbird-icedove][Thunderbird (Icedove)]]
-  - [[#internet-admin][Internet admin]]
-    - [[#vpn][VPN]]
-    - [[#ssh][SSH]]
-    - [[#gftp][Gftp]]
-    - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
-    - [[#windows-share][Windows share]]
-    - [[#backup][Backup]]
-  - [[#multimedia][Multimedia]]
-  - [[#office][Office]]
-    - [[#fonts][Fonts]]
-    - [[#latex-and-pdf][LaTeX and PDF]]
-    - [[#emacs-configuration][Emacs configuration]]
-    - [[#jabref-configuration][JabRef configuration]]
-    - [[#gnote-configuration][Gnote configuration]]
-  - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
-    - [[#r][R]]
-    - [[#qgis-and-postgis][QGIS and PostGIS]]
-  - [[#other][Other]]
-    - [[#google-stuff][Google Stuff]]
-    - [[#skype][Skype]]
-    - [[#rockbox-utility][Rockbox utility]]
-  - [[#final-stage][Final stage]]
-- [[#recovery][Recovery]]
-- [[#useful-resources][Useful resources]]
-#+END_QUOTE
+* Table of contents                                                     :TOC_3:
+ - [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
+   - [[#download-the-installer][Download the installer]]
+     - [[#the-debian-way][The Debian way]]
+     - [[#the-easy-way][The easy way]]
+   - [[#install-debian][Install Debian]]
+   - [[#terminal-setup][Terminal setup]]
+   - [[#system-settings][System settings]]
+   - [[#apt-and-upgrade][APT and upgrade]]
+   - [[#hardware][Hardware]]
+   - [[#internationalization][Internationalization]]
+ - [[#installing-a-full-system][Installing a full system]]
+   - [[#miscellaneous][Miscellaneous]]
+   - [[#gnome-extensions][Gnome extensions]]
+   - [[#web][Web]]
+     - [[#firefox][Firefox]]
+     - [[#thunderbird-icedove][Thunderbird (Icedove).]]
+     - [[#owncloud][ownCloud]]
+     - [[#others][Others]]
+   - [[#internet-admin][Internet admin]]
+     - [[#vpn][VPN]]
+     - [[#ssh][SSH]]
+     - [[#gftp][Gftp]]
+     - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
+     - [[#windows-share][Windows share]]
+     - [[#backup][Backup]]
+     - [[#revelation][Revelation]]
+   - [[#multimedia][Multimedia]]
+   - [[#office][Office]]
+     - [[#fonts][Fonts]]
+     - [[#latex-and-pdf][LaTeX and PDF]]
+     - [[#emacs][Emacs]]
+     - [[#jabref-configuration][JabRef configuration]]
+     - [[#gnote-configuration][Gnote configuration]]
+   - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
+     - [[#gdal-geos-and-proj4][GDAL, GEOS and PROJ.4]]
+     - [[#r][R]]
+     - [[#qgis-and-postgis][QGIS and PostGIS]]
+   - [[#other][Other]]
+     - [[#google-stuff][Google Stuff]]
+     - [[#skype][Skype]]
+     - [[#rockbox-utility][Rockbox utility]]
+   - [[#final-stage][Final stage]]
+ - [[#recovery][Recovery]]
+ - [[#useful-resources][Useful resources]]
+
+* Installing Debian with the base Gnome desktop
 
 
-** Installing Debian with the base Gnome desktop
+** Download the installer
 
 
-*** Download the installer
-
-
-**** The Debian way
+*** The Debian way
 
 Start by downloading an image of the [[https://www.debian.org/devel/debian-installer/][Debian Installer]] for Debian
 Testing (Stretch), according to the platform of the computer. A good
@@ -116,7 +118,7 @@ on the 'target' computer.
   : sudo umount /dev/sdb1 
 
 
-**** The easy way
+*** The easy way
 
 *NOTE:* For a reason, the standard procedure above failed for me this
 time, with the system being unable to boot on the flash drive… A
@@ -124,7 +126,7 @@ workaround is simply to use =Unetbootin= GUI to create the USB bootable
 image (using Debian testing), and move directly to the next step.
 
 
-*** Install Debian
+** Install Debian
 
 You can now boot the computer on the USB flash drive (on a modern DELL
 laptop, that requires to turn off UEFI Security Boot, in favor of
@@ -149,7 +151,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - Time to restart!
 
 
-*** Terminal setup
+** Terminal setup
 
 - Bash configuration:
   : sudo nano /etc/bash.bashrc
@@ -226,7 +228,7 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
 
 
-*** System settings
+** System settings
 
 - Remove the system beep: in Settings > Sound > Sound Effects, turn
   off the Alert volume.
@@ -284,7 +286,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - Nautilus: Preferences > Views: Sort folders before files
 
 
-*** APT and upgrade
+** APT and upgrade
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
   : sudo cp sources.list.stretch /etc/apt/sources.list
@@ -313,7 +315,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 
 
-*** Hardware
+** Hardware
 
 - *Laptop stuff* (battery, wifi, non-free firmware):
   : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi firmware-brcm80211 tlp tlp-rdw 
@@ -369,7 +371,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 
 
-*** Internationalization
+** Internationalization
 
 
 - Add *French* in the list of languages:
@@ -394,15 +396,15 @@ Legacy boot) and follow the instructions. General guidelines:
   only)"). Note that the Menu button doesn't seem to work in Nautilus.
 
 
-** Installing a full system
+* Installing a full system
 
 
-*** Miscellaneous
+** Miscellaneous
 
   : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree unetbootin units unrar virtualbox wakeonlan
 
 
-*** Gnome extensions
+** Gnome extensions
 
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
@@ -448,11 +450,11 @@ Legacy boot) and follow the instructions. General guidelines:
 - x workspaceAltTab (outdated)
 
 
-*** Web
+** Web
 
   : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
 
-**** Firefox
+*** Firefox
 
 To get a "clean" Firefox profile: Simply connect to Sync with your
 Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
@@ -545,7 +547,7 @@ general system update):
   : sudo apt install flashplayer-mozilla flashplayer-chromium
 
 
-**** Thunderbird (Icedove).
+*** Thunderbird (Icedove).
 
 - From a previous installation, simply copy the content of the former
   profile into the default profile folder in =~/.icedove=.
@@ -570,7 +572,7 @@ general system update):
   recognize gpg); [[https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html][fixed in 1.9.6-2]]:
 
 
-**** ownCloud
+*** ownCloud
 
 In Settings > Online accounts, add a new ownCloud account. Simply fill
 in the server address (where ownCloud is installed, not one of the
@@ -581,18 +583,18 @@ Contacts application, and Files (Nautilus) should provide a shortcut
 to the ownCloud root folder.
 
 
-**** Others
+*** Others
 
 # - Privoxy:
 #  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
 
-*** Internet admin
+** Internet admin
 
   : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
 
 
-**** VPN
+*** VPN
 
 In Settings > Network, add a 'Cisco AnyConnect Compatible VPN
 (openconnect)'. Simply enter the 'Gateway': =vpn.ufl.edu= and leave all
@@ -602,20 +604,20 @@ menu:
 - Password: GatorLink password (check 'Save passwords')
 
 
-**** SSH
+*** SSH
 
 Copy the entire folder =.ssh= in =/home=. It contains key configuration
 for basille.net, Gargantua, MabLab server, as well as the keys for
 GitHub.
 
 
-**** Gftp
+*** Gftp
 
 Simply copy the =bookmarks= file from the =.gftp= folder in =/home/= (it
 contains all bookmarks and passwords).
 
 
-**** ownCloud and Dropbox
+*** ownCloud and Dropbox
 
   : sudo aptitude install owncloud-client nautilus-owncloud nautilus-dropbox
 
@@ -632,7 +634,7 @@ works by just adding the UF address without password, with a passcode
 generated on the web).
 
 
-**** Windows share
+*** Windows share
 
 First create a credential file:
   : nano .smb
@@ -653,12 +655,12 @@ And reduce permissions on it:
 # mkdir MabLab/bkp/mathieu/home
 
 
-**** Backup
+*** Backup
 
 # deja-dup 
 
 
-**** Revelation
+*** Revelation
 
 - Create a new password file in =~/.revelation= or copy an existing one
   in this folder.
@@ -668,7 +670,7 @@ And reduce permissions on it:
   * "Length of generated passwords": 12
 
 
-*** Multimedia
+** Multimedia
 
 - Pictures
   : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
@@ -742,7 +744,7 @@ And reduce permissions on it:
 # MimeType=image/x-3fr;image/x-adobe-dng;image/x-arw;image/x-bay;image/x-canon-cr2;image/x-canon-crw;image/x-cap;image/x-cr2;image/x-crw;image/x-dcr;image/x-dcraw;image/x-dcs;image/x-dng;image/x-drf;image/x-eip;image/x-erf;image/x-fff;image/x-fuji-raf;image/x-iiq;image/x-k25;image/x-kdc;image/x-mef;image/x-minolta-mrw;image/x-mos;image/x-mrw;image/x-nef;image/x-nikon-nef;image/x-nrw;image/x-olympus-orf;image/x-orf;image/x-panasonic-raw;image /x-pef;image/x-pentax-pef;image/x-ptx;image/x-pxn;image/x-r3d;image/x-raf;image/x-raw;image/x-rw2;image/x-rwl;image/x-rwz;image/x-sigma-x3f;image/x-sony-arw;image/x-sony-sr2;image/x-sony-srf;image/x-sr2;image/x-srf;image/x-x3f;
 
 
-*** Office
+** Office
 
   : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
 
@@ -756,7 +758,7 @@ And reduce permissions on it:
   probably safe to simply copy this folder.
 
 
-**** Fonts
+*** Fonts
 
   : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
 
@@ -768,7 +770,7 @@ And reduce permissions on it:
   (Always and screen only).
 
 
-**** LaTeX and PDF
+*** LaTeX and PDF
 
   : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 
@@ -804,7 +806,7 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
   : sudo texhash
 
 
-**** Emacs
+*** Emacs
 
   : sudo aptitude install emacs25 libpoppler-glib-dev
 
@@ -817,7 +819,7 @@ And load Emacs, potentially several times until all packages are
 installed.
 
 
-**** JabRef configuration
+*** JabRef configuration
 
 Debian recently integrated the 3.x series in the official
 repositories, with JabRef 3.6 available for Stretch and 3.8 for Sid at
@@ -843,7 +845,7 @@ adjust JabFox and JabRef preferences:
 - JabRef: Activate "Remote operation" under the Advanced tab.
 
 
-**** Gnote configuration
+*** Gnote configuration
 
 - +Synchronization using WebDav seems really complicated to set up; one solution is to use ownCloud client to sync a =Gnote= folder localy, and then configure it in Gnote Preferences > Synchronization using Local folder as a service (and check the Automatic sync every 10
   minutes).+
@@ -856,15 +858,15 @@ adjust JabFox and JabRef preferences:
   Applications.
 
 
-*** R, QGIS and PostGIS
+** R, QGIS and PostGIS
 
 
-**** GDAL, GEOS and PROJ.4
+*** GDAL, GEOS and PROJ.4
 
   : sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
 
 
-**** R
+*** R
 
   : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libssl-dev libxt-dev
 
@@ -904,7 +906,7 @@ Note that RStudio is not adapted to very high resolution (for instance
 Retina) and may look very tiny in this case.
 
 
-**** QGIS and PostGIS
+*** QGIS and PostGIS
 
   : sudo apt install qgis python-qgis
 
@@ -916,13 +918,13 @@ install from Debian repositories:
 Then, from inside QGIS, install the Time manager plugin.
 
 
-*** Other
+** Other
 
 
-**** Google Stuff
+*** Google Stuff
 
 
-***** Google Earth
+**** Google Earth
 
 The Debian way:
   : sudo apt install googleearth-package
@@ -936,13 +938,13 @@ get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Go
   : sudo apt -f install
 
 
-***** Google Chrome
+**** Google Chrome
 
 Add Google Chrome repository (sources.list + preferences), then:
   : sudo apt install google-chrome-stable
 
 
-**** Skype
+*** Skype
 
 At last, Microsoft now provides a decent version of Skype for Linux
 (based on their new web version), currently in its alpha stage. The
@@ -959,7 +961,7 @@ Note that alternatives exist, such as [[https://github.com/stanfieldr/ghetto-sky
 currently provide video calls).
 
 
-**** Rockbox utility
+*** Rockbox utility
 
 - Download [[http://www.rockbox.org/download/][Rockbox utility]]
 - Unzip file, and copy RockboxUtility in =/usr/local/bin/=:
@@ -971,7 +973,7 @@ currently provide video calls).
 - Install Ambiance theme (activate icons).
 
 
-*** Final stage
+** Final stage
 
 - Check default applications (Settings > Details > Default
   Applications).
@@ -981,7 +983,7 @@ currently provide video calls).
   : upgrade-full
 
 
-** Recovery
+* Recovery
 
 There is currently an important bug with the absence of a root user
 (due to the use of =sudo=): recovery mode (from GRUBS) fails to load,
@@ -1063,7 +1065,7 @@ time to close everything:
   : sudo cryptsetup luksClose crypt
 
 
-** Useful resources:
+* Useful resources
 
 - [[https://github.com/konklone/debian/blob/master/installing.md][Installing Debian 8 on a Dell XPS]]
 - [[https://wiki.archlinux.org/index.php/Dell_XPS_13_(2016)][ArchLinux: Dell XPS 13 (2016)]]
