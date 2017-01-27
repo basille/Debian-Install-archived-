@@ -60,7 +60,9 @@ mind, however, that:
      - [[#skype][Skype]]
      - [[#rockbox-utility][Rockbox utility]]
    - [[#final-stage][Final stage]]
- - [[#recovery][Recovery]]
+ - [[#admin-operations][Admin operations]]
+   - [[#recovery][Recovery]]
+   - [[#removing-old-kernels][Removing old kernels]]
  - [[#useful-resources][Useful resources]]
 
 * Installing Debian with the base Gnome desktop
@@ -983,7 +985,10 @@ currently provide video calls).
   : upgrade-full
 
 
-* Recovery
+* Admin operations
+
+
+** Recovery
 
 There is currently an important bug with the absence of a root user
 (due to the use of =sudo=): recovery mode (from GRUBS) fails to load,
@@ -1063,6 +1068,28 @@ time to close everything:
   : sudo umount /media/root
   : sudo vgchange -a n mablap2-vg 
   : sudo cryptsetup luksClose crypt
+
+
+** Removing old kernels
+
+Kernels tend to accumulate, and eat space in the =/boot= partition. If
+=/boot= is full, it becomes necessary to remove old kernels. First
+check the current kernel:
+
+  : uname -r 
+
+and the list of installed kernels:
+
+  : dpkg --list | egrep -i --color 'linux-image|linux-headers'
+
+then remove unnecessary kernels (it is a good idea to keep current
+kernel and one older):
+
+  : sudo apt purge linux-image-XXX-amd64
+
+where =XXX= stands for the actual version number, and update GRUB:
+
+  : sudo update-grub2
 
 
 * Useful resources
