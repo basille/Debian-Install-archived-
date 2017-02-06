@@ -136,13 +136,14 @@ Legacy boot) and follow the instructions. General guidelines:
 
 - *Root:* Leave the password empty — that way, root permissions are
   given to the first user using =sudo=.
-- *Partitions:* Use *Guided - use entire disk and set up encrypted LVM*,
-  with separate =/home= partition. When required to do so, enter a good
-  passphrase (it will be required on every boot, but not when resuming
-  from sleep). The partitioner will allocate 30 GB for the system
-  (which is plenty) and 8 GB for the swap (equal to RAM amount). One
-  good modification is to keep only 3 % of reserved blocks for root
-  (maintenance) on =/home=, as well as increasing =/boot= to 512MB.
+- *Partitions:* Use *Guided - use entire disk and set up encrypted
+  LVM*, with separate =/home= partition. When required to do so, enter
+  a good passphrase (it will be required on every boot, but not when
+  resuming from sleep). The partitioner will allocate 30 GB for the
+  system (which is plenty) and 8 GB for the swap (equal to RAM
+  amount). Two good modifications are to keep only 3 % of reserved
+  blocks for root (maintenance) on =/home=, as well as increasing
+  =/boot= to 512MB.
 - It's a good idea to participate in the package usage survey (results
   are encrypted).
 - Chose GNOME for the desktop, and leave =print server= and =standard
@@ -387,8 +388,9 @@ Legacy boot) and follow the instructions. General guidelines:
   - The list of characters and functions can be found here:
     =/usr/include/X11/keysymdef.h=.
   - Custom keyboard adjusted to Dell XPS 13, including Home/End on
-    PrtScr/Insert, special characters (←≤≥→²³€°–≠×©¿¡, etc.), French
-    accents and quotes (àÀéÉèÈ, etc., «»), and most Greek letters
+    PrtScr/Insert, special characters (←→²³€°–©☆§, etc.), math
+    operators (±×÷≠≤≥), French and Spanish letters, accents and quotes
+    (ÆæÀàÉéÈèÑñŒœÙù «» “” ¡¿, etc.), and most Greek letters
     (αβγδσΔΦΨΣ, etc.):
   : sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
   : sudo cp keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
