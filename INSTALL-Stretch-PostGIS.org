@@ -1,7 +1,6 @@
 #+TITLE: Debian Testing (Stretch) PostGIS install
 #+AUTHOR: Mathieu Basille
 #+EMAIL: basille@ufl.edu
-#+DATE: {{{time(%Y-%m-%d)}}}
 
 This is an additional tutorial to add PostGIS to a Debian Testing
 (Stretch) install. The basis is covered in [[INSTALL-Stretch.org][Debian Testing (Stretch)
@@ -11,14 +10,162 @@ Stretch.
 * Table of contents                                                   :TOC_3:
  - [[#postgis-install][PostGIS install]]
    - [[#dependencies-and-clients][Dependencies and clients]]
+   - [[#postgresql-and-pgadmin][PostgreSQL and pgAdmin]]
+   - [[#postgis-and-plr][PostGIS and Pl/R]]
+   - [[#uninstall][Uninstall]]
+ - [[#post-install-operations][Post-install operations]]
 
 * PostGIS install
 
 ** Dependencies and clients
 
-We first check or install required libraries: GDAL (), GEOS () and
-Proj4 ():
+We first check or install required libraries: GDAL (2.1), GEOS (3.5)
+and Proj4 (4.9), which are present in official Debian respositories:
 
 #+BEGIN_SRC sh
   sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
 #+END_SRC
+
+We can check the formats supported by OGR (vector) and GDAL (raster)
+with:
+
+#+BEGIN_SRC sh
+ogrinfo --formats | grep Post
+gdalinfo --formats | grep Post
+#+END_SRC
+
+which should return, respectively:
+
+#+BEGIN_SRC sh
+  PostgreSQL -vector- (rw+): PostgreSQL/PostGIS
+  PGDUMP -vector- (w+v): PostgreSQL SQL dump
+#+END_SRC
+
+#+BEGIN_SRC sh
+  PostGISRaster -raster- (rws): PostGIS Raster driver
+#+END_SRC
+
+We also install QGIS as the main GIS client. Debian does not ship the
+most recent QGIS, so we first add the official QGIS repository:
+
+#+BEGIN_SRC sh
+  sudo nano /etc/apt/sources.list  
+#+END_SRC
+
+and add the following:
+
+#+BEGIN_SRC sh
+  ## ======================================================= ##
+  ##                                                         ##
+  ##                          QGIS                           ##
+  ##                                                         ##
+  ## ======================================================= ##
+  ## URL:                                                    ##
+  ## https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
+  ## ======================================================= ##
+  ## Note on QGIS versions:                                  ##
+  ## The repository provides the latest release, LTR and     ##
+  ## dev. Debian Jessie (stable), Stretch (testing) and Sid  ##
+  ## are supported.                                          ##
+  ## ======================================================= ##
+  ## Key                                                     ##
+  ## $ wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+  ## ======================================================= ##
+
+  ## Latest release
+  deb http://qgis.org/debian stretch main
+  #deb-src http://qgis.org/debian stretch main
+
+  ## Long-term release
+  #deb http://qgis.org/debian-ltr stretch main
+  #deb-src http://qgis.org/debian-ltr stretch main
+
+  ## Development Version
+  #deb http://qgis.org/debian-nightly stretch main
+  #deb-src http://qgis.org/debian-nightly stretch main
+#+END_SRC
+
+This requires to add the key of the repository and update the sources:
+
+#+BEGIN_SRC sh
+  wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+  sudo apt update
+#+END_SRC
+
+We can now install the latest release of QGIS (2.18):
+
+#+BEGIN_SRC sh
+  sudo apt install qgis python-qgis
+#+END_SRC
+
+
+** PostgreSQL and pgAdmin
+
+Like for QGIS, Debian does not always provide the most recent
+PostgreSQL release.  We thus add the official PostgreSQL repository:
+
+#+BEGIN_SRC sh
+  sudo nano /etc/apt/sources.list  
+#+END_SRC
+
+and add the following:
+
+#+BEGIN_SRC sh
+  ## ======================================================= ##
+  ##                                                         ##
+  ##                        POSTGRESQL                       ##
+  ##                                                         ##
+  ## ======================================================= ##
+  ## URL:                                                    ##
+  ## https://wiki.postgresql.org/wiki/Apt                    ##
+  ## ======================================================= ##
+  ## Note on PostgreSQL versions:                            ##
+  ## Debian Jessie (stable), Stretch (testing) and Sid are   ##
+  ## supported.                                              ##
+  ## To install latest relase, install meta-packages:        ##
+  ## $ sudo apt install postgresql postgresql-contrib postgresql-client
+  ## ======================================================= ##
+  ## Key:                                                    ##
+  ## $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  ## ======================================================= ##
+
+  deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main
+#+END_SRC
+
+This requires to add the key of the repository and update the sources:
+
+#+BEGIN_SRC sh
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  sudo apt update
+#+END_SRC
+
+We can now install the latest release of PostgreSQL (9.6) and pgAdmin
+(4 v1.22):
+
+#+BEGIN_SRC 
+  sudo apt install postgresql postgresql-client postgresql-contrib pgadmin3
+#+END_SRC
+
+
+** PostGIS and Pl/R
+
+Finally, we install the two extensions PostGIS and Pl/R (note that
+this package is specific to each PostgreSQL version):
+
+#+BEGIN_SRC sh
+  sudo apt install postgis postgis-gui postgresql-9.6-plr 
+#+END_SRC
+
+
+** Uninstall
+
+In case there is the need to uninstall PostgreSQL/PostGIS:
+
+#+BEGIN_SRC sh
+  sudo apt purge '.*postgis.*'
+  sudo apt purge '.*postgresql.*'
+#+END_SRC
+
+
+* Post-install operations
+
