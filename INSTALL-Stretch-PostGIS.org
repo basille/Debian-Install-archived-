@@ -1,0 +1,24 @@
+#+TITLE: Debian Testing (Stretch) PostGIS install
+#+AUTHOR: Mathieu Basille
+#+EMAIL: basille@ufl.edu
+#+DATE: {{{time(%Y-%m-%d)}}}
+
+This is an additional tutorial to add PostGIS to a Debian Testing
+(Stretch) install. The basis is covered in [[INSTALL-Stretch.org][Debian Testing (Stretch)
+install]], but this tutorial should only require a functional Debian
+Stretch.
+
+* Table of contents                                                   :TOC_3:
+ - [[#postgis-install][PostGIS install]]
+   - [[#dependencies-and-clients][Dependencies and clients]]
+
+* PostGIS install
+
+** Dependencies and clients
+
+We first check or install required libraries: GDAL (), GEOS () and
+Proj4 ():
+
+#+BEGIN_SRC sh
+  sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
+#+END_SRC
