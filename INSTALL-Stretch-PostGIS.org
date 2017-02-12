@@ -18,8 +18,7 @@ Stretch.
  - [[#post-install-operations][Post-install operations]]
    - [[#create-a-superuser][Create a superuser]]
    - [[#move-the-data-directory-to-home][Move the data directory to HOME]]
-   - [[#activate-extensions-on-a-database][Activate extensions on a database]]
- - [[#backups][Backups]]
+   - [[#enabling-postgis-on-a-database][Enabling PostGIS on a database]]
 
 * PostGIS install
 
@@ -108,7 +107,7 @@ We can now install the latest release of QGIS (2.18):
 ** PostgreSQL and pgAdmin
 
 Like for QGIS, Debian does not always provide the most recent
-PostgreSQL release.  We thus add the official PostgreSQL repository:
+PostgreSQL release.  We thus add the [[https://wiki.postgresql.org/wiki/Apt][official PostgreSQL repository]]:
 
 #+BEGIN_SRC sh
   sudo nano /etc/apt/sources.list  
@@ -251,7 +250,20 @@ In case there is the need to uninstall PostgreSQL/PostGIS:
 
 ** Test
 
-We simply check that we can access the server:
+We first check the status of the server:
+
+#+BEGIN_SRC sh
+  pg_lsclusters 
+#+END_SRC
+
+which returns something like:
+
+#+BEGIN_SRC 
+  Ver Cluster Port Status Owner    Data directory            Log file
+  9.6 main    5432 online postgres /home/postgresql/9.6/main var/log/postgresql/postgresql-9.6-main.log
+#+END_SRC
+
+We can also simply check that we can access the server:
 
 #+BEGIN_SRC sh
   sudo -u postgres psql postgres
@@ -259,7 +271,7 @@ We simply check that we can access the server:
 
 and check the PostgreSQL version:
 
-#+BEGIN_SRC SQL
+#+BEGIN_SRC sql
   SELECT version();
 #+END_SRC
 
@@ -370,9 +382,156 @@ This should return something like:
 #+END_SRC
 
 
-** Activate extensions on a database
+** Enabling PostGIS on a database
+
+With the Extension mechanism that is now part of PostgreSQL, enabling
+PostGIS on a database has became super easy:
+
+#+BEGIN_SRC sql
+  CREATE EXTENSION postgis;
+#+END_SRC
+
+Note that raster is enabled by defaut since PostGIS 2.0.
+
+To update extensions from a database:
+
+#+BEGIN_SRC sql
+  ALTER EXTENSION postgis UPDATE TO '2.3.1';
+#+END_SRC
+
+Finally, to check extensions on a database:
+
+#+BEGIN_SRC sql
+  SELECT name, default_version, installed_version
+  FROM pg_available_extensions
+  WHERE name LIKE 'postgis%';
+#+END_SRC
+
+Which should result in something like:
+
+#+BEGIN_SRC 
+            name          | default_version | installed_version 
+  ------------------------+-----------------+-------------------
+   postgis_topology       | 2.3.1           | 2.3.1
+   postgis_tiger_geocoder | 2.3.1           | 
+   postgis_sfcgal         | 2.3.1           | 
+   postgis                | 2.3.1           | 2.3.1
+#+END_SRC
+
+We can also directly check the version of PostGIS and PostGIS raster:
+
+#+BEGIN_SRC sql
+  SELECT postgis_full_version();
+  SELECT postgis_raster_lib_version();
+#+END_SRC
+
+# ** Enabling Pl/R on a database
+
+# $ setfacl -m "u:postgres:r" /home/mathieu/.R-site/
+# $ getfacl /home/mathieu/.R-site/
+
+# + copy .Renviron/.Rprofile in postgresql home
+
+
+# * Cleaning
+
+# Nettoyage de la base
+
+# • Taille de la base (en root ou postgres) :
+# # du -h /home/postgres/main/base/
+# # ls -Slh /home/postgres/main/base/17576 | less
+
+# • Ménage dans la base : VACUUM
+# Documentation : http://www.postgresql.org/docs/9.1/static/routine-vacuuming.html
+
+# Besoin de faire des vacuum périodiquement, soit manuellement, soit via le autovacuum daemon. Un vacuum libère la place occupée par les lignes supprimées ou mises à jour et rafraîchit les statistiques utilisées par le query planner.
+
+# VACUUM vs. VACUUM FULL : VACUUM FULL libère physiquement la mémoire, alors que VACUUM libère seulement la place pour pg. Par contre, VACUUM FULL nécessite un lock de la table et fais sensiblement augmenter la taille des index. VACUUM devrait être préféré sur une base régulière (par exemple une fois par jour), et de préférence via le démon qui s'adapte à la charge sur la base. Pour réécrire une table proprement (par exemple une table avec beaucoup d'activité), utiliser plutôt CLUSTER ou ALTER TABLE...
+
+# Le démon autovacuum est activé par défaut. Pour le faire manuellement, utiliser la commande SQL 'VACUUM' ou bien l'utilitaire 'vacuumdb' :
+
+# (((# su - postgres)))
+# $ vacuumdb -d geodb -h localhost -U caribou -z -e
+# $ vacuumdb -d geodb -h localhost -U caribou -z
+
+# -e
+# 	Affiche lac ommand SQL envoyée au serveur
+# -z
+# 	Ajoute ANALYSE à la commande VACUUM
+
+# • Recréer les index
+# Documentation : http://www.postgresql.org/docs/9.1/static/sql-reindex.html
+
+# Peut être utile de temps en temps... On peut recréer les index d'une base en une commande :
+
+# (((# su - postgres)))
+# $ psql -h localhost -d geodb -U caribou -c 'REINDEX DATABASE geodb;'
+
+# • Ménage dans les logs...
+# Documentation : http://www.postgresql.org/docs/9.1/static/logfile-maintenance.html
+
+# Utile ?
 
 
 
-* Backups
+# * Backups
+
+# Sauvegarde et restauration
+# Documentation : http://www.postgresql.org/docs/9.1/static/backup.html
+
+# • Dump
+# Documentation : http://www.postgresql.org/docs/9.1/static/app-pgdump.html
+
+# Dump with custom format (Note: The user can be the owner of the db, need not be postgres super account). 
+
+# $ pg_dump -h localhost -p 5432 -Fc -b -v -N public -f "//home/mathieu/Work/datapg/geodb20141013.backup" geodb
+
+# -Fc 
+# 	specifies "custom format", which is basically Postgres' own dump format. It is smaller and faster to dump/restore than plain text. It also allows you at restore to selectively choose which tables or schemas you want to restore. But it can only restore to a Postgres database. Plain text, which builds the restore as SQL CREATE and INSERT statements, is slower, but can often be restored to non-Postgres databases. See
+# http://www.postgresql.org/docs/8.4/static/app-pgdump.html
+# -b 
+# 	includes large objects in the dump;
+# -v
+# 	verbose
+# -N public
+# 	exludes schema 'public'
+
+# • Restore
+# Documentation : http://www.postgresql.org/docs/9.1/static/app-pgrestore.xhtml
+
+# Lister les éléments de la sauvegarde :
+
+# $ pg_restore -l file.bkp
+
+# Restaurer un schéma donné dans une base donnée :
+
+# $ pg_restore -h localhost -p 5432 -v -1 -d geodb -n schema file.bkp
+
+# -j
+# 	using multiple concurrent jobs (ideally, one per processor/core). Ex. '-j 3'
+# -n 
+# 	restore only the named schema
+# -N
+# 	restore except the named schema
+# -v
+# 	verbose
+# -1
+# 	restore as a single transaction (all the commands complete successfully, or no changes are applied)
+# -O
+# 	do not set owners as in the original DB. The user which runs the script will own every tables.
+
+# Si besoin, lister les éléments avec -l, puis commenter ce qui n'est pas nécessaire avant la restauration (en utilisant alors le paramètre -L).
+# -l
+# 	lists the contents of the archive
+# -L file
+# 	restore only elements listed in the file
+	
+
+# Lancer un ANALYSE après la restauration. Si besoin, rajouter les contraintes des rasters si toutes les infos n'apparaissent pas dans raster_columns (cf. plus bas).
+
+# • À partir du répertoire 'main' :
+# Source : http://stackoverflow.com/questions/3305961/recover-postgresql-databases-from-raw-physical-files
+
+# Simple sauvegarde des fichiers contenu dans le 'main'. Penser à arrêter le serveur pour restaurer la base.
+
 
