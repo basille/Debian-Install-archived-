@@ -476,8 +476,7 @@ We can also directly check the version of PostGIS and PostGIS raster:
 
 # * Backups
 
-# Sauvegarde et restauration
-# Documentation : http://www.postgresql.org/docs/9.1/static/backup.html
+# https://www.postgresql.org/docs/9.3/static/backup-dump.html
 
 # • Dump
 # Documentation : http://www.postgresql.org/docs/9.1/static/app-pgdump.html
