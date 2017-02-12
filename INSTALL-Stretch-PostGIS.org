@@ -11,9 +11,15 @@ Stretch.
  - [[#postgis-install][PostGIS install]]
    - [[#dependencies-and-clients][Dependencies and clients]]
    - [[#postgresql-and-pgadmin][PostgreSQL and pgAdmin]]
+     - [[#pgadmin4][pgAdmin4]]
    - [[#postgis-and-plr][PostGIS and Pl/R]]
    - [[#uninstall][Uninstall]]
+   - [[#test][Test]]
  - [[#post-install-operations][Post-install operations]]
+   - [[#create-a-superuser][Create a superuser]]
+   - [[#move-the-data-directory-to-home][Move the data directory to HOME]]
+   - [[#activate-extensions-on-a-database][Activate extensions on a database]]
+ - [[#backups][Backups]]
 
 * PostGIS install
 
@@ -140,11 +146,87 @@ This requires to add the key of the repository and update the sources:
 #+END_SRC
 
 We can now install the latest release of PostgreSQL (9.6) and pgAdmin
-(4 v1.22):
+(3 v1.22):
 
 #+BEGIN_SRC 
   sudo apt install postgresql postgresql-client postgresql-contrib pgadmin3
 #+END_SRC
+
+
+*** pgAdmin4
+
+Unfortunately, neither Debian nor official PostgreSQL ships
+pgAdmin4. To install the latest release of pgAdmin (4 v1.22), which
+comes as a web app, use PIP. First check dependencies:
+
+#+BEGIN_SRC sh
+  sudo apt-get install build-essential libssl-dev libffi-dev python-dev libgmp3-dev
+  sudo pip install virtualenvwrapper cryptography pyopenssl ndg-httpsclient pyasn1
+#+END_SRC
+
+Then create a virtual environment named =pgadmin4= and activate it:
+
+#+BEGIN_SRC sh
+  cd
+  virtualenv pgadmin4
+  cd pgadmin4
+  source bin/activate
+#+END_SRC
+
+Download and install pgAdmin4:
+
+#+BEGIN_SRC sh
+  wget https://ftp.postgresql.org/pub/pgadmin3/pgadmin4/v1.2/pip/pgadmin4-1.2-py2-none-any.whl
+  sudo pip install pgadmin4
+  rm pgadmin4-1.2-py2-none-any.whl
+#+END_SRC
+
+Finally remove the virtual environment:
+
+#+BEGIN_SRC sh
+  cd
+  rm -r pgadmin4
+#+END_SRC
+
+To use pgAdmin4 on the desktop (i.e. not on a webserver), turn the
+server mode OFF in the config file:
+
+#+BEGIN_SRC sh
+  sudo nano /usr/local/lib/python2.7/dist-packages/pgadmin4/config.py
+#+END_SRC
+
+#+BEGIN_SRC 
+  ##########################################################################
+  # Server settings
+  ##########################################################################
+  
+  SERVER_MODE = False
+#+END_SRC
+
+And apply the settings:
+
+#+BEGIN_SRC sh
+  python /usr/local/lib/python2.7/dist-packages/pgadmin4/setup.py
+#+END_SRC
+
+To run pgAdmin4, we can create a shortlink in =/usr/local/bin/=:
+
+#+BEGIN_SRC sh
+  sudo touch /usr/local/bin/pgadmin4-run
+  sudo chmod +x /usr/local/bin/pgadmin4-run
+  sudo nano /usr/local/bin/pgadmin4-run
+#+END_SRC
+
+with the following in it:
+
+#+BEGIN_SRC 
+#!/bin/sh
+  
+python /usr/local/lib/python2.7/dist-packages/pgadmin4/pgAdmin4.py
+#+END_SRC
+
+Finally, type =pgadmin4-run= to start pgAdmin4, and access it at
+[[http://localhost:5050]].
 
 
 ** PostGIS and Pl/R
@@ -167,5 +249,130 @@ In case there is the need to uninstall PostgreSQL/PostGIS:
 #+END_SRC
 
 
+** Test
+
+We simply check that we can access the server:
+
+#+BEGIN_SRC sh
+  sudo -u postgres psql postgres
+#+END_SRC
+
+and check the PostgreSQL version:
+
+#+BEGIN_SRC SQL
+  SELECT version();
+#+END_SRC
+
+Use ~\q~ to exit.
+
+
 * Post-install operations
+
+
+** Create a superuser
+
+On a single-user machine, we want to be able to use the Linux user as
+a superuser of PostgreSQL. We thus add it as superuser:
+
+#+BEGIN_SRC sh
+   sudo -u postgres createuser --superuser $USER
+#+END_SRC
+
+We now create a database =test= using the Linux user, and access it:
+
+#+BEGIN_SRC sh
+  createdb test
+  psql test
+#+END_SRC
+
+Finally, we change the password of the PostgreSQL superuser:
+
+#+BEGIN_SRC sql
+  ALTER USER mathieu PASSWORD 'mathieuSQL';
+#+END_SRC
+
+Thanks to the =ident sameuser= setting of PostgreSQL, we can access
+databases on the system with the Linux user, without having to give
+the password.
+
+
+** Move the data directory to HOME
+
+We start by checking out the PostgreSQL data directory:
+
+#+BEGIN_SRC sh
+  psql test
+#+END_SRC
+
+#+BEGIN_SRC SQL
+  SHOW data_directory;
+#+END_SRC
+
+This should return something like:
+
+#+BEGIN_SRC 
+          data_directory        
+  ------------------------------
+   /var/lib/postgresql/9.6/main
+#+END_SRC
+
+We then stop the PostgreSQL server:
+
+#+BEGIN_SRC sh
+  sudo service postgresql stop
+#+END_SRC
+
+And move the data directory to =/home/=:
+
+#+BEGIN_SRC sh
+  sudo mv /var/lib/postgresql /home/
+#+END_SRC
+
+We need to tell PostgreSQL about that change, so we edit the
+=data_directory= variable in the config file:
+
+#+BEGIN_SRC sh
+  sudo nano /etc/postgresql/9.6/main/postgresql.conf
+#+END_SRC
+
+with:
+
+#+BEGIN_SRC
+  #------------------------------------------------------------------------------
+  # FILE LOCATIONS
+  #------------------------------------------------------------------------------
+  
+  data_directory = '/home/postgresql/9.6/main'
+#+END_SRC
+
+Finally, we restart the PostgreSQL server:
+
+#+BEGIN_SRC sh
+  sudo service postgresql start
+#+END_SRC
+
+And check out the PostgreSQL data directory again:
+
+#+BEGIN_SRC sh
+  psql test
+#+END_SRC
+
+#+BEGIN_SRC SQL
+  SHOW data_directory;
+#+END_SRC
+
+This should return something like:
+
+#+BEGIN_SRC 
+          data_directory        
+  ------------------------------
+   /home/postgresql/9.6/main
+#+END_SRC
+
+
+** Activate extensions on a database
+
+
+
+* Backups
 
