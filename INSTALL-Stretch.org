@@ -405,7 +405,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy redshift-gtk subversion transmission tree unetbootin units unrar virtualbox wakeonlan
 
 
 ** Gnome extensions
@@ -413,7 +413,7 @@ Legacy boot) and follow the instructions. General guidelines:
 To be able to install Gnome extensions from Firefox ≥v.52, a Debian
 package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][Firefox extension]] are required:
 
-  : sudo apt install chrome-gnome-shell
+  : sudo apt install chrome-gnome-shell gnome-shell-extension-redshift
 
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
