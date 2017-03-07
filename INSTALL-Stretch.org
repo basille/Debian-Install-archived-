@@ -42,7 +42,6 @@ mind, however, that:
      - [[#gftp][Gftp]]
      - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
      - [[#windows-share][Windows share]]
-     - [[#backup][Backup]]
      - [[#revelation][Revelation]]
    - [[#multimedia][Multimedia]]
    - [[#office][Office]]
@@ -61,7 +60,7 @@ mind, however, that:
      - [[#rockbox-utility][Rockbox utility]]
    - [[#final-stage][Final stage]]
  - [[#admin-operations][Admin operations]]
-   - [[#backup-1][Backup]]
+   - [[#backup][Backup]]
    - [[#recovery][Recovery]]
    - [[#removing-old-kernels][Removing old kernels]]
  - [[#useful-resources][Useful resources]]
@@ -664,11 +663,6 @@ And reduce permissions on it:
 # mkdir MabLab/bkp
 # mkdir MabLab/bkp/mathieu
 # mkdir MabLab/bkp/mathieu/home
-
-
-*** Backup
-
-# deja-dup 
 
 
 *** Revelation
