@@ -61,6 +61,7 @@ mind, however, that:
      - [[#rockbox-utility][Rockbox utility]]
    - [[#final-stage][Final stage]]
  - [[#admin-operations][Admin operations]]
+   - [[#backup-1][Backup]]
    - [[#recovery][Recovery]]
    - [[#removing-old-kernels][Removing old kernels]]
  - [[#useful-resources][Useful resources]]
@@ -994,6 +995,54 @@ currently provide video calls).
 
 
 * Admin operations
+
+
+** Backup
+
+The easiest way is to use CRON on a daily basis to backup the entire
+=/home=, as well as the databases. To do this, prepare a file
+=home-backup= (or any other name), with something like the following:
+
+#+BEGIN_SRC sh
+    #!/bin/sh
+    
+    ### Mount operations (needs credentials in ~/.smb)
+    mount.cifs //XX.YYY.ZZZ/<USER> /mnt/<USER>/ -o credentials=/home/<USER>/.smb,uid=<USER>,gid=<USER>
+    
+    ### Save PostgreSQL databases (full dump):
+    pg_dumpall | gzip > /mnt/<USER>/home/postgresql/full_`date -I`.sql.gz
+    
+    ### Save file ACLs (permission, ownership)
+    cd ~
+    getfacl -R . > /mnt/<USER>/home/.file-acl
+    ### Restore file ACLs (in the file-acl directory)
+    # setfacl --restore=.file-acl
+    
+    ### Entire /home except: 
+    ### photos, music, videos, caches/thumbnails, .extraswap, emacs.d/elpa/,
+    ### .R-site/site-library/, Torbrowser, Trash and some folders in  Download
+    ###  --modify-window=1 to consider rounded timestamp 
+    rsync -avz --progress --delete-during --modify-window=1 --exclude=Downloads --exclude=.local/share/torbrowser --exclude=.cache --exclude=.gftp/cache --exclude=.googleearth/Cache/ --exclude=.thumbnails --exclude=.emacs.d/elpa --exclude=.R-site/site-library/ --exclude=.local/share/Trash /home/<USER>/ /mnt/<USER>/home/<USER>/
+    
+    ### Unmount FLREC server
+umount /mnt/<USER>/    
+#+END_SRC
+
+Then make the file executable and copy it to =/etc/cron.daily=:
+
+  : chmod +x home-backup
+  : sudo cp home-backup /etc/cron.daily/
+
+CRON will run daily at the time setup in =/etc/crontab=:
+
+  : grep run-parts /etc/crontab
+
+In this case, every day at 6:25AM. If the computer is not turned on at
+this time, CRON looks for =/etc/anacrontab=
+
+  : less /etc/anacrontab
+
+In this case, every day after a period of 5 minutes since wake-up.
 
 
 ** Recovery
