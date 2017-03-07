@@ -1014,18 +1014,18 @@ The easiest way is to use CRON on a daily basis to backup the entire
     
     ### Save file ACLs (permission, ownership)
     cd ~
-    getfacl -R . > /mnt/<USER>/home/.file-acl
+    getfacl -R . > /mnt/<USER>/home/<USER>.file-acl
     ### Restore file ACLs (in the file-acl directory)
-    # setfacl --restore=.file-acl
+    # setfacl --restore=<USER>.file-acl
     
     ### Entire /home except: 
-    ### photos, music, videos, caches/thumbnails, .extraswap, emacs.d/elpa/,
-    ### .R-site/site-library/, Torbrowser, Trash and some folders in  Download
+    ### Downloads, caches/thumbnails, .extraswap, emacs.d/elpa/,
+    ### .R-site/site-library/, Torbrowser, Trash
     ###  --modify-window=1 to consider rounded timestamp 
     rsync -avz --progress --delete-during --modify-window=1 --exclude=Downloads --exclude=.local/share/torbrowser --exclude=.cache --exclude=.gftp/cache --exclude=.googleearth/Cache/ --exclude=.thumbnails --exclude=.emacs.d/elpa --exclude=.R-site/site-library/ --exclude=.local/share/Trash /home/<USER>/ /mnt/<USER>/home/<USER>/
     
-    ### Unmount FLREC server
-umount /mnt/<USER>/    
+    ### Unmount operations
+    umount /mnt/<USER>/    
 #+END_SRC
 
 Then make the file executable and copy it to =/etc/cron.daily=:
@@ -1043,6 +1043,12 @@ this time, CRON looks for =/etc/anacrontab=
   : less /etc/anacrontab
 
 In this case, every day after a period of 5 minutes since wake-up.
+
+This results in a directory =home= with
+
+- The =home= backup in =home/<USER>/=
+- The databases backup as a full compressed dump in =home/postgresql=
+- The file permissions in =home/<USER>.file-acl=
 
 
 ** Recovery
