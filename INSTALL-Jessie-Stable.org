@@ -11,6 +11,7 @@ however, that:
 
 
 * Table of contents                                                     :TOC_3:
+ - [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
    - [[#download-the-installer][Download the installer]]
      - [[#the-debian-way][The Debian way]]
      - [[#the-easy-way][The easy way]]
@@ -56,6 +57,9 @@ however, that:
      - [[#polices][Polices]]
      - [[#emacs--latex--pdf][Emacs / LaTeX / PDF]]
      - [[#other-1][Other]]
+
+* Installing Debian with the base Gnome desktop
+
 
 ** Download the installer
 
@@ -167,7 +171,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : 
   : # Alias upgrade & upgrade-full
   : alias upgrade='sudo apt update && sudo apt upgrade'
-  : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
+  : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove'
   #+END_QUOTE
 
 
@@ -227,7 +231,7 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo dpkg --add-architecture i386
 - Complete upgrade + install:
   : sudo apt update
-  : sudo apt install deb-multimedia-keyring
+  : sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring most
   : sudo apt upgrade
   : sudo apt full-upgrade
   : upgrade-full
@@ -242,7 +246,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy redshift-gtk subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui debian-goodies detox disper git gnome-common gparted gtick hibernate mlocate ntp privoxy subversion transmission units unrar virtualbox wakeonlan
 
 
 ** Gnome extensions
