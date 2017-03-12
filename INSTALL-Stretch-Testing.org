@@ -124,8 +124,10 @@ on the 'target' computer.
 
 *NOTE:* For a reason, the standard procedure above failed for me this
 time, with the system being unable to boot on the flash drive… A
-workaround is simply to use =Unetbootin= GUI to create the USB bootable
-image (using Debian testing), and move directly to the next step.
+workaround is simply to use =Unetbootin= GUI to create the USB
+bootable image (using the Netinstall 64 bits for Debian testing),
+check that the =boot= flag is set on the drive (with GParted), and
+move directly to the next step.
 
 
 ** Install Debian
@@ -239,7 +241,7 @@ Legacy boot) and follow the instructions. General guidelines:
   - =/tmp= in RAM:
   : sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
   : sudo systemctl enable tmp.mount
-- Use only SWAP when 100% of RAM is used:
+- Use only SWAP when 99% of RAM is used:
   : sudo nano /etc/sysctl.conf
   Add at the end of the file:
   #+BEGIN_QUOTE
@@ -292,8 +294,8 @@ Legacy boot) and follow the instructions. General guidelines:
 ** APT and upgrade
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
-  : sudo cp sources.list.stretch /etc/apt/sources.list
-  : sudo cp preferences.stretch /etc/apt/preferences
+  : sudo cp sources.list.stretch-testing /etc/apt/sources.list
+  : sudo cp preferences.stretch-testing /etc/apt/preferences
 - Avoid downloading translation indexes:
   : sudo nano /etc/apt/apt.conf.d/apt.conf
   And add:

@@ -1,0 +1,16 @@
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS                    
+#------------------------------------------------------------------------------#
+
+### Debian Main Repos
+deb http://ftp.us.debian.org/debian/ stable main contrib non-free
+deb http://ftp.us.debian.org/debian/ stable-updates main contrib non-free
+deb http://security.debian.org/ stable/updates main
+deb http://ftp.debian.org/debian jessie-backports main
+
+#------------------------------------------------------------------------------#
+#                      UNOFFICIAL  REPOS                       
+#------------------------------------------------------------------------------#
+
+### Debian Multimedia
+deb http://www.deb-multimedia.org stable main non-free
