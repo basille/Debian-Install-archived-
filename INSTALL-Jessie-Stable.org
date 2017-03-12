@@ -251,46 +251,30 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Gnome extensions
 
-To be able to install Gnome extensions from Firefox ≥v.52, a Debian
+To be able to install- Gnome extensions from Firefox ≥v.52, a Debian
 package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][Firefox extension]] are required:
 
-  : sudo apt install chrome-gnome-shell gnome-shell-extension-redshift
+  : sudo apt install python-requests
+  : wget http://ftp.us.debian.org/debian/pool/main/c/chrome-gnome-shell/chrome-gnome-shell_8-3_all.deb
+  : sudo dpkg -i chrome-gnome-shell_8-3_all.deb
 
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
-- x Alt-Alt+Tab (outdated)
 - x AlternateTab
 - x Applications Menu
 - o Auto Move Windows
 - o BackSlide
 - o Disconnect Wifi
-- x Gnote/Tomboy Integration (outdated)
-- x gTile (outdated)
-- o Hibernate Status Button
 - x Launch new instance
-- o Media player indicator (reinstall from source after media install)
-  Outdated on official GNOME respository, but available on [[https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer][GitHub]]: 
-  : git clone https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git
-  : cd gnome-shell-extensions-mediaplayer/
-  : ./autogen.sh
-  : make install-zip
-  Then restart GNOME Shell (Alt-F2 + r)
-- x Modern Calc (outdated)
+- o Media player indicator
+- o Modern Calc
 - x Native Window Placement
-- o Nothing to say
-  Change shortcut to Super+F1:
- : dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '["<Super>F1"]'
 - o OpenWeather
 - x Places Status Indicator
 - o Refresh Wifi Connections
 - x Removable Drive Menu
 - o Remove Dropdown Arrows
-- x Return to Monitor (outdated)
-- x Screenshot Window Sizer
-- o SincroDirs
 - o Skype Integration
-- o Sound Input & Output Device Chooser
-- o Super+Tab Launcher
 - o Suspend Button
 - o TopIcons Plus
 - x User Themes
