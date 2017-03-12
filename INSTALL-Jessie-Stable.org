@@ -207,8 +207,8 @@ Legacy boot) and follow the instructions. General guidelines:
 - System settings
   - Remove the system beep: in Sound > Sound Effects, turn off the
     Alert volume.
-  - Touchpad: in Mouse & Touchpad, activate "Tap to Click" and
-    "Two-finger Scrolling".
+  - Touchpad: in Mouse & Touchpad, activate "Tap to Click", "Natural
+    Scrolling" and "Two-finger Scrolling".
   - Keyboard shortcuts:
     - Home folder: Super+H
     - Hide all normal windows: Super+D
@@ -290,24 +290,8 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 *** Firefox
 
-To get a "clean" Firefox profile: Simply connect to Sync with your
-Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
-Add-ons and Preferences from old Firefox. Leave Firefox open for some
-time... After all add-ons are installed, a little bit of tweaking is
-necessary after:
-- Enable GNOME theme (in Appearance). 
-- *Add-ons:* Some add-ons were not synced and installed: HTTPS
-  Everywhere, Privacy Badger; some options need to be reset
-  (e.g. notifications for Self-Destructing Cookies).
 - *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
-- *Open tabs:* Open tabs (including permanent tabs) are not synced:
-  Close both old and new Firefox. Check the =sessionstore.js= file
-  created in old Firefox's profile when Firefox closes. Copy it in the
-  new profile.
-- *Search engines:* Copy the =search.json.mozlz4= file from old to new
-  profile.
-- Add-on *data* is not synced: Copy necessary folders in tne new profile
-  (e.g. Scrapbook).
+
 - Restart new Firefox and customize interface (buttons in the top bar
   and menu).
 
@@ -379,7 +363,9 @@ general system update):
 
   : pipelight-plugin --disable flash
   : pipelight-plugin --list-enabled
-  : sudo apt install flashplayer-mozilla flashplayer-chromium
+  : sudo apt install flashplugin-nonfree
+
+  : sudo apt install pepperflashplugin-nonfree browser-plugin-freshplayer-pepperflash
 
 
 *** Thunderbird (Icedove).
