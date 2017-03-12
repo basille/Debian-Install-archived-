@@ -18,13 +18,44 @@ however, that:
    - [[#terminal-setup][Terminal setup]]
    - [[#system-settings][System settings]]
    - [[#apt-and-upgrade][APT and upgrade]]
+ - [[#installing-a-full-system][Installing a full system]]
+   - [[#miscellaneous][Miscellaneous]]
+   - [[#gnome-extensions][Gnome extensions]]
+   - [[#web][Web]]
+     - [[#firefox][Firefox]]
+     - [[#thunderbird-icedove][Thunderbird (Icedove).]]
+     - [[#owncloud][ownCloud]]
+     - [[#others][Others]]
+   - [[#internet-admin][Internet admin]]
+     - [[#vpn][VPN]]
+     - [[#ssh][SSH]]
+     - [[#gftp][Gftp]]
+     - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
+     - [[#windows-share][Windows share]]
+     - [[#revelation][Revelation]]
+   - [[#multimedia][Multimedia]]
+   - [[#office][Office]]
+     - [[#fonts][Fonts]]
+     - [[#latex-and-pdf][LaTeX and PDF]]
+     - [[#emacs][Emacs]]
+     - [[#jabref-configuration][JabRef configuration]]
+     - [[#gnote-configuration][Gnote configuration]]
+   - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
+     - [[#gdal-geos-and-proj4][GDAL, GEOS and PROJ.4]]
+     - [[#r][R]]
+     - [[#qgis-and-postgis][QGIS and PostGIS]]
+   - [[#other][Other]]
+     - [[#google-stuff][Google Stuff]]
+     - [[#skype][Skype]]
+     - [[#rockbox-utility][Rockbox utility]]
+   - [[#final-stage][Final stage]]
    - [[#software][Software]]
      - [[#general][General]]
-     - [[#web][Web]]
-     - [[#multimedia][Multimedia]]
+     - [[#web-1][Web]]
+     - [[#multimedia-1][Multimedia]]
      - [[#polices][Polices]]
      - [[#emacs--latex--pdf][Emacs / LaTeX / PDF]]
-     - [[#other][Other]]
+     - [[#other-1][Other]]
 
 ** Download the installer
 
@@ -179,6 +210,7 @@ Legacy boot) and follow the instructions. General guidelines:
     - Hide all normal windows: Super+D
     - Lock screen: Ctrl+Echap
     - Toggle maximization state: Super+Return
+    - Add Custom shortcut: Terminal / =gnome-terminal= / Super+T
 - Nautilus: Preferences > Views: Sort folders before files
 
 
@@ -203,7 +235,595 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo apt install firmware-iwlwifi
   : sudo modprobe -r iwlwifi
   : sudo modprobe iwlwifi
-  
+
+
+* Installing a full system
+
+
+** Miscellaneous
+
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy redshift-gtk subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+
+
+** Gnome extensions
+
+To be able to install Gnome extensions from Firefox ≥v.52, a Debian
+package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][Firefox extension]] are required:
+
+  : sudo apt install chrome-gnome-shell gnome-shell-extension-redshift
+
+[[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
+
+- x Alt-Alt+Tab (outdated)
+- x AlternateTab
+- x Applications Menu
+- o Auto Move Windows
+- o BackSlide
+- o Disconnect Wifi
+- x Gnote/Tomboy Integration (outdated)
+- x gTile (outdated)
+- o Hibernate Status Button
+- x Launch new instance
+- o Media player indicator (reinstall from source after media install)
+  Outdated on official GNOME respository, but available on [[https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer][GitHub]]: 
+  : git clone https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git
+  : cd gnome-shell-extensions-mediaplayer/
+  : ./autogen.sh
+  : make install-zip
+  Then restart GNOME Shell (Alt-F2 + r)
+- x Modern Calc (outdated)
+- x Native Window Placement
+- o Nothing to say
+  Change shortcut to Super+F1:
+ : dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '["<Super>F1"]'
+- o OpenWeather
+- x Places Status Indicator
+- o Refresh Wifi Connections
+- x Removable Drive Menu
+- o Remove Dropdown Arrows
+- x Return to Monitor (outdated)
+- x Screenshot Window Sizer
+- o SincroDirs
+- o Skype Integration
+- o Sound Input & Output Device Chooser
+- o Super+Tab Launcher
+- o Suspend Button
+- o TopIcons Plus
+- x User Themes
+- x Window List
+- o windowNavigator
+- x Workspace Indicator
+- x workspaceAltTab (outdated)
+
+
+** Web
+
+  : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
+
+*** Firefox
+
+To get a "clean" Firefox profile: Simply connect to Sync with your
+Firefox account to synchronize Tabs, Bookmarks, Passwords, History,
+Add-ons and Preferences from old Firefox. Leave Firefox open for some
+time... After all add-ons are installed, a little bit of tweaking is
+necessary after:
+- Enable GNOME theme (in Appearance). 
+- *Add-ons:* Some add-ons were not synced and installed: HTTPS
+  Everywhere, Privacy Badger; some options need to be reset
+  (e.g. notifications for Self-Destructing Cookies).
+- *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
+- *Open tabs:* Open tabs (including permanent tabs) are not synced:
+  Close both old and new Firefox. Check the =sessionstore.js= file
+  created in old Firefox's profile when Firefox closes. Copy it in the
+  new profile.
+- *Search engines:* Copy the =search.json.mozlz4= file from old to new
+  profile.
+- Add-on *data* is not synced: Copy necessary folders in tne new profile
+  (e.g. Scrapbook).
+- Restart new Firefox and customize interface (buttons in the top bar
+  and menu).
+
+Here is the full list of add-ons that I normally install:
+- Essential security and privacy:
+  - [[https://addons.mozilla.org/fr/firefox/addon/betterprivacy/][Better Privacy]] (if Flash installed)
+  - [[https://addons.mozilla.org/fr/firefox/addon/https-everywhere/][HTTPS Everywhere]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/privacy-badger-firefox/][Privacy Badger]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/self-destructing-cookies/][Self-Destructing Cookies]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/ublock-origin/][uBlock Origin]]
+- Essential functionalities:
+  - [[https://addons.mozilla.org/fr/firefox/addon/findbar-tweak/][FindBar Tweak]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/tab-groups-panorama/][Tab Groups]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/lazarus-form-recovery/][Lazarus: Form Recovery]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/scrapbook/][ScrapBook]]
+- Appearance and integration with GNOME 3:
+  - [[https://addons.mozilla.org/fr/firefox/addon/gnome-theme-tweak/][GNOME Theme Tweak]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/gnotifier/][GNotifier]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/htitle/][HTitle]] (discontinued!)
+  - [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][GNOME Shell integration]]
+- Videos and streaming:
+  - [[https://addons.mozilla.org/fr/firefox/addon/download-youtube/][Download YouTube Videos as MP4]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/user-agent-switcher/][User-Agent Switcher]] (useful for Netflix for instance)
+  - [[https://addons.mozilla.org/fr/firefox/addon/video-downloadhelper/][Video DownloadHelper]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/youtube-all-html5/?src=search][YouTube ALL HTML5]]
+- Others:
+  - [[https://addons.mozilla.org/fr/firefox/addon/checkcompatibility/][checkCompatibility]] (because some add-ons don't keep up with new
+    Firefox versions)
+  - [[https://addons.mozilla.org/fr/firefox/addon/clean-links/][Clean Links]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/flagfox/][Flagfox]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/nuke-anything-enhanced/][Nuke Anything Enhanced]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/qwantcom-for-firefox/][Qwant for Firefox]]
+  - [[https://addons.mozilla.org/fr/firefox/addon/shaarli/][Shaarli]]
+  - [[https://addons.mozilla.org/en-US/firefox/addon/smart-referer/][Smart Referer]]
+
+And the list of search engines that I keep:
+- Google [by default]
+- [[https://addons.mozilla.org/fr/firefox/addon/google-fr-recherche-sur-le-web/][Google.fr (Web)]] [installed]
+- Wikipedia (en)
+- [[https://addons.mozilla.org/fr/firefox/addon/wikipedia-fr/][Wikipedia (fr)]] [installed]
+- [[https://addons.mozilla.org/fr/firefox/addon/qwant/][Qwant]] [installed]
+- Debian packages
+
+The next step is to install additional plugins. Unfortunately, Flash
+may still be necessary for some websites, and Silverlight is necessary
+for NetFlix. The *[[http://pipelight.net/cms/installation.html][Pipelight]]* project conveniently provides Windows-only
+plugins directly inside the browsers. First update the pipelight
+plugin:
+  : sudo pipelight-plugin --update
+Just to be safe, close Firefox, then enable Flash and Silverlight:
+  : sudo pipelight-plugin --enable flash
+  : sudo pipelight-plugin --enable silverlight
+  : sudo pipelight-plugin --create-mozilla-plugins
+  : sudo pipelight-plugin --list-enabled
+After restarting Firefox, plugins can be check in the Plugins section
+of the Add-ons panel (then select "Ask to activate" for both). Flash
+in particular can be checked at: http://isflashinstalled.com/
+
+If BetterPrivacy is installed too, use =~/.wine-pipelight= as the
+Flash-Data directory.
+
+*Update January 2017:* Pipelight is not maintained anymore. The good
+news is that now Adobe ships the latest Flash version for Linux too!
+Disable Flash from Pipelight (if it was installed/enabled), and simply
+install the =flashplugin-nonfree= from Debian repositories, or
+=flashplayer-mozilla= and =flashplayer-chromium= from Debian
+Multimedia repositories (the later allowing for Flash updates through
+general system update):
+
+  : pipelight-plugin --disable flash
+  : pipelight-plugin --list-enabled
+  : sudo apt install flashplayer-mozilla flashplayer-chromium
+
+
+*** Thunderbird (Icedove).
+
+- From a previous installation, simply copy the content of the former
+  profile into the default profile folder in =~/.icedove=.
+
+- Enigmail (needs version >= 2.07):
+  Then change Gnome settings for the passphrase:
+  : gsettings list-recursively org.gnome.crypto.cache
+  Lists relevant settings: the method can be 'session' (never expires
+  during the session), 'idle' (timer is reset each time there's
+  activity on the computer) or 'timeout' (simple timer since entering
+  the passphrase). We set it to 'idle' with 5 minutes of delay:
+  : gsettings set org.gnome.crypto.cache gpg-cache-method "timeout"
+  : gsettings set org.gnome.crypto.cache gpg-cache-ttl 300
+  If it comes from a former installation, copy the =.gnupg/= folder in
+  =~/=, and ensure permissions are correct:
+  : chmod -R go-rwx ~/.gnupg
+  Check that GnuPG is installed with a version >2:
+  : gpg --version
+  And finally migrate from old version:
+  : gpg -K
+  Note that there is a bug with Enigmail 1.9.6-1 (which doesn't
+  recognize gpg); [[https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html][fixed in 1.9.6-2]]:
+
+
+*** ownCloud
+
+In Settings > Online accounts, add a new ownCloud account. Simply fill
+in the server address (where ownCloud is installed, not one of the
+scripts for CalDav/CardDav), username and password, and keep it for
+Calendar, Contacts, Documents and Files. Now events should appear in
+the calendar in the top bar, contacts should be synchronized with the
+Contacts application, and Files (Nautilus) should provide a shortcut
+to the ownCloud root folder.
+
+
+*** Others
+
+# - Privoxy:
+#  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
+
+
+** Internet admin
+
+  : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
+
+
+*** VPN
+
+In Settings > Network, add a 'Cisco AnyConnect Compatible VPN
+(openconnect)'. Simply enter the 'Gateway': =vpn.ufl.edu= and leave all
+other empty. To turn the VPN on, click VPN in the top-right corner
+menu:
+- Username: GatorLink account (with @ufl.edu)
+- Password: GatorLink password (check 'Save passwords')
+
+
+*** SSH
+
+Copy the entire folder =.ssh= in =/home=. It contains key configuration
+for basille.net, Gargantua, MabLab server, as well as the keys for
+GitHub.
+
+
+*** Gftp
+
+Simply copy the =bookmarks= file from the =.gftp= folder in =/home/= (it
+contains all bookmarks and passwords).
+
+
+*** ownCloud and Dropbox
+
+  : sudo aptitude install owncloud-client nautilus-owncloud nautilus-dropbox
+
+For ownCloud, configure the client: run =owncloud=, fill in the proper
+credentials, and choose what to sync and where (=.owncloud= is a good
+choice if it concerns only files for sync, and not documents per se).
+
+For DropBox, install the proprietary deamon:
+
+  : dropbox start -i
+
+And follow the instructions (UF has a single sign-in process that
+works by just adding the UF address without password, with a passcode
+generated on the web).
+
+
+*** Windows share
+
+First create a credential file:
+  : nano .smb
+With the following information:
+  #+BEGIN_QUOTE
+  : username=<GatorLink account>
+  : password=<GatorLink password>
+  #+END_QUOTE
+And reduce permissions on it:
+  : chmod 600 .smb
+
+# sudo mkdir /mnt/ecored
+# sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
+
+# mkdir MabLab
+# mkdir MabLab/bkp
+# mkdir MabLab/bkp/mathieu
+# mkdir MabLab/bkp/mathieu/home
+
+
+*** Revelation
+
+- Create a new password file in =~/.revelation= or copy an existing one
+  in this folder.
+- Change preferences:
+  * "Open file on startup:" and pick the file mentioned above;
+  * Check "Automatically save data when changed"
+  * "Length of generated passwords": 12
+
+
+** Multimedia
+
+- Pictures
+  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
+
+- Audio/video
+  : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
+
+  - Plugins Rhythmbox: A [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins][repository for Ubuntu]] provides updated
+    plugins for Rhythmbox. Instructions can be found [[http://xpressubuntu.wordpress.com/2013/10/26/installing-rhythmbox-3-0-plugins-the-easy-way/][here]], and =deb=
+    files can be found [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins/+packages][here]]. In summary, download the file
+    corresponding to the most recent version of Ubuntu (Xenial at the
+    time of writing), and install them using =dpkg=. If all =deb= files are in
+    a dedicated folder:
+
+    : sudo dpkg -i *.deb
+    
+    And if necessary:
+
+    : sudo apt -f install 
+
+    Currently, the following packages work:
+    - Art Display
+    - Equalizer (not up-to-date but works)
+    - Fullscreen Plugin
+    - lLyrics
+    - Open containing folder
+    - Playlist Import Export
+    - Random Album Player
+    - Remember-the-Rhythm
+
+    One very interesting package is not up to date and does not work:
+    - lastfm-queue
+
+    Finally, =rhythmbox-plugins= also provides Cover Art/Search,
+    Internet Radios, Replay Gain and other potentially interesting
+    plugins, and =rhythmbox-plugin-alternative-toolbar= gives a
+    simplified and enhanced user interface.
+
+- Leisure
+  : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
+
+# Slowmo : http://slowmovideo.granjow.net/
+# Récupérer package for Ubuntu Raring
+# Dépendances :
+# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
+# (attention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
+# Puis
+# $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
+
+# Fichiers RAW
+
+# ## DCRAW 9.16 (version courante)
+# sudo aptitude install libjasper-dev libjpeg8-dev liblcms1-dev liblcms2-dev
+# sudo ldconfig
+# mkdir dcraw
+# cd dcraw
+# wget http://www.cybercom.net/~dcoffin/dcraw/dcraw.c
+# gcc -o dcraw -O4 dcraw.c -lm -ljasper -ljpeg -llcms
+# sudo mv dcraw /usr/bin
+# cd ..
+# rm -R dcraw
+
+# ## Vignettes
+# sudo aptitude install ufraw ufraw-batch gimp-dcraw
+# sudo nano /usr/share/thumbnailers/raw.thumbnailer
+# Plus nécessaire :
+# $ sudo aptitude install libopenrawgnome1
+
+# [Thumbnailer Entry]
+# Exec=/usr/bin/ufraw-batch --embedded-image --out-type=png --size=%s %u --overwrite --silent --output=%o
+# MimeType=image/x-3fr;image/x-adobe-dng;image/x-arw;image/x-bay;image/x-canon-cr2;image/x-canon-crw;image/x-cap;image/x-cr2;image/x-crw;image/x-dcr;image/x-dcraw;image/x-dcs;image/x-dng;image/x-drf;image/x-eip;image/x-erf;image/x-fff;image/x-fuji-raf;image/x-iiq;image/x-k25;image/x-kdc;image/x-mef;image/x-minolta-mrw;image/x-mos;image/x-mrw;image/x-nef;image/x-nikon-nef;image/x-nrw;image/x-olympus-orf;image/x-orf;image/x-panasonic-raw;image /x-pef;image/x-pentax-pef;image/x-ptx;image/x-pxn;image/x-r3d;image/x-raf;image/x-raw;image/x-rw2;image/x-rwl;image/x-rwz;image/x-sigma-x3f;image/x-sony-arw;image/x-sony-sr2;image/x-sony-srf;image/x-sr2;image/x-srf;image/x-x3f;
+
+
+** Office
+
+  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+
+- Need to remove all links to French dictionaries:
+  : sudo rm /usr/share/hunspell/fr_*
+  : sudo rm /usr/share/myspell/dicts/fr_*
+  In case of trouble, just reinstal =hunspell-fr=.
+- Change Icon style of LibreOffice (Tools > Options > LibreOffice >
+  View) to Breeze, and possibly Show Icons in menus.
+- Preferences for HomeBank are stored in =~/.config/homebank=. It's
+  probably safe to simply copy this folder.
+
+
+*** Fonts
+
+  : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
+
+- Use =gnome-tweak-tool= to change Monospace font to Hack Regular 11.
+- [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS fonts) : Carlito and
+  Caladea. Once installed, in LibreOffice: Options > Fonts, check
+  'Apply replacement table', and add a replacement rule for each
+  (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked
+  (Always and screen only).
+
+
+*** LaTeX and PDF
+
+  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
+
+Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
+=texlive-full=; =pdfmanipulate= comes with =calibre=.
+
+- Adobe Reader (in dmo)
+  : sudo aptitude install acroread:i386
+
+- Link folder of main BibTeX file to the Tex install. First check
+  with:
+  : kpsewhich -show-path=.bib
+  It should include
+  =/home/<user>/.texlive2016/texmf-var/bibtex/bib//=. The trick is
+  then to create this path as a link to the main bibliographic
+  directory. For instance:
+  : mkdir -p ~/.texlive2016/texmf-var/bibtex/bib
+  : ln -s ~/Work/Biblio/ ~/.texlive2016/texmf-var/bibtex/bib
+- Install a package (e.g. =moderncv=)
+  : sudo nano /etc/texmf/texmf.d/03local.cnf
+  #+BEGIN_QUOTE
+  : TEXMFHOME = ~/.texlive2016/texmf
+  #+END_QUOTE
+  : sudo update-texmf
+  Check with:
+  : kpsewhich --var-value TEXMFHOME
+  Copy packages in =~/.texlive2016/texmf/tex/latex/= and complete
+  install when necessary, e.g.:
+  : latex moderntimeline.ins
+  : latex moderntimeline.dtx
+- Install a font: copy the font in
+  =~/.texlive2016.d/texmf/fonts/truetype/=, then update the TeX index:
+  : sudo texhash
+
+
+*** Emacs
+
+  : sudo aptitude install emacs25 libpoppler-glib-dev
+
+[[https://github.com/basille/.emacs.d][Configuration via Git]]:
+  : git clone git@github.com:basille/.emacs.d ~/.emacs.d/
+  : cp ~/.emacs.d/emacs.Xresources ~/.Xresources
+  : xrdb -merge ~/.Xresources
+
+And load Emacs, potentially several times until all packages are
+installed.
+
+
+*** JabRef configuration
+
+Debian recently integrated the 3.x series in the official
+repositories, with JabRef 3.6 available for Stretch and 3.8 for Sid at
+the time of writing (Dec 22 2016).
+
+In Options > Preferences:
+- Import preferences (=JabRef-Pref-20161206.xml=). Should be enough, but
+  just in case, check the following.
+- Keep English as language.
+- External programs: Use =/home/mathieu/Work/biblio/PDF/= as main file
+  folder.
+- Advanced > Class name: "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+  for GTK look & feel.
+
+Finally, install Zotero and JabFox add-ons for Firefox, and then
+adjust JabFox and JabRef preferences:
+- Create a script to correctly catch the call:
+  : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
+  : sudo chmod +x /usr/share/java/jabref.sh
+- JabFox: Adjust the path to the JabRef script above
+  ('extensions.@jabfox.jabRefPath' preference of Firefox);
+- JabFox: Export format to BibTeX;
+- JabRef: Activate "Remote operation" under the Advanced tab.
+
+
+*** Gnote configuration
+
+- +Synchronization using WebDav seems really complicated to set up; one solution is to use ownCloud client to sync a =Gnote= folder localy, and then configure it in Gnote Preferences > Synchronization using Local folder as a service (and check the Automatic sync every 10
+  minutes).+
+  - Synchronization seems to cause many crashes of Gnote… Hence simply
+    copying the note folder (=~/.local/share/gnote=) should be enough.
+- Other preferences:
+  - General: Always open notes in new window
+  - Plugins: Enable 'Export to HTML' and 'Table of contents'.
+- Using =gnome-tweak-tool=, add Gnote to the list of Startup
+  Applications.
+
+
+** R, QGIS and PostGIS
+
+
+*** GDAL, GEOS and PROJ.4
+
+  : sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
+
+
+*** R
+
+  : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libssl-dev libxt-dev libudunits2-dev
+
+[[https://github.com/basille/R][Configuration via Git]]:
+  : git clone git@github.com:basille/R ~/.R-site/
+  : mkdir ~/.R-site/site-library
+  : ln -s ~/.R-site/.Renviron ~/.Renviron
+
+Then in R:
+  : gdal <- TRUE; options(repos = c(CRAN = "http://cran.r-project.org/")); source("~/.R-site/install.selected.R")
+
+And finally link to the R profile:
+  : ln -s ~/.R-site/.Rprofile ~/.Rprofile
+
+RStudio is unfortunately not in the Debian repositories (yet). So the
+recommanded way to install it is to download the latest installer,
+which is, on Dec 2 2016, for version 1.0.44 (check [[https://www.rstudio.com/products/rstudio/download/][here]] first):
+
+  : wget https://download1.rstudio.org/rstudio-1.0.44-amd64.deb
+  : sudo dpkg -i rstudio-1.0.44-amd64.deb 
+  : rm rstudio-1.0.44-amd64.deb 
+
+(RStudio has a tendancy to mess a bit with file associations, so it
+might be necessary to clean that after if RStudio is not supposed to
+be the default R editor; as a matter of fact, if it is the case, it is
+the easiest way to associate =.R= or =.Rmd= files to any editor, while
+keeping the association to Gedit for plain text documents)
+
+RStudio is provided with its own version of Pandoc, but it seems to
+come [[https://github.com/rstudio/rmarkdown/issues/867][with potential problems]]. The easiest way to overcome this is
+simply to rename the Pandoc executable provided by RStudio (requests
+will then fallback on the system Pandoc):
+
+  : sudo mv /usr/lib/rstudio/bin/pandoc/pandoc /usr/lib/rstudio/bin/pandoc/pandoc.bkp
+
+Note that RStudio is not adapted to very high resolution (for instance
+Retina) and may look very tiny in this case.
+
+
+*** QGIS and PostGIS
+
+  : sudo apt install qgis python-qgis
+
+Or if it fails due to a missing package (gdal-abi-2), then prefer the
+install from Debian repositories:
+
+  : sudo apt install -t o=Debian,n=stretch qgis python-qgis
+
+Then, from inside QGIS, install the Time manager plugin.
+
+
+** Other
+
+
+*** Google Stuff
+
+
+**** Google Earth
+
+The Debian way:
+  : sudo apt install googleearth-package
+  : make-googleearth-package
+  : sudo dpkg -i googleearth*.deb
+  : sudo apt -f install
+
+But dependencies impossible to reconcile (libcurl3:i386)... Solution:
+get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
+  : sudo dpkg -i google-earth-stable_current_amd64.deb
+  : sudo apt -f install
+
+
+**** Google Chrome
+
+Add Google Chrome repository (sources.list + preferences), then:
+  : sudo apt install google-chrome-stable
+
+
+*** Skype
+
+At last, Microsoft now provides a decent version of Skype for Linux
+(based on their new web version), currently in its alpha stage. The
+application seems to work fine, and can be concurrently installed with
+the 'legacy' version (it's called "Skype for Linux" and the binary is
+=skypeforlinux=):
+
+  : wget https://repo.skype.com/latest/skypeforlinux-64-alpha.deb
+  : sudo dpkg -i skypeforlinux-64-alpha.deb 
+  : sudo apt -f install
+  : rm skypeforlinux-64-alpha.deb 
+
+Note that alternatives exist, such as [[https://github.com/stanfieldr/ghetto-skype][Ghetto Skype]] (which does not
+currently provide video calls).
+
+
+*** Rockbox utility
+
+- Download [[http://www.rockbox.org/download/][Rockbox utility]]
+- Unzip file, and copy RockboxUtility in =/usr/local/bin/=:
+  : tar xvjf RockboxUtility-v1.4.0-64bit.tar.bz2
+  : sudo mv RockboxUtility-v1.4.0-64bit/RockboxUtility /usr/local/bin/rockbox
+  : sudo chmod 755 /usr/local/bin/rockbox 
+  : rm -R RockboxUtility-v1.4.0-64bit
+- Launch =rockbox=
+- Install Ambiance theme (activate icons).
+
+
+** Final stage
+
+- Check default applications (Settings > Details > Default
+  Applications).
+- Check applications on startup with =gnome-tweak-tool= (Startup
+  Applications: icedove, firefox, nautilus, gnote).
+- Final cleaning:
+  : upgrade-full
+
 
 ** Software
 
