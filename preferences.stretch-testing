@@ -68,6 +68,10 @@ Pin-Priority: 1
 #Pin: origin mozilla.debian.net
 #Pin-Priority: 901
 
+Package : firefox
+Pin : release o=Debian,a=unstable,l=Debian
+Pin-Priority : 901
+
 
 
 ## ======================================================= ##
