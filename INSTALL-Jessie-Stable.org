@@ -270,9 +270,17 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 *** Firefox
 
 - *Plugins:* Need to activate OpenH264 Video Codec provided by Cisco.
+- To install Flash on Debian Jessie (Stable), it is necessary to do it
+  manually. First get the Flash archive on the [[http://get.adobe.com/flashplayer][Flash Player download
+  page]], extract it, close Firefox, and copy the library to the plugin
+  folder for Firefox:
 
-- Restart new Firefox and customize interface (buttons in the top bar
-  and menu).
+#+BEGIN_SRC 
+  sudo cp libflashplayer.so /usr/lib/mozilla/plugins
+#+END_SRC
+
+- Restart Firefox and customize interface (buttons in the top bar and
+  menu).
 
 Here is the full list of add-ons that I normally install:
 - Essential security and privacy:
@@ -313,10 +321,6 @@ And the list of search engines that I keep:
 - [[https://addons.mozilla.org/fr/firefox/addon/wikipedia-fr/][Wikipedia (fr)]] [installed]
 - [[https://addons.mozilla.org/fr/firefox/addon/qwant/][Qwant]] [installed]
 - Debian packages
-
-The next step is to install additional plugins. Unfortunately, Flash
-may still be necessary for some websites, and Silverlight is necessary
-for NetFlix. 
 
 
 ** Multimedia
