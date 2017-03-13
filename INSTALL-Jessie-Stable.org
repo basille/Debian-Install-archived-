@@ -363,8 +363,7 @@ And the list of search engines that I keep:
 
 **** Google Earth
 
-But dependencies impossible to reconcile (libcurl3:i386)... Solution:
-get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
+Get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
   : sudo dpkg -i google-earth-stable_current_amd64.deb
   : sudo apt -f install
 
