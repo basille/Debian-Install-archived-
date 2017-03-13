@@ -27,14 +27,9 @@ however, that:
    - [[#multimedia][Multimedia]]
    - [[#office][Office]]
      - [[#fonts][Fonts]]
-     - [[#latex-and-pdf][LaTeX and PDF]]
-     - [[#emacs][Emacs]]
-     - [[#jabref-configuration][JabRef configuration]]
-     - [[#gnote-configuration][Gnote configuration]]
    - [[#other][Other]]
      - [[#google-stuff][Google Stuff]]
      - [[#skype][Skype]]
-     - [[#rockbox-utility][Rockbox utility]]
    - [[#final-stage][Final stage]]
 
 * Installing Debian with the base Gnome desktop
@@ -326,75 +321,13 @@ And the list of search engines that I keep:
 ** Multimedia
 
 - Pictures
-  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick phatch qtpfsgui 
+  : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick phatch qtpfsgui 
 
 - Audio/video
-  : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
-
-  - Plugins Rhythmbox: A [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins][repository for Ubuntu]] provides updated
-    plugins for Rhythmbox. Instructions can be found [[http://xpressubuntu.wordpress.com/2013/10/26/installing-rhythmbox-3-0-plugins-the-easy-way/][here]], and =deb=
-    files can be found [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins/+packages][here]]. In summary, download the file
-    corresponding to the most recent version of Ubuntu (Xenial at the
-    time of writing), and install them using =dpkg=. If all =deb= files are in
-    a dedicated folder:
-
-    : sudo dpkg -i *.deb
-    
-    And if necessary:
-
-    : sudo apt -f install 
-
-    Currently, the following packages work:
-    - Art Display
-    - Equalizer (not up-to-date but works)
-    - Fullscreen Plugin
-    - lLyrics
-    - Open containing folder
-    - Playlist Import Export
-    - Random Album Player
-    - Remember-the-Rhythm
-
-    One very interesting package is not up to date and does not work:
-    - lastfm-queue
-
-    Finally, =rhythmbox-plugins= also provides Cover Art/Search,
-    Internet Radios, Replay Gain and other potentially interesting
-    plugins, and =rhythmbox-plugin-alternative-toolbar= gives a
-    simplified and enhanced user interface.
+  : sudo apt install easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
 
 - Leisure
   : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
-
-# Slowmo : http://slowmovideo.granjow.net/
-# Récupérer package for Ubuntu Raring
-# Dépendances :
-# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
-# (attention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
-# Puis
-# $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
-
-# Fichiers RAW
-
-# ## DCRAW 9.16 (version courante)
-# sudo aptitude install libjasper-dev libjpeg8-dev liblcms1-dev liblcms2-dev
-# sudo ldconfig
-# mkdir dcraw
-# cd dcraw
-# wget http://www.cybercom.net/~dcoffin/dcraw/dcraw.c
-# gcc -o dcraw -O4 dcraw.c -lm -ljasper -ljpeg -llcms
-# sudo mv dcraw /usr/bin
-# cd ..
-# rm -R dcraw
-
-# ## Vignettes
-# sudo aptitude install ufraw ufraw-batch gimp-dcraw
-# sudo nano /usr/share/thumbnailers/raw.thumbnailer
-# Plus nécessaire :
-# $ sudo aptitude install libopenrawgnome1
-
-# [Thumbnailer Entry]
-# Exec=/usr/bin/ufraw-batch --embedded-image --out-type=png --size=%s %u --overwrite --silent --output=%o
-# MimeType=image/x-3fr;image/x-adobe-dng;image/x-arw;image/x-bay;image/x-canon-cr2;image/x-canon-crw;image/x-cap;image/x-cr2;image/x-crw;image/x-dcr;image/x-dcraw;image/x-dcs;image/x-dng;image/x-drf;image/x-eip;image/x-erf;image/x-fff;image/x-fuji-raf;image/x-iiq;image/x-k25;image/x-kdc;image/x-mef;image/x-minolta-mrw;image/x-mos;image/x-mrw;image/x-nef;image/x-nikon-nef;image/x-nrw;image/x-olympus-orf;image/x-orf;image/x-panasonic-raw;image /x-pef;image/x-pentax-pef;image/x-ptx;image/x-pxn;image/x-r3d;image/x-raf;image/x-raw;image/x-rw2;image/x-rwl;image/x-rwz;image/x-sigma-x3f;image/x-sony-arw;image/x-sony-sr2;image/x-sony-srf;image/x-sr2;image/x-srf;image/x-x3f;
 
 
 ** Office
@@ -415,100 +348,11 @@ And the list of search engines that I keep:
 
   : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
 
-- Use =gnome-tweak-tool= to change Monospace font to Hack Regular 11.
 - [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS fonts) : Carlito and
   Caladea. Once installed, in LibreOffice: Options > Fonts, check
   'Apply replacement table', and add a replacement rule for each
   (Calibri -> Carlito, Cambria -> Caladea). Leave everything unchecked
   (Always and screen only).
-
-
-*** LaTeX and PDF
-
-  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
-
-Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
-=texlive-full=; =pdfmanipulate= comes with =calibre=.
-
-- Adobe Reader (in dmo)
-  : sudo aptitude install acroread:i386
-
-- Link folder of main BibTeX file to the Tex install. First check
-  with:
-  : kpsewhich -show-path=.bib
-  It should include
-  =/home/<user>/.texlive2016/texmf-var/bibtex/bib//=. The trick is
-  then to create this path as a link to the main bibliographic
-  directory. For instance:
-  : mkdir -p ~/.texlive2016/texmf-var/bibtex/bib
-  : ln -s ~/Work/Biblio/ ~/.texlive2016/texmf-var/bibtex/bib
-- Install a package (e.g. =moderncv=)
-  : sudo nano /etc/texmf/texmf.d/03local.cnf
-  #+BEGIN_QUOTE
-  : TEXMFHOME = ~/.texlive2016/texmf
-  #+END_QUOTE
-  : sudo update-texmf
-  Check with:
-  : kpsewhich --var-value TEXMFHOME
-  Copy packages in =~/.texlive2016/texmf/tex/latex/= and complete
-  install when necessary, e.g.:
-  : latex moderntimeline.ins
-  : latex moderntimeline.dtx
-- Install a font: copy the font in
-  =~/.texlive2016.d/texmf/fonts/truetype/=, then update the TeX index:
-  : sudo texhash
-
-
-*** Emacs
-
-  : sudo aptitude install emacs25 libpoppler-glib-dev
-
-[[https://github.com/basille/.emacs.d][Configuration via Git]]:
-  : git clone git@github.com:basille/.emacs.d ~/.emacs.d/
-  : cp ~/.emacs.d/emacs.Xresources ~/.Xresources
-  : xrdb -merge ~/.Xresources
-
-And load Emacs, potentially several times until all packages are
-installed.
-
-
-*** JabRef configuration
-
-Debian recently integrated the 3.x series in the official
-repositories, with JabRef 3.6 available for Stretch and 3.8 for Sid at
-the time of writing (Dec 22 2016).
-
-In Options > Preferences:
-- Import preferences (=JabRef-Pref-20161206.xml=). Should be enough, but
-  just in case, check the following.
-- Keep English as language.
-- External programs: Use =/home/mathieu/Work/biblio/PDF/= as main file
-  folder.
-- Advanced > Class name: "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-  for GTK look & feel.
-
-Finally, install Zotero and JabFox add-ons for Firefox, and then
-adjust JabFox and JabRef preferences:
-- Create a script to correctly catch the call:
-  : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
-  : sudo chmod +x /usr/share/java/jabref.sh
-- JabFox: Adjust the path to the JabRef script above
-  ('extensions.@jabfox.jabRefPath' preference of Firefox);
-- JabFox: Export format to BibTeX;
-- JabRef: Activate "Remote operation" under the Advanced tab.
-
-
-*** Gnote configuration
-
-- +Synchronization using WebDav seems really complicated to set up; one solution is to use ownCloud client to sync a =Gnote= folder localy, and then configure it in Gnote Preferences > Synchronization using Local folder as a service (and check the Automatic sync every 10
-  minutes).+
-  - Synchronization seems to cause many crashes of Gnote… Hence simply
-    copying the note folder (=~/.local/share/gnote=) should be enough.
-- Other preferences:
-  - General: Always open notes in new window
-  - Plugins: Enable 'Export to HTML' and 'Table of contents'.
-- Using =gnome-tweak-tool=, add Gnote to the list of Startup
-  Applications.
 
 
 ** Other
@@ -531,12 +375,6 @@ get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Go
   : sudo apt -f install
 
 
-**** Google Chrome
-
-Add Google Chrome repository (sources.list + preferences), then:
-  : sudo apt install google-chrome-stable
-
-
 *** Skype
 
 At last, Microsoft now provides a decent version of Skype for Linux
@@ -552,18 +390,6 @@ the 'legacy' version (it's called "Skype for Linux" and the binary is
 
 Note that alternatives exist, such as [[https://github.com/stanfieldr/ghetto-skype][Ghetto Skype]] (which does not
 currently provide video calls).
-
-
-*** Rockbox utility
-
-- Download [[http://www.rockbox.org/download/][Rockbox utility]]
-- Unzip file, and copy RockboxUtility in =/usr/local/bin/=:
-  : tar xvjf RockboxUtility-v1.4.0-64bit.tar.bz2
-  : sudo mv RockboxUtility-v1.4.0-64bit/RockboxUtility /usr/local/bin/rockbox
-  : sudo chmod 755 /usr/local/bin/rockbox 
-  : rm -R RockboxUtility-v1.4.0-64bit
-- Launch =rockbox=
-- Install Ambiance theme (activate icons).
 
 
 ** Final stage
