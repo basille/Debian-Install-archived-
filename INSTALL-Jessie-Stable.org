@@ -324,7 +324,7 @@ And the list of search engines that I keep:
   : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick phatch qtpfsgui 
 
 - Audio/video
-  : sudo apt install easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
+  : sudo apt install easytag flac gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly soundconverter devede mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain
 
 - Leisure
   : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
@@ -332,7 +332,7 @@ And the list of search engines that I keep:
 
 ** Office
 
-  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
+  : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
 
 - Need to remove all links to French dictionaries:
   : sudo rm /usr/share/hunspell/fr_*
@@ -346,7 +346,7 @@ And the list of search engines that I keep:
 
 *** Fonts
 
-  : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea fonts-hack-ttf ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
+  : sudo apt install fonts-arphic-ukai fonts-arphic-uming fonts-arphic-gkai00mp fonts-arphic-gbsn00lp fonts-arphic-bkai00mp fonts-arphic-bsmi00lp fonts-crosextra-carlito fonts-crosextra-caladea ttf-mscorefonts-installer ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk unifont
 
 - [[https://wiki.debian.org/SubstitutingCalibriAndCambriaFonts][Alternatives for Calibri/Cambria]] (MS fonts) : Carlito and
   Caladea. Once installed, in LibreOffice: Options > Fonts, check
@@ -362,12 +362,6 @@ And the list of search engines that I keep:
 
 
 **** Google Earth
-
-The Debian way:
-  : sudo apt install googleearth-package
-  : make-googleearth-package
-  : sudo dpkg -i googleearth*.deb
-  : sudo apt -f install
 
 But dependencies impossible to reconcile (libcurl3:i386)... Solution:
 get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
