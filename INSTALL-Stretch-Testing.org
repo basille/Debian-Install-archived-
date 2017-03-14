@@ -159,8 +159,8 @@ Legacy boot) and follow the instructions. General guidelines:
 ** Terminal setup
 
 - Bash configuration:
-  : sudo nano /etc/bash.bashrc
-  - *Autocompletion:* uncomment the following lines:
+  : nano /.bashrc
+  - *Autocompletion:* check that following lines are uncommented:
   #+BEGIN_QUOTE
   : if ! shopt -oq posix; then
   :   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -177,6 +177,9 @@ Legacy boot) and follow the instructions. General guidelines:
   : 
   : # Manpages with colors
   : export MANPAGER="/usr/bin/most -s"
+  : 
+  : # Alias ls to have colors and directories before files 
+  : alias ls='ls --color=auto --group-directories-first'
   : 
   : # Alias upgrade & upgrade-full
   : alias upgrade='sudo apt update && sudo apt upgrade'
