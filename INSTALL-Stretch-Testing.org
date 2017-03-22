@@ -846,13 +846,16 @@ In Options > Preferences:
 
 Finally, install Zotero and JabFox add-ons for Firefox, and then
 adjust JabFox and JabRef preferences:
-- Create a script to correctly catch the call:
-  : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
-  : sudo chmod +x /usr/share/java/jabref.sh
-- JabFox: Adjust the path to the JabRef script above
-  ('extensions.@jabfox.jabRefPath' preference of Firefox);
-- JabFox: Export format to BibTeX;
-- JabRef: Activate "Remote operation" under the Advanced tab.
+# - Create a script to correctly catch the call:
+#   : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
+#   : sudo chmod +x /usr/share/java/jabref.sh
+# - JabFox: Adjust the path to the JabRef script above
+#   ('extensions.@jabfox.jabRefPath' preference of Firefox);
+- JabFox: Adjust the path to JabRef launcher, usually
+  =/usr/bin/jabref= ('extensions.@jabfox.jabRefPath' preference of
+  Firefox); Export format to BibTeX;
+- JabRef: Activate "Remote operation" under the Advanced tab (port
+  6050).
 
 
 *** Gnote configuration
