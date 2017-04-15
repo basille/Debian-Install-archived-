@@ -33,7 +33,7 @@ mind, however, that:
    - [[#gnome-extensions][Gnome extensions]]
    - [[#web][Web]]
      - [[#firefox][Firefox]]
-     - [[#thunderbird-icedove][Thunderbird (Icedove).]]
+     - [[#thunderbird][Thunderbird]]
      - [[#owncloud][ownCloud]]
      - [[#others][Others]]
    - [[#internet-admin][Internet admin]]
@@ -466,7 +466,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 ** Web
 
-  : sudo apt install firefox icedove iceowl-extension enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
+  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
 
 *** Firefox
 
@@ -562,10 +562,10 @@ general system update):
   : sudo apt install flashplayer-mozilla flashplayer-chromium
 
 
-*** Thunderbird (Icedove).
+*** Thunderbird
 
 - From a previous installation, simply copy the content of the former
-  profile into the default profile folder in =~/.icedove=.
+  profile into the default profile folder in =~/.thunderbird=.
 
 - Enigmail (needs version >= 2.07):
   Then change Gnome settings for the passphrase:
@@ -585,6 +585,39 @@ general system update):
   : gpg -K
   Note that there is a bug with Enigmail 1.9.6-1 (which doesn't
   recognize gpg); [[https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1471698.html][fixed in 1.9.6-2]]:
+
+Here is the full list of add-ons that I normally install:
+- Essential add-ons:
+  - CardBook
+  - Enigmail
+  - HTitle
+  - Lightning
+  - Show InOut
+  - Virtual Identity
+- Appearance:
+  - Allow HTML Temp
+  - Calendar Tweaks
+  - CompactHeader
+  - Display Mail User Agent
+  - GNOME-Thunderbird (theme Adwaita)
+  - GNotifier
+  - Manually sort folders
+  - QuickFolders
+  - Toolbar Buttons
+- Email content and display:
+  - LookOut (fix version)
+  - Image Zoom
+  - Quote Colors
+- Email editing:
+  - NestedQuote Remover
+  - Send Later
+- Utilies:
+  - Copy Folder
+  - DKIM Verifier
+  - Signature Switch
+  - ownCloud for FileLink
+  - Provider for Google Calendar
+  - Remove Duplicate Messages (Alternate)
 
 
 *** ownCloud
