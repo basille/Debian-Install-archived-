@@ -410,7 +410,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy redshift-gtk subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper elinks espeak fortune git gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree unetbootin units unrar virtualbox wakeonlan
 
 
 ** Gnome extensions
