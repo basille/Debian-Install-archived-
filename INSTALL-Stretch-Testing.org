@@ -447,6 +447,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 - o TopIcons Plus
 - x User Themes
 - x Window List
+- o Window Corner Preview
 - o windowNavigator
 - x Workspace Indicator
 - x workspaceAltTab (outdated)
