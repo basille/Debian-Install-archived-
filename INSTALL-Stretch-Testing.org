@@ -285,7 +285,7 @@ Legacy boot) and follow the instructions. General guidelines:
 ** APT and upgrade
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
-  : sudo cp sources.list.stretch-testing /etc/apt/sources.list
+  : sudo rsync -rt sources.list-Stretch-Testing/ /etc/apt/
   : sudo cp preferences.stretch-testing /etc/apt/preferences
 - Avoid downloading translation indexes:
   : sudo nano /etc/apt/apt.conf.d/apt.conf

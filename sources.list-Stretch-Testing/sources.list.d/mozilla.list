@@ -1,0 +1,15 @@
+## ======================================================= ##
+##                                                         ##
+##                          MOZILLA                        ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## http://mozilla.debian.net/                              ##
+## ======================================================= ##
+## Note on Firefox versions:                               ##
+## 'ESR' is in all Debian releases; 'release' is in Debian ##
+## Sid; 'beta' is in Debian Experimental; 'aurora' is in   ##
+## mozilla.debian.net.                                     ##
+## Backport of 'release' are also available for Debian     ##
+## Jessie.                                                 ##
+## ======================================================= ##

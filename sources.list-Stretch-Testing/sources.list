@@ -1,0 +1,44 @@
+## ======================================================= ##
+##                                                         ##
+##                 OFFICIAL DEBIAN SERVERS                 ##
+##                                                         ##
+## ======================================================= ##
+
+## Jessie (stable)
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+## Jessie security (stable)
+deb http://security.debian.org/ jessie/updates main contrib non-free
+#deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+## Jessie updates (stable)
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+
+## Jessie proposed-updates (stable)
+deb http://ftp.us.debian.org/debian/ jessie-proposed-updates main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ jessie-proposed-updates main contrib non-free
+
+## Jessie backports (stable)
+deb http://ftp.us.debian.org/debian jessie-backports main contrib non-free
+
+## Stretch (testing)
+deb http://ftp.us.debian.org/debian/ stretch main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free
+
+## Stretch security (testing)
+deb http://security.debian.org/ stretch/updates main contrib non-free
+#deb-src http://security.debian.org/ stretch/updates main contrib non-free
+
+## Stretch updates (testing)
+deb http://ftp.us.debian.org/debian/ stretch-updates main
+#deb-src http://ftp.us.debian.org/debian/ stretch-updates main
+
+## Sid
+deb http://ftp.us.debian.org/debian/ sid main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ sid main contrib non-free
+
+## Experimental
+deb http://ftp.us.debian.org/debian/ experimental main contrib non-free
+# deb-src http://ftp.us.debian.org/debian/ experimental main contrib non-free

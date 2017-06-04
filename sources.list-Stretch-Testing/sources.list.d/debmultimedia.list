@@ -1,0 +1,23 @@
+## ======================================================= ##
+##                                                         ##
+##                DEB-MULTIMEDIA (MARILLAT)                ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## http://www.deb-multimedia.org/                          ##
+## ======================================================= ##
+## Key:                                                    ##
+## $ sudo apt install deb-multimedia-keyring               ##
+## ======================================================= ##
+
+## Jessie multimedia (stable)
+deb http://www.deb-multimedia.org jessie main non-free
+
+## Stretch multimedia (testing)
+deb http://www.deb-multimedia.org stretch main non-free
+
+## Sid multimedia
+deb http://www.deb-multimedia.org sid main non-free
+
+## Experimental multimedia
+deb http://www.deb-multimedia.org experimental main

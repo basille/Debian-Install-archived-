@@ -1,0 +1,17 @@
+## ======================================================= ##
+##                                                         ##
+##                  PIPELIGHT (SILVERLIGHT)                ##
+##                                                         ##
+## ======================================================= ##
+## URL:
+## http://pipelight.net/cms/install/installation-debian.html
+## ======================================================= ##
+## Key:
+## $ wget --quiet -O - http://repos.fds-team.de/Release.key | sudo apt-key add -
+## ======================================================= ##
+## Note on Pipelight versions:
+## Packages are available for Jessie, Stretch and Sid.
+## ======================================================= ##
+
+deb http://repos.fds-team.de/stable/debian/ stretch main
+#deb http://repos.fds-team.de/stable/debian/ sid main

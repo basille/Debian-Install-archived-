@@ -1,0 +1,13 @@
+## ======================================================= ##
+##                                                         ##
+##                            R                            ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## https://cran.r-project.org/bin/linux/debian/            ##
+## ======================================================= ##
+## Note on R versions:                                     ##
+## The latest stable version of R is available in          ##
+## official Debian Stretch and Sid repositories.           ##
+## Backports are available for Debian Jessie.              ##
+## ======================================================= ##
