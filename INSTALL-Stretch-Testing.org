@@ -418,6 +418,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 - o Auto Move Windows
 - o BackSlide
 - o Disconnect Wifi
+- o [[https://extensions.gnome.org/extension/1005/focus-my-window/][Focus my window]]
 - x Gnote/Tomboy Integration (outdated)
 - x gTile (outdated)
 - o Hibernate Status Button
