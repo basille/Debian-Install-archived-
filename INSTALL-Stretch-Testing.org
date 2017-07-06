@@ -857,30 +857,31 @@ installed.
 *** JabRef configuration
 
 Debian recently integrated the 3.x series in the official
-repositories, with JabRef 3.6 available for Stretch and 3.8 for Sid at
-the time of writing (Dec 22 2016).
+repositories, with JabRef 3.8 now available for Stretch (July 2017).
 
 In Options > Preferences:
-- Import preferences (=JabRef-Pref-20161206.xml=). Should be enough, but
-  just in case, check the following.
-- Keep English as language.
-- External programs: Use =/home/mathieu/Work/biblio/PDF/= as main file
-  folder.
-- Advanced > Class name: "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-  for GTK look & feel.
+- Import preferences (=jabref-preferences.xml=). Should be enough, but
+  just in case, check the following:
+- In General: check owner name and English as language;
+- In File: check the main file directory (currently
+  =/home/mathieu/Work/biblio/PDF/=);
+- In Appearance: "Use other look and feel", and set up the Class name
+  to: =com.sun.java.swing.plaf.gtk.GTKLookAndFeel= for GTK look &
+  feel;
+- In BibTeX key generator: check the different key patterns;
+- In Advanced: activate "Listen for remote operation on port:" 6050
+  (for use with JabFox).
 
-Finally, install Zotero and JabFox add-ons for Firefox, and then
-adjust JabFox and JabRef preferences:
+Finally, install [[https://www.zotero.org/download/][Zotero]] and [[https://addons.mozilla.org/en-US/firefox/addon/jabfox/][JabFox]] add-ons for Firefox, and then
+adjust JabFox preferences:
 # - Create a script to correctly catch the call:
 #   : echo -e '#!/bin/bash\njava -jar /usr/share/java/jabref.jar "$@"' | sudo tee /usr/share/java/jabref.sh
 #   : sudo chmod +x /usr/share/java/jabref.sh
 # - JabFox: Adjust the path to the JabRef script above
 #   ('extensions.@jabfox.jabRefPath' preference of Firefox);
-- JabFox: Adjust the path to JabRef launcher, usually
-  =/usr/bin/jabref= ('extensions.@jabfox.jabRefPath' preference of
-  Firefox); Export format to BibTeX;
-- JabRef: Activate "Remote operation" under the Advanced tab (port
-  6050).
+- Adjust the path to JabRef launcher, usually =/usr/bin/jabref=
+  ('extensions.@jabfox.jabRefPath' preference of Firefox);
+- Export format to BibTeX.
 
 
 *** Gnote configuration
