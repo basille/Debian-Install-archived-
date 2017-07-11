@@ -329,9 +329,15 @@ Legacy boot) and follow the instructions. General guidelines:
   : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
   : sudo update-initramfs -u -k all
 - Bios update: As of 2017-05-23, the latest BIOS available is 1.4.17
-  (available [[https://downloads.dell.com/FOLDER04325565M/1/XPS_9350_1.4.17.exe][here]]). Download and store on a USB flash drive, boot on
-  it (=F12=), and follow instructions. To check current version of
-  BIOS:
+  (available [[https://downloads.dell.com/FOLDER04325565M/1/XPS_9350_1.4.17.exe][here]]), with signatures: 
+  : md5sum XPS_9350_1.4.17.exe
+  : f0bbf7c2bf7945923a70b61d7498acd2  XPS_9350_1.4.17.exe
+  : sha1sum XPS_9350_1.4.17.exe
+  :  a37feb837ac3e9619a729105a868a2d4a4d71eff  XPS_9350_1.4.17.exe
+  : sha256sum XPS_9350_1.4.17.exe 
+  : 4f8d14538576778225ad627e59ef2b700a005898b5e4856e3d75fe54b9059475  XPS_9350_1.4.17.exe
+  Download and store on a USB flash drive, boot on it (=F12=), and
+  follow instructions. To check current version of BIOS:
   : sudo dmidecode | less
 - Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
   Firmware Service (LVFS)):
