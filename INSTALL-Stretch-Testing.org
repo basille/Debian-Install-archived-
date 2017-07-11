@@ -328,6 +328,13 @@ Legacy boot) and follow the instructions. General guidelines:
   : cd
   : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
   : sudo update-initramfs -u -k all
+- Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
+  Firmware Service (LVFS)):
+  : sudo apt install fwupd
+  : sudo fwupdmgr get-devices
+  : sudo fwupdmgr refresh
+  : sudo fwupdmgr get-updates
+  : sudo fwupdmgr update
 - Keyboard set as PC 105 keys:
   :sudo nano /etc/default/keyboard
   and add as first line:
