@@ -336,8 +336,9 @@ Legacy boot) and follow the instructions. General guidelines:
   :  a37feb837ac3e9619a729105a868a2d4a4d71eff  XPS_9350_1.4.17.exe
   : sha256sum XPS_9350_1.4.17.exe 
   : 4f8d14538576778225ad627e59ef2b700a005898b5e4856e3d75fe54b9059475  XPS_9350_1.4.17.exe
-  Download and store on a USB flash drive, boot on it (=F12=), and
-  follow instructions. To check current version of BIOS:
+  Download and store on a USB flash drive, reboot, hit =F12=, check
+  "BIOS Flash update", and follow instructions. To check current
+  version of BIOS:
   : sudo dmidecode | less
 - Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
   Firmware Service (LVFS)):
