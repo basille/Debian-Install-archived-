@@ -185,6 +185,9 @@ Legacy boot) and follow the instructions. General guidelines:
   : alias upgrade='sudo apt update && sudo apt upgrade'
   : alias upgrade-full='sudo apt update && sudo apt full-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove'
   :
+  : # Alias to restart Emacs daemon
+  : alias emacs-restart="systemctl --user restart emacs"
+  : 
   : # For Tilix and Powerline
   : # https://gnunn1.github.io/tilix-web/manual/vteconfig/
   : if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
