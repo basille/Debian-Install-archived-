@@ -656,7 +656,7 @@ to the ownCloud root folder.
 
 ** Internet admin
 
-  : sudo apt install cifs-utils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
+  : sudo apt install cifs-utils dnsutils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
 
 
 *** VPN
