@@ -45,6 +45,7 @@ mind, however, that:
      - [[#revelation][Revelation]]
    - [[#multimedia][Multimedia]]
    - [[#office][Office]]
+     - [[#hugo][Hugo]]
      - [[#fonts][Fonts]]
      - [[#latex-and-pdf][LaTeX and PDF]]
      - [[#emacs][Emacs]]
@@ -441,46 +442,46 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
-- x Alt-Alt+Tab (outdated)
+- ✓ Alt-Alt+Tab
 - x AlternateTab
 - x Applications Menu
-- o Auto Move Windows
-- o BackSlide
-- o Disconnect Wifi
-- o [[https://extensions.gnome.org/extension/1005/focus-my-window/][Focus my window]]
+- ✓ Auto Move Windows
+- ✓ BackSlide
+- ✓ Disconnect Wifi
+- ✓ [[https://extensions.gnome.org/extension/1005/focus-my-window/][Focus my window]]
 - x Gnote/Tomboy Integration (outdated)
-- x gTile (outdated)
-- o Hibernate Status Button
+- ✓ gTile
+- ✓ Hibernate Status Button
 - x Launch new instance
-- o Media player indicator (reinstall from source after media install)
+- ✓ Media player indicator (reinstall from source after media install)
   Outdated on official GNOME respository, but available on [[https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer][GitHub]]: 
   : git clone https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git
   : cd gnome-shell-extensions-mediaplayer/
   : ./autogen.sh
   : make install-zip
   Then restart GNOME Shell (Alt-F2 + r)
-- x Modern Calc (outdated)
+- x Modern Calc
 - x Native Window Placement
-- o Nothing to say
+- ✓ Nothing to say
   Change shortcut to Super+F1:
  : dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '["<Super>F1"]'
-- o OpenWeather
+- ✓ OpenWeather
 - x Places Status Indicator
-- o Refresh Wifi Connections
+- ✓ Refresh Wifi Connections
 - x Removable Drive Menu
-- o Remove Dropdown Arrows
+- ✓ Remove Dropdown Arrows
 - x Return to Monitor (outdated)
 - x Screenshot Window Sizer
-- o SincroDirs
-- o Skype Integration
-- o Sound Input & Output Device Chooser
-- o Super+Tab Launcher
-- o Suspend Button
-- o TopIcons Plus
+- ✓ SincroDirs
+- ✓ Skype Integration
+- ✓ Sound Input & Output Device Chooser
+- ✓ Super+Tab Launcher
+- ✓ Suspend Button
+- ✓ TopIcons Plus
 - x User Themes
 - x Window List
-- o Window Corner Preview
-- o windowNavigator
+- ✓ Window Corner Preview
+- ✓ windowNavigator
 - x Workspace Indicator
 - x workspaceAltTab (outdated)
 
@@ -811,7 +812,6 @@ And reduce permissions on it:
 ** Office
 
   : sudo apt install abiword aspell aspell-fr aspell-en gnote homebank hunspell hunspell-en-ca hunspell-en-us hunspell-fr inkscape jabref libreoffice-gnome libreoffice-gtk libreoffice-pdfimport libreoffice-style-breeze libreoffice-style-oxygen libreoffice-style-sifr myspell-en-gb pandoc pandoc-citeproc tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra
-  : sudo apt install -t unstable hugo
 
 - Need to remove all links to French dictionaries:
   : sudo rm /usr/share/hunspell/fr_*
@@ -821,6 +821,14 @@ And reduce permissions on it:
   View) to Breeze, and possibly Show Icons in menus.
 - Preferences for HomeBank are stored in =~/.config/homebank=. It's
   probably safe to simply copy this folder.
+
+
+*** Hugo
+
+  : cd Downloads/
+  : wget https://github.com/gohugoio/hugo/releases/download/v0.27.1/hugo_0.27.1_Linux-64bit.deb
+  : sudo dpkg -i hugo_0.27.1_Linux-64bit.deb
+  : hugo version
 
 
 *** Fonts
