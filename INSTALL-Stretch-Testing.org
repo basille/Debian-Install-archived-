@@ -417,8 +417,9 @@ Legacy boot) and follow the instructions. General guidelines:
   : sudo cp keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
   Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
   international with dead keys)" as Input Source in Settings > Region
-  & Language (for French, add "French (alternative, Latin-9
-  only)"). Note that the Menu button doesn't seem to work in Nautilus.
+  & Language (for French, add "French (alternative, Latin-9 only)";
+  for Greek alphabet, add "Greek (extended)"). Note that the Menu
+  button doesn't seem to work in Nautilus.
 
 
 * Installing a full system
@@ -460,7 +461,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
   : ./autogen.sh
   : make install-zip
   Then restart GNOME Shell (Alt-F2 + r)
-- x Modern Calc
+- ✓ Modern Calc
 - x Native Window Placement
 - ✓ Nothing to say
   Change shortcut to Super+F1:
