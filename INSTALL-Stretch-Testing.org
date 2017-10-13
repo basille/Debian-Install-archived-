@@ -34,13 +34,13 @@ mind, however, that:
    - [[#web][Web]]
      - [[#firefox][Firefox]]
      - [[#thunderbird][Thunderbird]]
-     - [[#owncloud][ownCloud]]
+     - [[#nextcloud-integration][NextCloud integration]]
      - [[#others][Others]]
    - [[#internet-admin][Internet admin]]
      - [[#vpn][VPN]]
      - [[#ssh][SSH]]
      - [[#gftp][Gftp]]
-     - [[#owncloud-and-dropbox][ownCloud and Dropbox]]
+     - [[#clients-for-nextcloud-and-dropbox][Clients for NextCloud and Dropbox]]
      - [[#windows-share][Windows share]]
      - [[#revelation][Revelation]]
    - [[#multimedia][Multimedia]]
@@ -643,15 +643,15 @@ Here is the full list of add-ons that I normally install:
   - Remove Duplicate Messages (Alternate)
 
 
-*** ownCloud
+*** NextCloud integration
 
-In Settings > Online accounts, add a new ownCloud account. Simply fill
-in the server address (where ownCloud is installed, not one of the
-scripts for CalDav/CardDav), username and password, and keep it for
-Calendar, Contacts, Documents and Files. Now events should appear in
-the calendar in the top bar, contacts should be synchronized with the
-Contacts application, and Files (Nautilus) should provide a shortcut
-to the ownCloud root folder.
+In Settings > Online accounts, add a new ownCloud account (works for
+NextCloud). Simply fill in the server address (where NextCloud is
+installed, not one of the scripts for CalDav/CardDav), username and
+password, and keep it for Calendar, Contacts, Documents and Files. Now
+events should appear in the calendar in the top bar, contacts should
+be synchronized with the Contacts application, and Files (Nautilus)
+should provide a shortcut to the NextCloud root folder.
 
 
 *** Others
@@ -688,13 +688,21 @@ Simply copy the =bookmarks= file from the =.gftp= folder in =/home/= (it
 contains all bookmarks and passwords).
 
 
-*** ownCloud and Dropbox
+*** Clients for NextCloud and Dropbox
 
-  : sudo aptitude install owncloud-client nautilus-owncloud nautilus-dropbox
+  : sudo aptitude install nautilus-owncloud nautilus-dropbox
 
-For ownCloud, configure the client: run =owncloud=, fill in the proper
-credentials, and choose what to sync and where (=.owncloud= is a good
-choice if it concerns only files for sync, and not documents per se).
+For NextCloud, install the client: 
+
+  : cd Downloads
+  : wget https://download.nextcloud.com/desktop/releases/Linux/Nextcloud-2.3.2-x86_64.AppImage
+  : sudo mkdir /usr/local/lib/nextcloud/
+  : sudo mv Nextcloud-2.3.2-x86_64.AppImage /usr/local/lib/nextcloud/
+  : sudo ln -s /usr/local/lib/nextcloud/Nextcloud-2.3.2-x86_64.AppImage /usr/local/bin/nextcloud
+
+Then run =nextcloud=, fill in the proper credentials, choose what
+to sync and where (in =Public= seems like a natural choice), and check
+'Launch on System Startup' in the General tab.
 
 For DropBox, install the proprietary deamon:
 
