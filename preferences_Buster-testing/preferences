@@ -103,3 +103,13 @@ Pin-Priority: 903
 Package: *
 Pin: origin qgis.org
 Pin-Priority: 904
+
+## ======================================================= ##
+##                                                         ##
+##                         ETCHER                          ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin dl.bintray.com
+Pin-Priority: 905
