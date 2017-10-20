@@ -172,9 +172,6 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
   - *Other:* add the following at the end of the file:
   #+BEGIN_QUOTE
-  : # Ctrl-N keeps current directory
-  : export PS1='\[$(__vte_ps1)\]'$PS1
-  : 
   : # Manpages with colors
   : export MANPAGER="/usr/bin/most -s"
   : 
@@ -281,10 +278,10 @@ Legacy boot) and follow the instructions. General guidelines:
     sudo nano /etc/sysctl.conf
   #+END_SRC
   Add at the end of the file:
-#+BEGIN_QUOTE
+  #+BEGIN_QUOTE
   : # SWAP after 99% RAM used 
   : vm.swappiness = 1
-#+END_QUOTE
+  #+END_QUOTE
 - Date in the top bar with time, and calendar displaying the week
   number:
   #+BEGIN_SRC sh
