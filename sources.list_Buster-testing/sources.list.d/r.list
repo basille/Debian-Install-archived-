@@ -8,6 +8,6 @@
 ## ======================================================= ##
 ## Note on R versions:                                     ##
 ## The latest stable version of R is available in          ##
-## official Debian Stretch and Sid repositories.           ##
-## Backports are available for Debian Jessie.              ##
+## official Debian Buster and Sid repositories.            ##
+## Backports are available for Debian Jessie and Stretch.  ##
 ## ======================================================= ##

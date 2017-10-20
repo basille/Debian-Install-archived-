@@ -5,23 +5,23 @@
 ## ======================================================= ##
 
 Package: *
-Pin: release o=Debian,n=jessie
-Pin-Priority: 800
-
-Package: *
-Pin: release o=Debian,n=jessie-updates
-Pin-Priority: 800
-
-Package: *
-Pin: release o=Debian,n=jessie-proposed-updates
-Pin-Priority: 800
-
-Package: *
 Pin: release o=Debian,n=stretch
-Pin-Priority: 900
+Pin-Priority: 800
 
 Package: *
 Pin: release o=Debian,n=stretch-updates
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,n=stretch-proposed-updates
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,n=buster
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Debian,n=buster-updates
 Pin-Priority: 900
 
 Package: *
@@ -64,10 +64,6 @@ Pin-Priority: 1
 ##                                                         ##
 ## ======================================================= ##
 
-#Package: *
-#Pin: origin mozilla.debian.net
-#Pin-Priority: 901
-
 Package : firefox
 Pin : release o=Debian,a=unstable,l=Debian
 Pin-Priority : 901
@@ -107,15 +103,3 @@ Pin-Priority: 903
 Package: *
 Pin: origin qgis.org
 Pin-Priority: 904
-
-
-
-## ======================================================= ##
-##                                                         ##
-##                  PIPELIGHT (SILVERLIGHT)                ##
-##                                                         ##
-## ======================================================= ##
-
-Package: *
-Pin: origin repos.fds-team.de
-Pin-Priority: 905

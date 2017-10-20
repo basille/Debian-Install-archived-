@@ -15,13 +15,13 @@
 ## ======================================================= ##
 
 ## Latest release
-deb http://qgis.org/debian stretch main
-#deb-src http://qgis.org/debian stretch main
+deb http://qgis.org/debian sid main
+#deb-src http://qgis.org/debian sid main
 
 ## Long-term release
-#deb http://qgis.org/debian-ltr stretch main
-#deb-src http://qgis.org/debian-ltr stretch main
+#deb http://qgis.org/debian-ltr sid main
+#deb-src http://qgis.org/debian-ltr sid main
 
 ## Development Version
-#deb http://qgis.org/debian-nightly stretch main
-#deb-src http://qgis.org/debian-nightly stretch main
+#deb http://qgis.org/debian-nightly sid main
+#deb-src http://qgis.org/debian-nightly sid main

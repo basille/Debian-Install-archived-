@@ -7,8 +7,7 @@
 ## https://wiki.postgresql.org/wiki/Apt                    ##
 ## ======================================================= ##
 ## Note on PostgreSQL versions:                            ##
-## Debian Wheezy, Jessie and Sid are supported. Stretch    ##
-## (testing) is not.                                       ##
+## Debian Jessie, Stretch, Buster and Sid are supported.   ##
 ## To install latest relase, install meta-packages:        ##
 ## $ sudo apt install postgresql postgresql-contrib postgresql-client
 ## ======================================================= ##
@@ -16,4 +15,4 @@
 ## $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 ## ======================================================= ##
 
-deb http://apt.postgresql.org/pub/repos/apt/ sid-pgdg main
+deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main
