@@ -104,6 +104,8 @@ Package: *
 Pin: origin qgis.org
 Pin-Priority: 904
 
+
+
 ## ======================================================= ##
 ##                                                         ##
 ##                         ETCHER                          ##
@@ -113,3 +115,15 @@ Pin-Priority: 904
 Package: *
 Pin: origin dl.bintray.com
 Pin-Priority: 905
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                          SKYPE                          ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin repo.skype.com
+Pin-Priority: 906
