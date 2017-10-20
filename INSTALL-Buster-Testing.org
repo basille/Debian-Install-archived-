@@ -197,24 +197,29 @@ Legacy boot) and follow the instructions. General guidelines:
   :         . /usr/share/powerline/bindings/bash/powerline.sh
   : fi
   #+END_QUOTE
-- Install Tilix, powerline and most (=man= needs most), and add a
-  missing symlink:
+- Install Tilix, powerline, python-nautilus (for "Open Tilix here" in
+  Nautilus) and most (=man= needs most), and add a missing symlink:
   #+BEGIN_SRC sh
-    sudo apt install tilix python-powerline most
+    sudo apt install tilix python-powerline python-nautilus most
     sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
   #+END_SRC
-  * Tilix configuration (in Window menu > Preferences):
-    * Global: Uncheck Warn when attempting unsafe paste, check
-      Automatically copy text to clipboard when selecting
-    * Appearance: Terminal title style: none, Theme variant: dark
-    * Quake: Hide the titlebar of the window
-    * Shortcuts: Ctrl+Shift+D for Add terminal down; Ctrl+Shift+R
-      for Add terminal right
-    * Profile: Default
-      * General: Terminal bell: Icon
-      * Color: Color scheme: Linux, and add some transparency
-  * 'Open Tilix here...' in Nautilus comes with =python-nautilus= and
-    =libnautilus-extension1a=, which should be there already.
+- Tilix configuration (notably Automatically copy text to clipboard
+  when selecting; dark theme variant; no titlebar for the Quake
+  version; of the window; =Ctrl+Shift+D+ to add terminal down;
+  =Ctrl+Shift+R= to add terminal right):
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+    gsettings set com.gexperts.Tilix.Settings unsafe-paste-alert false
+    gsettings set com.gexperts.Tilix.Settings copy-on-select true
+    gsettings set com.gexperts.Tilix.Settings terminal-title-style 'none'
+    gsettings set com.gexperts.Tilix.Settings theme-variant 'dark'
+    gsettings set com.gexperts.Tilix.Settings quake-hide-headerbar true
+    gsettings set com.gexperts.Tilix.Keybindings session-add-down '<Primary><Shift>d'
+    gsettings set com.gexperts.Tilix.Keybindings session-add-right '<Primary><Shift>r'
+  #+END_SRC
+  * Profile: Default
+    * General: Terminal bell: Icon
+    * Color: Color scheme: Linux, and add some transparency
   * Shortcuts: in Gnome preferences > Keyboard, add two Custom
     shortcuts (at the bottom of the list):
     * Tilix / =tilix= / Super+T
@@ -233,7 +238,10 @@ Legacy boot) and follow the instructions. General guidelines:
 
 *** System settings
 
-- Mouse & Touchpad: Activate =Tap to Click=.
+- Mouse & Touchpad: Activate =Tap to Click=:
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+  #+END_SRC
 - Remove the system beep: Sound > Sound Effects, turn
   off the Alert volume.
 - Keyboard shortcuts:
