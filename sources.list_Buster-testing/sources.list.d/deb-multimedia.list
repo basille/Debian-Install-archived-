@@ -1,0 +1,26 @@
+## ======================================================= ##
+##                                                         ##
+##                DEB-MULTIMEDIA (MARILLAT)                ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## http://www.deb-multimedia.org/                          ##
+## ======================================================= ##
+## Key:                                                    ##
+## $ sudo apt-get install deb-multimedia-keyring -oAcquire::AllowInsecureRepositories=true
+## Or:                                                     ##
+## wget http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+## sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb    ##
+## ======================================================= ##
+
+## Stretch multimedia (stable)
+deb http://www.deb-multimedia.org stretch main non-free
+
+## Buster multimedia (testing)
+deb http://www.deb-multimedia.org buster main non-free
+
+## Sid multimedia
+deb http://www.deb-multimedia.org sid main non-free
+
+## Experimental multimedia
+deb http://www.deb-multimedia.org experimental main

@@ -1,0 +1,27 @@
+## ======================================================= ##
+##                                                         ##
+##                          QGIS                           ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
+## ======================================================= ##
+## Note on QGIS versions:                                  ##
+## The repository provides the latest release, LTR and     ##
+## dev. Debian Jessie, Stretch and Sid are supported.      ##
+## ======================================================= ##
+## Key                                                     ##
+## $ wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+## ======================================================= ##
+
+## Latest release
+deb http://qgis.org/debian stretch main
+#deb-src http://qgis.org/debian stretch main
+
+## Long-term release
+#deb http://qgis.org/debian-ltr stretch main
+#deb-src http://qgis.org/debian-ltr stretch main
+
+## Development Version
+#deb http://qgis.org/debian-nightly stretch main
+#deb-src http://qgis.org/debian-nightly stretch main

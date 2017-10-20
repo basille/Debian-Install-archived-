@@ -1,0 +1,44 @@
+## ======================================================= ##
+##                                                         ##
+##                 OFFICIAL DEBIAN SERVERS                 ##
+##                                                         ##
+## ======================================================= ##
+
+## Stretch (stable)
+deb http://ftp.us.debian.org/debian/ Stretch main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ Stretch main contrib non-free
+
+## Stretch security (stable)
+deb http://security.debian.org/ Stretch/updates main contrib non-free
+#deb-src http://security.debian.org/ Stretch/updates main contrib non-free
+
+## Stretch updates (stable)
+deb http://ftp.us.debian.org/debian/ Stretch-updates main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ Stretch-updates main contrib non-free
+
+## Stretch proposed-updates (stable)
+deb http://ftp.us.debian.org/debian/ Stretch-proposed-updates main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ Stretch-proposed-updates main contrib non-free
+
+## Stretch backports (stable)
+deb http://ftp.us.debian.org/debian Stretch-backports main contrib non-free
+
+## Buster (testing)
+deb http://ftp.us.debian.org/debian/ Buster main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ Buster main contrib non-free
+
+## Buster security (testing)
+deb http://security.debian.org/ Buster/updates main contrib non-free
+#deb-src http://security.debian.org/ Buster/updates main contrib non-free
+
+## Buster updates (testing)
+deb http://ftp.us.debian.org/debian/ Buster-updates main
+#deb-src http://ftp.us.debian.org/debian/ Buster-updates main
+
+## Sid
+deb http://ftp.us.debian.org/debian/ sid main contrib non-free
+#deb-src http://ftp.us.debian.org/debian/ sid main contrib non-free
+
+## Experimental
+deb http://ftp.us.debian.org/debian/ experimental main contrib non-free
+# deb-src http://ftp.us.debian.org/debian/ experimental main contrib non-free
