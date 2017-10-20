@@ -157,7 +157,9 @@ Legacy boot) and follow the instructions. General guidelines:
 ** Terminal setup
 
 - Bash configuration:
-  : nano ~/.bashrc
+  #+BEGIN_SRC sh
+    nano ~/.bashrc
+  #+END_SRC
   - *Autocompletion:* check that following lines are uncommented:
   #+BEGIN_QUOTE
   : if ! shopt -oq posix; then
@@ -200,10 +202,10 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
 - Install Tilix, powerline and most (=man= needs most), and add a
   missing symlink:
-#+BEGIN_SRC sh
-  sudo apt install tilix python-powerline most
-  sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
-#+END_SRC
+  #+BEGIN_SRC sh
+    sudo apt install tilix python-powerline most
+    sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
+  #+END_SRC
   * Tilix configuration (in Window menu > Preferences):
     * Global: Uncheck Warn when attempting unsafe paste, check
       Automatically copy text to clipboard when selecting
@@ -221,7 +223,9 @@ Legacy boot) and follow the instructions. General guidelines:
     * Tilix / =tilix= / Super+T
     * Tilix (Quake mode) / =tilix --quake= / ~
 - Get insulted on errors for password:
-  : sudo visudo
+  #+BEGIN_SRC sh
+    sudo visudo
+  #+END_SRC
   Add this line at the beginning of the file:
   #+BEGIN_QUOTE
   : Defaults        insults
@@ -237,10 +241,10 @@ Legacy boot) and follow the instructions. General guidelines:
   off the Alert volume.
 - Keyboard shortcuts:
   - Disable Hide window and Switch video display:
-#+BEGIN_SRC sh
-  gsettings set org.gnome.desktop.wm.keybindings minimize ['']
-  gsettings set org.gnome.settings-daemon.plugins.media-keys video-out ''
-#+END_SRC
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.desktop.wm.keybindings minimize ['']
+    gsettings set org.gnome.settings-daemon.plugins.media-keys video-out ''
+  #+END_SRC
   - Home folder: =Super+H=
   - Hide all normal windows: =Super+D=
   - Record a short screencast: =Super+R=
@@ -249,16 +253,16 @@ Legacy boot) and follow the instructions. General guidelines:
   - Save a screenshot to Pictures: =Super+P=
   - Lock screen: =Ctrl+Echap=
   - Toggle maximization state: =Super+Return=
-#+BEGIN_SRC sh
-  gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>h'
-  gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screencast '<Super>r'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '<Super>p'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot '<Primary><Super>p'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot '<Primary><Shift><Super>p'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Primary>Escape'
-  gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Return']"
-#+END_SRC
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Super>h'
+    gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
+    gsettings set org.gnome.settings-daemon.plugins.media-keys screencast '<Super>r'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot '<Super>p'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot '<Primary><Super>p'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot '<Primary><Shift><Super>p'
+    gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Primary>Escape'
+    gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Return']"
+  #+END_SRC
 
 *** Others
 
@@ -268,10 +272,14 @@ Legacy boot) and follow the instructions. General guidelines:
   org.gnome.desktop.input-sources).
 - [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
   - =/tmp= in RAM:
-  : sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-  : sudo systemctl enable tmp.mount
+  #+BEGIN_SRC sh
+    sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    sudo systemctl enable tmp.mount
+  #+END_SRC
 - Use only SWAP when 99% of RAM is used:
-  : sudo nano /etc/sysctl.conf
+  #+BEGIN_SRC sh
+    sudo nano /etc/sysctl.conf
+  #+END_SRC
   Add at the end of the file:
   #+BEGIN_QUOTE
   : # SWAP after 99% RAM used 
@@ -279,17 +287,22 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
 - Date in the top bar with time, and calendar displaying the week
   number:
-  : gsettings set org.gnome.desktop.interface clock-show-date true
-  : gsettings set org.gnome.desktop.calendar show-weekdate true
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.desktop.interface clock-show-date true
+    gsettings set org.gnome.desktop.calendar show-weekdate true
+  #+END_SRC
 - Week starting on Monday, not Sunday: [DOESN'T WORK!]
   First check locales:
-  : locale$ locale
-  #+BEGIN_QUOTE
+  #+BEGIN_SRC sh :exports both
+    locale$ locale
+  #+END_SRC
+  #+RESULTS:
   : […]
   : LC_TIME=en_US.UTF-8
-  #+END_QUOTE
   Then edit the corresponding locale (should be =en_US=):
-  : sudo nano /usr/share/i18n/locales/en_US
+  #+BEGIN_SRC sh
+    sudo nano /usr/share/i18n/locales/en_US
+  #+END_SRC
   And add 
   #+BEGIN_QUOTE
   : % Next two lines to have weeks start on Monday:
@@ -302,40 +315,55 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_QUOTE
   (requires to log off from the session)
 - Keep numpad activated between sessions:
-  : gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+  #+END_SRC
 - Disable the sleep button (mapped to Fn+Insert) [doesn't work?]:
-  : gsettings set org.gnome.settings-daemon.plugins.power power-button-action "nothing"
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.settings-daemon.plugins.power power-button-action "nothing"
+  #+END_SRC
 
 
 ** APT and upgrade
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
-  : sudo rsync -rt sources.list-Stretch-Testing/ /etc/apt/
-  : sudo cp preferences.stretch-testing /etc/apt/preferences
+  #+BEGIN_SRC sh
+    sudo rsync -rt sources.list-Stretch-Testing/ /etc/apt/
+    sudo cp preferences.stretch-testing /etc/apt/preferences
+  #+END_SRC
 - Avoid downloading translation indexes:
-  : sudo nano /etc/apt/apt.conf.d/apt.conf
+  #+BEGIN_SRC sh
+    sudo nano /etc/apt/apt.conf.d/apt.conf
+  #+END_SRC
   And add:
   #+BEGIN_QUOTE
   : Acquire::Languages "none";
   #+END_QUOTE
 - Enable the installation of i386 packages:
-  : sudo dpkg --add-architecture i386
+  #+BEGIN_SRC sh
+    sudo dpkg --add-architecture i386
+  #+END_SRC
 - Update the indexes and keys:
-  : sudo apt update
-  : sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring
-  : wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-  : wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
-  : wget --quiet -O - http://repos.fds-team.de/Release.key | sudo apt-key add -
-  : sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
-  : curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
-  : sudo apt install apt-listbugst
+  #+BEGIN_SRC sh
+    sudo apt update
+    sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+    wget --quiet -O - http://repos.fds-team.de/Release.key | sudo apt-key add -
+    sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
+    curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
+    sudo apt install apt-listbugst
+  #+END_SRC
 - Check the preferences (no repository should be left at 500):
-  : sudo apt-cache policy
+  #+BEGIN_SRC sh
+    sudo apt-cache policy
+  #+END_SRC
 - First upgrade
-  : sudo apt upgrade
-  : sudo apt full-upgrade
-  : upgrade-full
-
+  #+BEGIN_SRC sh
+    sudo apt upgrade
+    sudo apt full-upgrade
+    upgrade-full
+  #+END_SRC
 
 
 ** Hardware
