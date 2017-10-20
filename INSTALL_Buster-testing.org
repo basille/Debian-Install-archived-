@@ -319,8 +319,8 @@ Legacy boot) and follow the instructions. General guidelines:
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
   #+BEGIN_SRC sh
-    sudo rsync -rt sources.list-Buster-Testing/ /etc/apt/
-    sudo cp preferences.buster-testing /etc/apt/preferences
+    sudo rsync -rt sources.list_Buster-testing/ /etc/apt/
+    sudo cp preferences_Buster-testing/preferences /etc/apt/
   #+END_SRC
 - Avoid downloading translation indexes:
   #+BEGIN_SRC sh
@@ -340,14 +340,13 @@ Legacy boot) and follow the instructions. General guidelines:
     sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring -oAcquire::AllowInsecureRepositories=true
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
     wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
-    wget --quiet -O - http://repos.fds-team.de/Release.key | sudo apt-key add -
     sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
     curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
     sudo apt install apt-listbugst
   #+END_SRC
 - Check the preferences (no repository should be left at 500):
   #+BEGIN_SRC sh
-    sudo apt-cache policy
+    apt policy
   #+END_SRC
 - First upgrade
   #+BEGIN_SRC sh
