@@ -24,6 +24,7 @@ computer. Keep in mind, however, that:
    - [[#apt-and-upgrade][APT and upgrade]]
    - [[#hardware][Hardware]]
      - [[#specific-dell-latitude-e5430][Specific Dell Latitude E5430]]
+     - [[#specific-dell-xps-13][Specific Dell XPS 13]]
      - [[#all-laptops][All laptops]]
    - [[#internationalization][Internationalization]]
  - [[#installing-a-full-system][Installing a full system]]
@@ -275,58 +276,43 @@ Legacy boot) and follow the instructions. General guidelines:
   #+BEGIN_SRC sh
     gsettings set org.gnome.desktop.input-sources xkb-options "['lv3:ralt_switch']"
   #+END_SRC
-- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
-  - =/tmp= in RAM:
-  #+BEGIN_SRC sh
-    sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-    sudo systemctl enable tmp.mount
-  #+END_SRC
-- Use only SWAP when 99% of RAM is used:
-  #+BEGIN_SRC sh
-    sudo nano /etc/sysctl.conf
-  #+END_SRC
-  Add at the end of the file:
-  #+BEGIN_QUOTE
-  : # SWAP after 99% RAM used 
-  : vm.swappiness = 1
-  #+END_QUOTE
 - Date in the top bar with time, and calendar displaying the week
   number:
   #+BEGIN_SRC sh
     gsettings set org.gnome.desktop.interface clock-show-date true
     gsettings set org.gnome.desktop.calendar show-weekdate true
   #+END_SRC
-- Week starting on Monday, not Sunday: [DOESN'T WORK!]
-  First check locales:
-  #+BEGIN_SRC sh :exports both
-    locale$ locale
-  #+END_SRC
-  #+RESULTS:
-  : […]
-  : LC_TIME=en_US.UTF-8
-  Then edit the corresponding locale (should be =en_US=):
-  #+BEGIN_SRC sh
-    sudo nano /usr/share/i18n/locales/en_US
-  #+END_SRC
-  And add 
-  #+BEGIN_QUOTE
-  : % Next two lines to have weeks start on Monday:
-  : first_weekday   2
-  : first_workday   2
-  #+END_QUOTE
-  After:
-  #+BEGIN_QUOTE
-  : week 7;19971130;1
-  #+END_QUOTE
-  (requires to log off from the session)
-- Keep numpad activated between sessions:
-  #+BEGIN_SRC sh
-    gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
-  #+END_SRC
-- Disable the sleep button (mapped to Fn+Insert) [doesn't work?]:
-  #+BEGIN_SRC sh
-    gsettings set org.gnome.settings-daemon.plugins.power power-button-action "nothing"
-  #+END_SRC
+# - Week starting on Monday, not Sunday: [DOESN'T WORK!]
+#   First check locales:
+#   #+BEGIN_SRC sh :exports both
+#     locale$ locale
+#   #+END_SRC
+#   #+RESULTS:
+#   : […]
+#   : LC_TIME=en_US.UTF-8
+#   Then edit the corresponding locale (should be =en_US=):
+#   #+BEGIN_SRC sh
+#     sudo nano /usr/share/i18n/locales/en_US
+#   #+END_SRC
+#   And add 
+#   #+BEGIN_QUOTE
+#   : % Next two lines to have weeks start on Monday:
+#   : first_weekday   2
+#   : first_workday   2
+#   #+END_QUOTE
+#   After:
+#   #+BEGIN_QUOTE
+#   : week 7;19971130;1
+#   #+END_QUOTE
+#   (requires to log off from the session)
+# - Keep numpad activated between sessions:
+#   #+BEGIN_SRC sh
+#     gsettings set org.gnome.settings-daemon.peripherals.keyboard remember-numlock-state true
+#   #+END_SRC
+# - Disable the sleep button (mapped to Fn+Insert) [doesn't work?]:
+#   #+BEGIN_SRC sh
+#     gsettings set org.gnome.settings-daemon.plugins.power power-button-action "nothing"
+#   #+END_SRC
 
 
 ** APT and upgrade
@@ -385,6 +371,23 @@ Legacy boot) and follow the instructions. General guidelines:
   leave both USB flash drives plugged, and keep the laptop on
   power. After a few minutes, it will reboot again.
 
+*** Specific Dell XPS 13
+
+- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
+  - =/tmp= in RAM:
+  #+BEGIN_SRC sh
+    sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    sudo systemctl enable tmp.mount
+  #+END_SRC
+- Use only SWAP when 99% of RAM is used:
+  #+BEGIN_SRC sh
+    sudo nano /etc/sysctl.conf
+  #+END_SRC
+  Add at the end of the file:
+  #+BEGIN_QUOTE
+  : # SWAP after 99% RAM used 
+  : vm.swappiness = 1
+  #+END_QUOTE
 
 
 *** All laptops
