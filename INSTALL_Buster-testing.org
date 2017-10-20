@@ -23,9 +23,9 @@ computer. Keep in mind, however, that:
      - [[#others][Others]]
    - [[#apt-and-upgrade][APT and upgrade]]
    - [[#hardware][Hardware]]
+     - [[#all-laptops][All laptops]]
      - [[#specific-dell-latitude-e5430][Specific Dell Latitude E5430]]
      - [[#specific-dell-xps-13][Specific Dell XPS 13]]
-     - [[#all-laptops][All laptops]]
    - [[#internationalization][Internationalization]]
  - [[#installing-a-full-system][Installing a full system]]
    - [[#miscellaneous][Miscellaneous]]
@@ -362,82 +362,14 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Hardware
 
-*** Specific Dell Latitude E5430
-
-- To flash the BIOS, download [[http://www.freedos.org/download/download/FD12LITE.zip][FreeDos USB Lite]], extract it on a USB
-  flash drive (e.g. using Etcher). Download the latest BIOS (latest
-  being A18 non-vPro at the time of writing), and copy it on another
-  USB flash drive. Boot the laptop with both flash drives plugged,
-  type F12 and boot on USB. Then select English, and =No, return to
-  DOS=. Type =D:= then the name of the BIOS executable
-  (e.g. =5430A18.exe=). The laptop will reboot and install the BIOS —
-  leave both USB flash drives plugged, and keep the laptop on
-  power. After a few minutes, it will reboot again.
-
-*** Specific Dell XPS 13
-
-- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
-  - =/tmp= in RAM:
-  #+BEGIN_SRC sh
-    sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-    sudo systemctl enable tmp.mount
-  #+END_SRC
-- Use only SWAP when 99% of RAM is used:
-  #+BEGIN_SRC sh
-    sudo nano /etc/sysctl.conf
-  #+END_SRC
-  Add at the end of the file:
-  #+BEGIN_QUOTE
-  : # SWAP after 99% RAM used 
-  : vm.swappiness = 1
-  #+END_QUOTE
-
-
 *** All laptops
 
 - *Laptop stuff* (battery, wifi, non-free firmware):
-  : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi firmware-brcm80211 tlp tlp-rdw 
-  : sudo modprobe -r brcmsmac ; sudo modprobe brcmsmac
-  *Note:* TLP seems like a better alternative to =laptop-mode-tools=. Now
-  for other non-free firmware (missing firmware for module i915):
-  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/sklgucver61.tar.bz2 && \
-  : tar xvjf sklgucver61.tar.bz2 && cd skl_guc_ver6_1/ && sudo ./install.sh
-  : cd
-  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/kbldmcver101.tar.bz2 && \
-  : tar xjvf kbldmcver101.tar.bz2 && cd kbl_dmc_ver1_01/ && sudo ./install.sh 
-  : cd
-  : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
-  : sudo update-initramfs -u -k all
-- Bios update: As of 2017-05-23, the latest BIOS available is 1.4.17
-  (available [[https://downloads.dell.com/FOLDER04325565M/1/XPS_9350_1.4.17.exe][here]]), with signatures: 
-  : md5sum XPS_9350_1.4.17.exe
-  : f0bbf7c2bf7945923a70b61d7498acd2  XPS_9350_1.4.17.exe
-  : sha1sum XPS_9350_1.4.17.exe
-  :  a37feb837ac3e9619a729105a868a2d4a4d71eff  XPS_9350_1.4.17.exe
-  : sha256sum XPS_9350_1.4.17.exe 
-  : 4f8d14538576778225ad627e59ef2b700a005898b5e4856e3d75fe54b9059475  XPS_9350_1.4.17.exe
-  Download and store on a USB flash drive, reboot, hit =F12=, check
-  "BIOS Flash update", and follow instructions. To check current
-  version of BIOS:
-  : sudo dmidecode | less
-- Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
-  Firmware Service (LVFS)):
-  : sudo apt install fwupd
-  : sudo fwupdmgr get-devices
-  : sudo fwupdmgr refresh
-  : sudo fwupdmgr get-updates
-  : sudo fwupdmgr update
+  : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi tlp tlp-rdw 
+  *Note:* TLP seems like a better alternative to =laptop-mode-tools=. 
 - Information on CPU frequency:
   : sudo apt install linux-cpupower
   : cpupower frequency-info
-- Keyboard set as PC 105 keys:
-  :sudo nano /etc/default/keyboard
-  and add as first line:
-  #+BEGIN_QUOTE
-  : XKBMODEL="pc105"
-  #+END_QUOTE
-  And apply the changes:
-  : sudo update-initramfs -u
 - *Graphical boot:* use Plymouth.
   : sudo apt install plymouth plymouth-themes
   Then edit =/etc/initramfs-tools/modules=:
@@ -468,6 +400,68 @@ Legacy boot) and follow the instructions. General guidelines:
   And finally apply the changes:
   : sudo update-initramfs -u
 
+
+*** Specific Dell Latitude E5430
+
+- To flash the BIOS, download [[http://www.freedos.org/download/download/FD12LITE.zip][FreeDos USB Lite]], extract it on a USB
+  flash drive (e.g. using Etcher). Download the latest BIOS (latest
+  being A18 non-vPro at the time of writing), and copy it on another
+  USB flash drive. Boot the laptop with both flash drives plugged,
+  type F12 and boot on USB. Then select English, and =No, return to
+  DOS=. Type =D:= then the name of the BIOS executable
+  (e.g. =5430A18.exe=). The laptop will reboot and install the BIOS —
+  leave both USB flash drives plugged, and keep the laptop on
+  power. After a few minutes, it will reboot again.
+
+
+*** Specific Dell XPS 13
+
+- [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
+  - =/tmp= in RAM:
+  #+BEGIN_SRC sh
+    sudo cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    sudo systemctl enable tmp.mount
+  #+END_SRC
+- Use only SWAP when 99% of RAM is used:
+  #+BEGIN_SRC sh
+    sudo nano /etc/sysctl.conf
+  #+END_SRC
+  Add at the end of the file:
+  #+BEGIN_QUOTE
+  : # SWAP after 99% RAM used 
+  : vm.swappiness = 1
+  #+END_QUOTE
+  
+- Non-free firmware (WIFI + missing firmware for module i915):
+  : sudo apt install firmware-brcm80211 
+  : sudo modprobe -r brcmsmac ; sudo modprobe brcmsmac
+  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/sklgucver61.tar.bz2 && \
+  : tar xvjf sklgucver61.tar.bz2 && cd skl_guc_ver6_1/ && sudo ./install.sh
+  : cd
+  : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/kbldmcver101.tar.bz2 && \
+  : tar xjvf kbldmcver101.tar.bz2 && cd kbl_dmc_ver1_01/ && sudo ./install.sh 
+  : cd
+  : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
+  : sudo update-initramfs -u -k all
+- Bios update: As of 2017-05-23, the latest BIOS available is 1.4.17
+  (available [[https://downloads.dell.com/FOLDER04325565M/1/XPS_9350_1.4.17.exe][here]]), with signatures: 
+  : md5sum XPS_9350_1.4.17.exe
+  : f0bbf7c2bf7945923a70b61d7498acd2  XPS_9350_1.4.17.exe
+  : sha1sum XPS_9350_1.4.17.exe
+  :  a37feb837ac3e9619a729105a868a2d4a4d71eff  XPS_9350_1.4.17.exe
+  : sha256sum XPS_9350_1.4.17.exe 
+  : 4f8d14538576778225ad627e59ef2b700a005898b5e4856e3d75fe54b9059475  XPS_9350_1.4.17.exe
+  Download and store on a USB flash drive, reboot, hit =F12=, check
+  "BIOS Flash update", and follow instructions. To check current
+  version of BIOS:
+  : sudo dmidecode | less
+- Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
+  Firmware Service (LVFS)):
+  : sudo apt install fwupd
+  : sudo fwupdmgr get-devices
+  : sudo fwupdmgr refresh
+  : sudo fwupdmgr get-updates
+  : sudo fwupdmgr update
 
 
 
