@@ -233,7 +233,6 @@ Legacy boot) and follow the instructions. General guidelines:
   : Defaults        insults
   #+END_QUOTE
 
-
 ** Adjusting the system
 
 *** System settings
@@ -272,9 +271,10 @@ Legacy boot) and follow the instructions. General guidelines:
 *** Others
 
 - Nautilus: Preferences > Views: Sort folders before files
-- Right-Alt used to access key 3rd level: in =gnome-tweak-tool=, Typing
-  > Key to choose 3rd level: Right Alt (add key ='lv3:ralt_switch'= in
-  org.gnome.desktop.input-sources).
+- Right-Alt used to access key 3rd level:
+  #+BEGIN_SRC sh
+    gsettings set org.gnome.desktop.input-sources xkb-options "['lv3:ralt_switch']"
+  #+END_SRC
 - [[https://wiki.debian.org/SSDOptimization][Optimize SSD]]:
   - =/tmp= in RAM:
   #+BEGIN_SRC sh
