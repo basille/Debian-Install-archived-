@@ -198,10 +198,11 @@ Legacy boot) and follow the instructions. General guidelines:
   :         . /usr/share/powerline/bindings/bash/powerline.sh
   : fi
   #+END_QUOTE
-- Install Tilix, powerline, python-nautilus (for "Open Tilix here" in
-  Nautilus) and most (=man= needs most), and add a missing symlink:
+- Install Tilix, PowerLine, =python-nautilus= (for "Open Tilix here"
+  in Nautilus), =most= (=man= needs =most=), =curl= and =rsync=, and
+  add a missing symlink:
   #+BEGIN_SRC sh
-    sudo apt install tilix python-powerline python-nautilus most
+    sudo apt install tilix python-powerline python-nautilus most curl rsync
     sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
   #+END_SRC
 - Tilix configuration (notably Automatically copy text to clipboard
