@@ -80,7 +80,7 @@ download is the netinst daily snapshot for amd64
 (=debian-testing-amd64-netinst.iso=, 300 MB). Then check [[https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/MD5SUMS][MD5 sums]] to
 guarantee the integrity of the file:
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :exports both
   cd ~/Downloads
   wget https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso
   md5sum debian-testing-amd64-netinst.iso 
@@ -91,7 +91,7 @@ guarantee the integrity of the file:
 The next step is to copy the ISO on a USB flash drive. First check
 on which device the flash drive is mounted:
 
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :exports both
   df -h
 #+END_SRC
 #+RESULTS:
