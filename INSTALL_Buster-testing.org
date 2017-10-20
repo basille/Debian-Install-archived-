@@ -346,7 +346,7 @@ Legacy boot) and follow the instructions. General guidelines:
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
     sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
     curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
-    sudo apt install apt-listbugst
+    sudo apt install apt-listbugs
   #+END_SRC
 - Check the preferences (no repository should be left at 500):
   #+BEGIN_SRC sh
