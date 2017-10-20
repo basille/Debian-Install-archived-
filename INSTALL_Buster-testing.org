@@ -372,15 +372,15 @@ Legacy boot) and follow the instructions. General guidelines:
   : cpupower frequency-info
 - *Graphical boot:* use Plymouth.
   : sudo apt install plymouth plymouth-themes
-  Then edit =/etc/initramfs-tools/modules=:
-  : sudo nano /etc/initramfs-tools/modules
-  and add the following lines:
-  #+BEGIN_QUOTE
-  : # KMS
-  : intel_agp
-  : drm
-  : i915 modeset=1
-  #+END_QUOTE
+  * Specific Dell XPS 13: Edit =/etc/initramfs-tools/modules=:
+    : sudo nano /etc/initramfs-tools/modules
+    and add the following lines:
+    #+BEGIN_QUOTE
+    : # KMS
+    : intel_agp
+    : drm
+    : i915 modeset=1
+    #+END_QUOTE
   Then edit =/etc/default/grub=:
   : sudo nano /etc/default/grub
   and add this line (note that preferred resolution is 3200x1800 by
@@ -729,7 +729,7 @@ should provide a shortcut to the NextCloud root folder.
 # - Privoxy:
 #  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
-
+    
 ** Internet admin
 
   : sudo apt install cifs-utils dnsutils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
