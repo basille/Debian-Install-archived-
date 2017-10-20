@@ -338,7 +338,10 @@ Legacy boot) and follow the instructions. General guidelines:
 - Update the indexes and keys:
   #+BEGIN_SRC sh
     sudo apt update
-    sudo apt install deb-multimedia-keyring pkg-mozilla-archive-keyring -oAcquire::AllowInsecureRepositories=true
+    sudo apt install pkg-mozilla-archive-keyring
+    wget http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
+    sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+    rm deb-multimedia-keyring_2016.8.1_all.deb
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
     wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
     sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
