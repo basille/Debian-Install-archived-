@@ -343,7 +343,7 @@ Legacy boot) and follow the instructions. General guidelines:
     sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
     rm deb-multimedia-keyring_2016.8.1_all.deb
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-    wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
     sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 379CE192D401AB61
     curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
     sudo apt install apt-listbugst

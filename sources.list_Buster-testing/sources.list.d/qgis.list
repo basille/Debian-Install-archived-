@@ -11,17 +11,17 @@
 ## dev. Debian Jessie, Stretch and Sid are supported.      ##
 ## ======================================================= ##
 ## Key                                                     ##
-## $ wget --quiet -O - http://qgis.org/downloads/qgis-2016.gpg.key | sudo apt-key add -
+## $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 ## ======================================================= ##
 
 ## Latest release
-deb http://qgis.org/debian sid main
-#deb-src http://qgis.org/debian sid main
+deb http://qgis.org/debian unstable main
+#deb-src http://qgis.org/debian unstable main
 
 ## Long-term release
-#deb http://qgis.org/debian-ltr sid main
-#deb-src http://qgis.org/debian-ltr sid main
+#deb http://qgis.org/debian-ltr unstable main
+#deb-src http://qgis.org/debian-ltr unstable main
 
 ## Development Version
-#deb http://qgis.org/debian-nightly sid main
-#deb-src http://qgis.org/debian-nightly sid main
+#deb http://qgis.org/debian-nightly unstable main
+#deb-src http://qgis.org/debian-nightly unstable main
