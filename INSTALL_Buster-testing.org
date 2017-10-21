@@ -509,28 +509,22 @@ Git to list files in subfolders:
 To be able to install Gnome extensions from Firefox ≥v.52, a Debian
 package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/][Firefox extension]] are required:
 
-  : sudo apt install chrome-gnome-shell gnome-shell-extension-redshift
+  : sudo apt install chrome-gnome-shell
 
 [[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
 
 - ✓ Alt-Alt+Tab
 - x AlternateTab
-- x Applications Menu
+- ✓ Applications Menu
 - ✓ Auto Move Windows
 - ✓ BackSlide
+- ✓ Better Volume Indicator
 - ✓ Disconnect Wifi
 - ✓ [[https://extensions.gnome.org/extension/1005/focus-my-window/][Focus my window]]
-- x Gnote/Tomboy Integration (outdated)
 - ✓ gTile
 - ✓ Hibernate Status Button
 - x Launch new instance
-- ✓ Media player indicator (reinstall from source after media install)
-  Outdated on official GNOME respository, but available on [[https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer][GitHub]]: 
-  : git clone https://github.com/eonpatapon/gnome-shell-extensions-mediaplayer.git
-  : cd gnome-shell-extensions-mediaplayer/
-  : ./autogen.sh
-  : make install-zip
-  Then restart GNOME Shell (Alt-F2 + r)
+- ✓ Media player indicator
 - ✓ Modern Calc
 - x Native Window Placement
 - ✓ Nothing to say
@@ -544,7 +538,6 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 - x Return to Monitor (outdated)
 - x Screenshot Window Sizer
 - ✓ SincroDirs
-- ✓ Skype Integration
 - ✓ Sound Input & Output Device Chooser
 - ✓ Super+Tab Launcher
 - ✓ Suspend Button
@@ -552,9 +545,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 - x User Themes
 - x Window List
 - ✓ Window Corner Preview
-- ✓ windowNavigator
 - x Workspace Indicator
-- x workspaceAltTab (outdated)
 
 
 ** Web
