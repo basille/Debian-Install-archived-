@@ -484,7 +484,7 @@ Legacy boot) and follow the instructions. General guidelines:
     (ÆæÀàÉéÈèÑñŒœÙù «» “” ¡¿, etc.), and most Greek letters
     (αβγδσΔΦΨΣ, etc.):
   : sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
-  : sudo cp keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
+  : sudo cp keyboard/keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
   Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
   international with dead keys)" as Input Source in Settings > Region
   & Language (for French, add "French (alternative, Latin-9 only)";
@@ -511,10 +511,10 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
   : sudo apt install chrome-gnome-shell
 
-[[https://extensions.gnome.org/local/][List of extensions]] (o Installed; x Installed but not activated):
+[[https://extensions.gnome.org/local/][List of extensions]] (✓ Installed; × Installed but not activated):
 
 - ✓ Alt-Alt+Tab
-- x AlternateTab
+- × AlternateTab
 - ✓ Applications Menu
 - ✓ Auto Move Windows
 - ✓ BackSlide
@@ -523,29 +523,29 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 - ✓ [[https://extensions.gnome.org/extension/1005/focus-my-window/][Focus my window]]
 - ✓ gTile
 - ✓ Hibernate Status Button
-- x Launch new instance
+- × Launch new instance
 - ✓ Media player indicator
 - ✓ Modern Calc
-- x Native Window Placement
+- × Native Window Placement
 - ✓ Nothing to say
   Change shortcut to Super+F1:
  : dconf write /org/gnome/shell/extensions/nothing-to-say/keybinding-toggle-mute '["<Super>F1"]'
 - ✓ OpenWeather
-- x Places Status Indicator
+- × Places Status Indicator
 - ✓ Refresh Wifi Connections
-- x Removable Drive Menu
+- × Removable Drive Menu
 - ✓ Remove Dropdown Arrows
-- x Return to Monitor (outdated)
-- x Screenshot Window Sizer
+- × Return to Monitor (outdated)
+- × Screenshot Window Sizer
 - ✓ SincroDirs
 - ✓ Sound Input & Output Device Chooser
 - ✓ Super+Tab Launcher
 - ✓ Suspend Button
 - ✓ TopIcons Plus
-- x User Themes
-- x Window List
+- × User Themes
+- × Window List
 - ✓ Window Corner Preview
-- x Workspace Indicator
+- × Workspace Indicator
 
 
 ** Web

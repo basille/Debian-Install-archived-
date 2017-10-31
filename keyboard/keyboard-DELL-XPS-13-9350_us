@@ -97,7 +97,7 @@ xkb_symbols "intl" {
     key <AE04> { [	   4,     dollar,      EuroSign,       onequarter ] }; // 4 $ € ¼
     key <AE05> { [	   5,    percent,             5,    threequarters ] }; // 5 % . ¾
     key <AE06> { [    6, dead_circumflex,    dead_grave,      asciicircum ] }; // 6 ^ (dead) ` (dead) ^
-    key <AE07> { [	   7,  ampersand,             7,          section ] }; // 7 & . §
+    key <AE07> { [	   7,  ampersand,     checkmark,          section ] }; // 7 & ✓ §
     key <AE08> { [	   8,   asterisk,      multiply,         openstar ] }; // 8 * × ☆
     key <AE09> { [	   9,  parenleft,             9,        parenleft ] }; // 9 ( . .
     key <AE10> { [	   0, parenright,        degree,       parenright ] }; // 0 ) ° .
