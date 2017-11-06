@@ -702,8 +702,10 @@ For NextCloud, install the client:
   : sudo ln -s /usr/local/lib/nextcloud/Nextcloud-2.3.2-x86_64.AppImage /usr/local/bin/nextcloud
 
 Then run =nextcloud=, fill in the proper credentials, choose what
-to sync and where (in =Public= seems like a natural choice), and check
-'Launch on System Startup' in the General tab.
+to sync and where (in =Public= seems like a natural choice). To launch
+it at startup:
+
+  : echo -e '[Desktop Entry]\nName=Nextcloud\nGenericName=File Synchronizer\nExec=/usr/local/bin/nextcloud\nTerminal=false\nIcon=nextcloud\nCategories=Network\nType=Application\nStartupNotify=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=nextcloud.desktop' | tee ~/.config/autostart/nextcloud.desktop
 
 For DropBox, install the proprietary deamon:
 
