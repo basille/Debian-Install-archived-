@@ -897,8 +897,11 @@ And reduce permissions on it:
 
 *** Hugo
 
+Debian does not provide up-to-date Hugo. Check the latest release
+[[https://github.com/gohugoio/hugo/releases][here]], then:
+
   : cd Downloads/
-  : wget https://github.com/gohugoio/hugo/releases/download/v0.27.1/hugo_0.27.1_Linux-64bit.deb
+  : wget https://github.com/gohugoio/hugo/releases/download/v0.30.2/hugo_0.30.2_Linux-32bit.deb
   : sudo dpkg -i hugo_0.27.1_Linux-64bit.deb
   : hugo version
 
