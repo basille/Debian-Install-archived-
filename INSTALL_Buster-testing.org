@@ -34,7 +34,6 @@ computer. Keep in mind, however, that:
      - [[#firefox][Firefox]]
      - [[#thunderbird][Thunderbird]]
      - [[#nextcloud-integration][NextCloud integration]]
-     - [[#others-1][Others]]
    - [[#internet-admin][Internet admin]]
      - [[#vpn][VPN]]
      - [[#ssh][SSH]]
@@ -497,7 +496,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron fortune git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree unetbootin units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron fortune-mod git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree units unrar virtualbox wakeonlan
 
 Git to list files in subfolders:
 
@@ -550,7 +549,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 ** Web
 
-  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
+  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger flashplayer-mozilla flashplayer-chromium
 
 *** Firefox
 
@@ -577,7 +576,8 @@ necessary after:
 
 Here is the full list of add-ons that I normally install:
 - Essential security and privacy:
-  - [[https://addons.mozilla.org/fr/firefox/addon/betterprivacy/][Better Privacy]] (if Flash installed)
+  - [[https://addons.mozilla.org/fr/firefox/addon/betterprivacy/][Better Privacy]] (if Flash installed; use =~/.wine-pipelight= as the
+    Flash-Data directory)
   - [[https://addons.mozilla.org/fr/firefox/addon/https-everywhere/][HTTPS Everywhere]]
   - [[https://addons.mozilla.org/fr/firefox/addon/privacy-badger-firefox/][Privacy Badger]]
   - [[https://addons.mozilla.org/fr/firefox/addon/self-destructing-cookies/][Self-Destructing Cookies]]
@@ -614,36 +614,6 @@ And the list of search engines that I keep:
 - [[https://addons.mozilla.org/fr/firefox/addon/wikipedia-fr/][Wikipedia (fr)]] [installed]
 - [[https://addons.mozilla.org/fr/firefox/addon/qwant/][Qwant]] [installed]
 - Debian packages
-
-The next step is to install additional plugins. Unfortunately, Flash
-may still be necessary for some websites, and Silverlight is necessary
-for NetFlix. The *[[http://pipelight.net/cms/installation.html][Pipelight]]* project conveniently provides Windows-only
-plugins directly inside the browsers. First update the pipelight
-plugin:
-  : sudo pipelight-plugin --update
-Just to be safe, close Firefox, then enable Flash and Silverlight:
-  : sudo pipelight-plugin --enable flash
-  : sudo pipelight-plugin --enable silverlight
-  : sudo pipelight-plugin --create-mozilla-plugins
-  : sudo pipelight-plugin --list-enabled
-After restarting Firefox, plugins can be check in the Plugins section
-of the Add-ons panel (then select "Ask to activate" for both). Flash
-in particular can be checked at: http://isflashinstalled.com/
-
-If BetterPrivacy is installed too, use =~/.wine-pipelight= as the
-Flash-Data directory.
-
-*Update January 2017:* Pipelight is not maintained anymore. The good
-news is that now Adobe ships the latest Flash version for Linux too!
-Disable Flash from Pipelight (if it was installed/enabled), and simply
-install the =flashplugin-nonfree= from Debian repositories, or
-=flashplayer-mozilla= and =flashplayer-chromium= from Debian
-Multimedia repositories (the later allowing for Flash updates through
-general system update):
-
-  : pipelight-plugin --disable flash
-  : pipelight-plugin --list-enabled
-  : sudo apt install flashplayer-mozilla flashplayer-chromium
 
 
 *** Thunderbird
@@ -713,12 +683,6 @@ password, and keep it for Calendar, Contacts, Documents and Files. Now
 events should appear in the calendar in the top bar, contacts should
 be synchronized with the Contacts application, and Files (Nautilus)
 should provide a shortcut to the NextCloud root folder.
-
-
-*** Others
-
-# - Privoxy:
-#  Settings > Network > Network proxy : HTTP/HTTPS = localhost:8118
 
     
 ** Internet admin
