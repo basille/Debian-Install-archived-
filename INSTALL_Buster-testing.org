@@ -33,14 +33,8 @@ computer. Keep in mind, however, that:
    - [[#web][Web]]
      - [[#firefox][Firefox]]
      - [[#thunderbird][Thunderbird]]
-     - [[#nextcloud-integration][NextCloud integration]]
    - [[#internet-admin][Internet admin]]
-     - [[#vpn][VPN]]
-     - [[#ssh][SSH]]
-     - [[#gftp][Gftp]]
      - [[#clients-for-nextcloud-and-dropbox][Clients for NextCloud and Dropbox]]
-     - [[#windows-share][Windows share]]
-     - [[#revelation][Revelation]]
    - [[#multimedia][Multimedia]]
    - [[#office][Office]]
      - [[#hugo][Hugo]]
@@ -677,50 +671,17 @@ Here is the full list of add-ons that I normally install:
   - Remove Duplicate Messages (Alternate)
 
 
-*** NextCloud integration
-
-In Settings > Online accounts, add a new ownCloud account (works for
-NextCloud). Simply fill in the server address (where NextCloud is
-installed, not one of the scripts for CalDav/CardDav), username and
-password, and keep it for Calendar, Contacts, Documents and Files. Now
-events should appear in the calendar in the top bar, contacts should
-be synchronized with the Contacts application, and Files (Nautilus)
-should provide a shortcut to the NextCloud root folder.
-
-    
 ** Internet admin
 
   : sudo apt install cifs-utils dnsutils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
-
-
-*** VPN
-
-In Settings > Network, add a 'Cisco AnyConnect Compatible VPN
-(openconnect)'. Simply enter the 'Gateway': =vpn.ufl.edu= and leave all
-other empty. To turn the VPN on, click VPN in the top-right corner
-menu:
-- Username: GatorLink account (with @ufl.edu)
-- Password: GatorLink password (check 'Save passwords')
-
-
-*** SSH
-
-Copy the entire folder =.ssh= in =/home=. It contains key configuration
-for basille.net, Gargantua, MabLab server, as well as the keys for
-GitHub.
-
-
-*** Gftp
-
-Simply copy the =bookmarks= file from the =.gftp= folder in =/home/= (it
-contains all bookmarks and passwords).
 
 
 *** Clients for NextCloud and Dropbox
 
   : sudo aptitude install nautilus-owncloud nautilus-dropbox
 
-For NextCloud, install the client: 
+For NextCloud, [[https://nextcloud.com/install/#install-clients][check the latest version]] of the client, then install
+it:
 
   : cd Downloads
   : wget https://download.nextcloud.com/desktop/releases/Linux/Nextcloud-2.3.2-x86_64.AppImage
@@ -734,44 +695,13 @@ sync and where (in =Public= seems like a natural choice); in General,
 
   : echo -e '[Desktop Entry]\nName=Nextcloud\nGenericName=File Synchronizer\nExec=/usr/local/bin/nextcloud\nTerminal=false\nIcon=nextcloud\nCategories=Network\nType=Application\nStartupNotify=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=nextcloud.desktop' | tee ~/.config/autostart/nextcloud.desktop
 
-For DropBox, install the proprietary deamon:
+For DropBox, install the proprietary daemon:
 
   : dropbox start -i
 
 And follow the instructions (UF has a single sign-in process that
 works by just adding the UF address without password, with a passcode
 generated on the web).
-
-
-*** Windows share
-
-First create a credential file:
-  : nano .smb
-With the following information:
-  #+BEGIN_QUOTE
-  : username=<GatorLink account>
-  : password=<GatorLink password>
-  #+END_QUOTE
-And reduce permissions on it:
-  : chmod 600 .smb
-
-# sudo mkdir /mnt/ecored
-# sudo mount.cifs //if-srv-flfile02/data/Unit/EcoRed /mnt/ecored/ -o credentials=/home/#mathieu/.smb,uid=mathieu,gid=mathieu
-
-# mkdir MabLab
-# mkdir MabLab/bkp
-# mkdir MabLab/bkp/mathieu
-# mkdir MabLab/bkp/mathieu/home
-
-
-*** Revelation
-
-- Create a new password file in =~/.revelation= or copy an existing one
-  in this folder.
-- Change preferences:
-  * "Open file on startup:" and pick the file mentioned above;
-  * Check "Automatically save data when changed"
-  * "Length of generated passwords": 12
 
 
 ** Multimedia
