@@ -947,25 +947,9 @@ Retina) and may look very tiny in this case.
 
 *** Google Stuff
 
+Google provides official repositories for Chrome and Earth (notably):
 
-**** Google Earth
-
-The Debian way:
-  : sudo apt install googleearth-package
-  : make-googleearth-package
-  : sudo dpkg -i googleearth*.deb
-  : sudo apt -f install
-
-But dependencies impossible to reconcile (libcurl3:i386)... Solution:
-get official .deb from [[https://www.google.com/earth/download/ge/agree.html][Google]], then:
-  : sudo dpkg -i google-earth-stable_current_amd64.deb
-  : sudo apt -f install
-
-
-**** Google Chrome
-
-Add Google Chrome repository (sources.list + preferences), then:
-  : sudo apt install google-chrome-stable
+  : sudo apt install google-chrome-stable google-earth-pro-stable
 
 
 *** Skype
