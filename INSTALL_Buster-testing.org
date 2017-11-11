@@ -33,8 +33,8 @@ computer. Keep in mind, however, that:
    - [[#web][Web]]
      - [[#firefox][Firefox]]
      - [[#thunderbird][Thunderbird]]
-   - [[#internet-admin][Internet admin]]
      - [[#clients-for-nextcloud-and-dropbox][Clients for NextCloud and Dropbox]]
+     - [[#internet-admin][Internet admin]]
    - [[#multimedia][Multimedia]]
    - [[#office][Office]]
      - [[#hugo][Hugo]]
@@ -671,14 +671,7 @@ Here is the full list of add-ons that I normally install:
   - Remove Duplicate Messages (Alternate)
 
 
-** Internet admin
-
-  : sudo apt install cifs-utils dnsutils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
-
-
 *** Clients for NextCloud and Dropbox
-
-  : sudo aptitude install nautilus-owncloud nautilus-dropbox
 
 For NextCloud, [[https://nextcloud.com/install/#install-clients][check the latest version]] of the client, then install
 it:
@@ -697,11 +690,17 @@ sync and where (in =Public= seems like a natural choice); in General,
 
 For DropBox, install the proprietary daemon:
 
+  : sudo aptitude install nautilus-dropbox
   : dropbox start -i
 
 And follow the instructions (UF has a single sign-in process that
 works by just adding the UF address without password, with a passcode
 generated on the web).
+
+
+*** Internet admin
+
+  : sudo apt install cifs-utils dnsutils gftp gvncviewer network-manager-openconnect-gnome network-manager-vpnc-gnome revelation rsync screen unison
 
 
 ** Multimedia
