@@ -490,7 +490,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron fortune-mod git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron flatpak fortune-mod git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree units unrar virtualbox wakeonlan
 
 Git to list files in subfolders:
 
@@ -710,38 +710,13 @@ generated on the web).
   : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
 
 - Audio/video
-  : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
+  : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
 
-  - Plugins Rhythmbox: A [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins][repository for Ubuntu]] provides updated
-    plugins for Rhythmbox. Instructions can be found [[http://xpressubuntu.wordpress.com/2013/10/26/installing-rhythmbox-3-0-plugins-the-easy-way/][here]], and =deb=
-    files can be found [[https://launchpad.net/~fossfreedom/+archive/rhythmbox-plugins/+packages][here]]. In summary, download the file
-    corresponding to the most recent version of Ubuntu (Xenial at the
-    time of writing), and install them using =dpkg=. If all =deb= files are in
-    a dedicated folder:
+Install Lollypop using Flatpak:
 
-    : sudo dpkg -i *.deb
-    
-    And if necessary:
-
-    : sudo apt -f install 
-
-    Currently, the following packages work:
-    - Art Display
-    - Equalizer (not up-to-date but works)
-    - Fullscreen Plugin
-    - lLyrics
-    - Open containing folder
-    - Playlist Import Export
-    - Random Album Player
-    - Remember-the-Rhythm
-
-    One very interesting package is not up to date and does not work:
-    - lastfm-queue
-
-    Finally, =rhythmbox-plugins= also provides Cover Art/Search,
-    Internet Radios, Replay Gain and other potentially interesting
-    plugins, and =rhythmbox-plugin-alternative-toolbar= gives a
-    simplified and enhanced user interface.
+  : sudo flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
+  : sudo flatpak remote-add gnome-apps https://sdk.gnome.org/gnome-apps.flatpakrepo
+  : sudo flatpak install org.gnome.Lollypop.flatpakref
 
 - Leisure
   : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
