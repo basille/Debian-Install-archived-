@@ -712,11 +712,15 @@ generated on the web).
 - Audio/video
   : sudo apt install audacity cuetools easytag flac ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix pitivi frei0r-plugins gnome-video-effects-frei0r openshot sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain
 
-Install Lollypop using Flatpak:
+Install Lollypop from GitHub:
 
-  : sudo flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
-  : sudo flatpak remote-add gnome-apps https://sdk.gnome.org/gnome-apps.flatpakrepo
-  : sudo flatpak install --from https://gnumdk.github.io/lollypop-web/org.gnome.Lollypop.flatpakref
+: git clone https://github.com/gnumdk/lollypop.git
+: cd lollypop
+: sudo apt install meson libglib2.0-dev yelp-tools libgirepository1.0-dev libgtk-3-dev
+: meson builddir --prefix=/usr
+: sudo ninja -C builddir install
+: cd ..
+: sudo rm -R lollypop
 
 - Leisure
   : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
