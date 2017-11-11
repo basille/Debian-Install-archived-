@@ -43,10 +43,8 @@ computer. Keep in mind, however, that:
      - [[#emacs][Emacs]]
      - [[#jabref-configuration][JabRef configuration]]
      - [[#gnote-configuration][Gnote configuration]]
-   - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
-     - [[#gdal-geos-and-proj4][GDAL, GEOS and PROJ.4]]
+     - [[#qgis-gdal-geos-and-proj4][QGIS, GDAL, GEOS and PROJ.4]]
      - [[#r][R]]
-     - [[#qgis-and-postgis][QGIS and PostGIS]]
    - [[#other][Other]]
      - [[#google-stuff][Google Stuff]]
      - [[#skype][Skype]]
@@ -888,12 +886,18 @@ adjust JabFox preferences:
   Applications.
 
 
-** R, QGIS and PostGIS
+*** QGIS, GDAL, GEOS and PROJ.4
 
+  : sudo apt install qgis gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
 
-*** GDAL, GEOS and PROJ.4
+Then, from inside QGIS, install the following plugins:
 
-  : sudo apt install gdal-bin libgdal-dev libgeos-dev proj-bin libproj-dev
+- DB Manager
+- GdalTools
+- GPS Tools
+- OpenLayers Plugins
+- QuickMapServices
+- Time manager
 
 
 *** R
@@ -901,7 +905,7 @@ adjust JabFox preferences:
   : sudo apt install r-base-core r-base-dev r-recommended r-cran-rodbc r-cran-rjava r-cran-tkrplot littler jags libcairo2-dev libglu1-mesa-dev libssl-dev libxt-dev libudunits2-dev
 
 [[https://github.com/basille/R][Configuration via Git]]:
-  : git clone git@github.com:basille/R ~/.R-site/
+  : git clone https://github.com/basille/R.git ~/.R-site/
   : mkdir ~/.R-site/site-library
   : ln -s ~/.R-site/.Renviron ~/.Renviron
 
@@ -934,18 +938,6 @@ will then fallback on the system Pandoc):
 
 Note that RStudio is not adapted to very high resolution (for instance
 Retina) and may look very tiny in this case.
-
-
-*** QGIS and PostGIS
-
-  : sudo apt install qgis python-qgis
-
-Or if it fails due to a missing package (gdal-abi-2), then prefer the
-install from Debian repositories:
-
-  : sudo apt install -t o=Debian,n=stretch qgis python-qgis
-
-Then, from inside QGIS, install the Time manager plugin.
 
 
 ** Other
