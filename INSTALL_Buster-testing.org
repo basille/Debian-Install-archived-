@@ -710,7 +710,7 @@ generated on the web).
   : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
 
 - Audio/video
-  : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
+  : sudo apt install audacity cuetools easytag flac ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix pitivi frei0r-plugins gnome-video-effects-frei0r openshot sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain
 
 Install Lollypop using Flatpak:
 
