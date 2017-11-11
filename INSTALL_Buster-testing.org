@@ -549,7 +549,10 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 ** Web
 
-  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger flashplayer-mozilla flashplayer-chromium
+  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium mozplugger flashplayer-mozilla flashplayer-chromium
+
+*Note 2017-11-10:* =epiphany-browser= is currently not installable due
+to unmet dependencies to GStreamer.
 
 *** Firefox
 
