@@ -947,20 +947,22 @@ Retina) and may look very tiny in this case.
 
 *** Google Stuff
 
-Google provides official repositories for Chrome and Earth (notably):
+Google provides official repositories for Chrome and Earth
+(notably). Unfortunately, the installation adds their own repository
+setting, which is annoying:
 
   : sudo apt install google-chrome-stable google-earth-pro-stable
+  : sudo rm /etc/apt/sources.list.d/google-chrome.list
 
 
 *** Skype
 
 At last, Microsoft now provides a decent version of Skype for Linux
-(based on their new web version):, currently in its alpha stage. The
-application seems to work fine, and can be concurrently installed with
-the 'legacy' version (it's called "Skype for Linux" and the binary is
-=skypeforlinux=):
+(based on their new web version). Same as Google, the installation
+adds their own repository setting, which is annoying::
 
   : sudo apt install skypeforlinux
+  : sudo rm /etc/apt/sources.list.d/skype-unstable.list
 
 
 *** Rockbox utility
