@@ -955,18 +955,12 @@ Google provides official repositories for Chrome and Earth (notably):
 *** Skype
 
 At last, Microsoft now provides a decent version of Skype for Linux
-(based on their new web version), currently in its alpha stage. The
+(based on their new web version):, currently in its alpha stage. The
 application seems to work fine, and can be concurrently installed with
 the 'legacy' version (it's called "Skype for Linux" and the binary is
 =skypeforlinux=):
 
-  : wget https://repo.skype.com/latest/skypeforlinux-64-alpha.deb
-  : sudo dpkg -i skypeforlinux-64-alpha.deb 
-  : sudo apt -f install
-  : rm skypeforlinux-64-alpha.deb 
-
-Note that alternatives exist, such as [[https://github.com/stanfieldr/ghetto-skype][Ghetto Skype]] (which does not
-currently provide video calls).
+  : sudo apt install skypeforlinux
 
 
 *** Rockbox utility
