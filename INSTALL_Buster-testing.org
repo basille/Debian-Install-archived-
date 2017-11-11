@@ -800,10 +800,8 @@ Debian does not provide up-to-date Hugo. Check the latest release
   : sudo apt install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
-=texlive-full=; =pdfmanipulate= comes with =calibre=.
-
-- Adobe Reader (in dmo)
-  : sudo apt install acroread:i386
+=texlive-full=; =pdfjam= comes with =texlive-extra-utils=, which comes
+with =texlive-full=; =pdfmanipulate= comes with =calibre=.
 
 - Link folder of main BibTeX file to the Tex install. First check
   with:
@@ -845,7 +843,8 @@ installed.
 *** JabRef configuration
 
 Debian recently integrated the 3.x series in the official
-repositories, with JabRef 3.8 now available for Stretch (July 2017).
+repositories, with JabRef 3.8 now available for Buster (November
+2017).
 
 In Options > Preferences:
 - Import preferences (=jabref-preferences.xml=). Should be enough, but
