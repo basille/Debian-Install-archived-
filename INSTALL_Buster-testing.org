@@ -212,9 +212,13 @@ Legacy boot) and follow the instructions. General guidelines:
     gsettings set com.gexperts.Tilix.Keybindings session-add-down '<Primary><Shift>d'
     gsettings set com.gexperts.Tilix.Keybindings session-add-right '<Primary><Shift>r'
   #+END_SRC
+  * Copy Nord color theme in the right folder:
+  #+BEGIN_SRC sh
+    sudo cp tilix/nord.json /usr/share/tilix/schemes/
+  #+END_SRC
   * Profile: Default
     * General: Terminal bell: Icon
-    * Color: Color scheme: Linux, and add some transparency
+    * Color: Color scheme: Nord, and add some transparency
   * Shortcuts: in Gnome preferences > Keyboard, add two Custom
     shortcuts (at the bottom of the list):
     * Tilix / =tilix= / Super+T
