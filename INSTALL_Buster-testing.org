@@ -716,7 +716,7 @@ Install Lollypop using Flatpak:
 
   : sudo flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
   : sudo flatpak remote-add gnome-apps https://sdk.gnome.org/gnome-apps.flatpakrepo
-  : sudo flatpak install org.gnome.Lollypop.flatpakref
+  : sudo flatpak install --from https://gnumdk.github.io/lollypop-web/org.gnome.Lollypop.flatpakref
 
 - Leisure
   : sudo apt install chromium-bsu dosbox marble stellarium sweethome3d
