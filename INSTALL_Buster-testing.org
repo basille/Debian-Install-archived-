@@ -691,7 +691,7 @@ sync and where (in =Public= seems like a natural choice); in General,
 
 For DropBox, install the proprietary daemon:
 
-  : sudo aptitude install nautilus-dropbox
+  : sudo apt install nautilus-dropbox
   : dropbox start -i
 
 And follow the instructions (UF has a single sign-in process that
@@ -707,7 +707,7 @@ generated on the web).
 ** Multimedia
 
 - Pictures
-  : sudo aptitude install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
+  : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
 
 - Audio/video
   : sudo apt install audacity cuetools easytag flac gstreamer1.0-ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix oggconvert pitivi frei0r-plugins gnome-video-effects-frei0r openshot rhythmbox-plugins rhythmbox-plugin-alternative-toolbar sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain qarte
@@ -749,7 +749,7 @@ generated on the web).
 # Slowmo : http://slowmovideo.granjow.net/
 # Récupérer package for Ubuntu Raring
 # Dépendances :
-# $ sudo aptitude install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
+# $ sudo apt install build-essential cmake git ffmpeg libavformat-dev libavcodec-dev libswscale-dev libqt4-dev freeglut3-dev libglew1.5-dev libsdl1.2-dev libjpeg-dev libopencv-video-dev libopencv-highgui-dev
 # (attention, conflit entre libopencv-highgui-dev qui demande libtiff4 alors que libtiff5 est installée...)
 # Puis
 # $ sudo dpkg -i slowmovideo_0.3.1-5~raring1_amd64.deb
@@ -757,7 +757,7 @@ generated on the web).
 # Fichiers RAW
 
 # ## DCRAW 9.16 (version courante)
-# sudo aptitude install libjasper-dev libjpeg8-dev liblcms1-dev liblcms2-dev
+# sudo apt install libjasper-dev libjpeg8-dev liblcms1-dev liblcms2-dev
 # sudo ldconfig
 # mkdir dcraw
 # cd dcraw
@@ -768,10 +768,10 @@ generated on the web).
 # rm -R dcraw
 
 # ## Vignettes
-# sudo aptitude install ufraw ufraw-batch gimp-dcraw
+# sudo apt install ufraw ufraw-batch gimp-dcraw
 # sudo nano /usr/share/thumbnailers/raw.thumbnailer
 # Plus nécessaire :
-# $ sudo aptitude install libopenrawgnome1
+# $ sudo apt install libopenrawgnome1
 
 # [Thumbnailer Entry]
 # Exec=/usr/bin/ufraw-batch --embedded-image --out-type=png --size=%s %u --overwrite --silent --output=%o
@@ -817,13 +817,13 @@ Debian does not provide up-to-date Hugo. Check the latest release
 
 *** LaTeX and PDF
 
-  : sudo aptitude install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
+  : sudo apt install gedit-latex-plugin gummi ispell texlive-full bibtex2html rubber latex2rtf xpdf pdftk pdfjam poppler-utils libtext-pdf-perl pdf2svg impressive pdfchain pdfshuffler calibre mupdf pdf2djvu scribus xournal ditaa
 
 Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 =texlive-full=; =pdfmanipulate= comes with =calibre=.
 
 - Adobe Reader (in dmo)
-  : sudo aptitude install acroread:i386
+  : sudo apt install acroread:i386
 
 - Link folder of main BibTeX file to the Tex install. First check
   with:
@@ -853,7 +853,7 @@ Note that =biblatex= lives in =texlive-bibtex-extra=, which comes with
 
 *** Emacs
 
-  : sudo aptitude install emacs25 libpoppler-glib-dev
+  : sudo apt install emacs25 libpoppler-glib-dev
 
 [[https://github.com/basille/.emacs.d][Configuration via Git]]:
   : git clone git@github.com:basille/.emacs.d ~/.emacs.d/
