@@ -16,6 +16,9 @@
 ## Stretch multimedia (stable)
 deb http://www.deb-multimedia.org stretch main non-free
 
+## Stretch multimedia backports (stable)
+deb http://www.deb-multimedia.org stretch-backports main
+
 ## Buster multimedia (testing)
 deb http://www.deb-multimedia.org buster main non-free
 

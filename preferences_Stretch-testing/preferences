@@ -37,23 +37,23 @@ Pin-Priority: 90
 ## ======================================================= ##
 
 Package: *
-Pin: release o=Unofficial Multimedia Packages,a=stable
+Pin: release o=Unofficial Multimedia Packages,n=jessie
 Pin-Priority: 800
 
 Package: *
-Pin: release o=Unofficial Multimedia Packages,a=stable-backports
+Pin: release o=Unofficial Multimedia Packages,n=jessie-backports
 Pin-Priority: 800
 
 Package: *
-Pin: release o=Unofficial Multimedia Packages,a=testing
+Pin: release o=Unofficial Multimedia Packages,n=stretch
 Pin-Priority: 900
 
 Package: *
-Pin: release o=Unofficial Multimedia Packages,a=unstable
+Pin: release o=Unofficial Multimedia Packages,n=sid
 Pin-Priority: 90
 
 Package: *
-Pin: release o=Unofficial Multimedia Packages,a=experimental
+Pin: release o=Unofficial Multimedia Packages,n=experimental
 Pin-Priority: 1
 
 
@@ -63,10 +63,6 @@ Pin-Priority: 1
 ##                          MOZILLA                        ##
 ##                                                         ##
 ## ======================================================= ##
-
-#Package: *
-#Pin: origin mozilla.debian.net
-#Pin-Priority: 901
 
 Package : firefox
 Pin : release o=Debian,a=unstable,l=Debian
@@ -112,10 +108,46 @@ Pin-Priority: 904
 
 ## ======================================================= ##
 ##                                                         ##
-##                  PIPELIGHT (SILVERLIGHT)                ##
+##                         ETCHER                          ##
 ##                                                         ##
 ## ======================================================= ##
 
 Package: *
-Pin: origin repos.fds-team.de
+Pin: origin dl.bintray.com
 Pin-Priority: 905
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                        GOOGLE                           ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin dl.google.com
+Pin-Priority: 906
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                          SKYPE                          ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin repo.skype.com
+Pin-Priority: 907
+
+
+
+## ======================================================= ##
+##                                                         ##
+##                          SLACK                          ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin packagecloud.io
+Pin-Priority: 908
