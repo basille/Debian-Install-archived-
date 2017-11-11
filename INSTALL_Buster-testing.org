@@ -680,6 +680,7 @@ it:
   : wget https://download.nextcloud.com/desktop/releases/Linux/Nextcloud-2.3.2-x86_64.AppImage
   : sudo mkdir /usr/local/lib/nextcloud/
   : sudo mv Nextcloud-2.3.2-x86_64.AppImage /usr/local/lib/nextcloud/
+  : sudo chmod +x /usr/local/lib/nextcloud/Nextcloud-2.3.2-x86_64.AppImage
   : sudo ln -s /usr/local/lib/nextcloud/Nextcloud-2.3.2-x86_64.AppImage /usr/local/bin/nextcloud
 
 Then run =nextcloud=, fill in the proper credentials, choose what to
