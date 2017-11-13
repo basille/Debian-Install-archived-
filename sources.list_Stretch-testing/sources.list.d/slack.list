@@ -1,0 +1,13 @@
+## ======================================================= ##
+##                                                         ##
+##                           SLACK                         ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## https://slack.com/downloads/instructions/debian         ##
+## ======================================================= ##
+## Key:                                                    ##
+## $ curl -L https://packagecloud.io/slacktechnologies/slack/gpgkey | sudo apt-key add - 
+## ======================================================= ##
+
+deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main

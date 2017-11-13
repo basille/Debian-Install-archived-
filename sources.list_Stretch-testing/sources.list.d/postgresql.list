@@ -16,4 +16,4 @@
 ## $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 ## ======================================================= ##
 
-deb http://apt.postgresql.org/pub/repos/apt/ sid-pgdg main
+deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main
