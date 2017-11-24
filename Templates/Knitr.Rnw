@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document class, title & author
+\documentclass[a4paper]{article}
+\title{Title}
+\author{Mathieu Basille}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages and global options for LaTeX
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french, american]{babel}
+\usepackage{graphicx, fancyvrb, color, mdframed}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \lhead{\textsc{Basille M.}}
+  \rhead{\emph{Short title}}
+  \cfoot{\thepage}
+% \usepackage{natbib}
+%   \bibliographystyle{apalike}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=black,citecolor=black]{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% New commands
+\newcommand{\gt}{>}
+\definecolor{lgray}{rgb}{.97, .97, .97}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% R & knitr options
+<<Rinit, include = FALSE, cache = FALSE>>=
+options(keep.comment = FALSE, replace.assign = TRUE, width = 70)
+opts_knit$set(stop_on_error = 2L)
+opts_chunk$set(fig.path = 'figure/app-', fig.align = 'center', fig.show = 'hold', out.width = '.6\\textwidth', comment = NA)
+## options(digits=4)                       # print with 4 digits
+## library(adehabitatHS)                   # required packages
+@                               %$
+
+<<knitr-inside-R, echo = FALSE, eval = FALSE>>=
+library(knitr)
+knit("knitr-template.Rnw")
+@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\maketitle
+
+
+\tableofcontents
+
+
+
+
+
+
+
+
+
+% \newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% R session information
+\begin{mdframed}[backgroundcolor=lgray]
+<<Rexit, echo = FALSE>>=
+print(sessionInfo(), locale = FALSE)
+cat(paste("Working directory:\n", getwd(), sep = ""))
+@
+\end{mdframed}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+% \begin{small}
+%   \bibliography{BiblioMB}
+% \end{small}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

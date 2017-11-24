@@ -113,9 +113,9 @@ From now on, all other steps will be on the 'target' computer.
 
 *NOTE:* If the standard procedure above failed (for instance, the
 computer does not boot on the Flash drive), an alternative is simply
-to use =Unetbootin= GUI to create the USB bootable image (using the
-Netinstall 64 bits for Debian testing), check that the =boot= flag is
-set on the drive (with GParted), and move directly to the next step.
+to use =Etcher= to create the USB bootable image (using the Netinstall
+64 bits for Debian testing), check that the =boot= flag is set on the
+drive (with GParted), and move directly to the next step.
 
 
 ** Install Debian
@@ -440,18 +440,21 @@ Legacy boot) and follow the instructions. General guidelines:
   : cd
   : rm -r skl_guc_ver6_1 && rm sklgucver61.tar.bz2 && rm -r kbl_dmc_ver1_01 && rm kbldmcver101.tar.bz2
   : sudo update-initramfs -u -k all
-- Bios update: As of 2017-05-23, the latest BIOS available is 1.4.17
-  (available [[https://downloads.dell.com/FOLDER04325565M/1/XPS_9350_1.4.17.exe][here]]), with signatures: 
-  : md5sum XPS_9350_1.4.17.exe
-  : f0bbf7c2bf7945923a70b61d7498acd2  XPS_9350_1.4.17.exe
-  : sha1sum XPS_9350_1.4.17.exe
-  :  a37feb837ac3e9619a729105a868a2d4a4d71eff  XPS_9350_1.4.17.exe
-  : sha256sum XPS_9350_1.4.17.exe 
-  : 4f8d14538576778225ad627e59ef2b700a005898b5e4856e3d75fe54b9059475  XPS_9350_1.4.17.exe
+
+- Bios update: As of 2017-11-24, the latest BIOS available is 1.5.1
+  (updated from 2017-09-28, available [[https://downloads.dell.com/FOLDER04494006M/1/XPS_9350_1.5.1.exe][here]]; check new versions [[https://www.dell.com/support/home/us/en/04/product-support/product/xps-13-9350-laptop/drivers][here]]),
+  with signatures:
+  : md5sum XPS_9350_1.5.1.exe 
+  : 6440b141ad85509b71abf844c07728b7  XPS_9350_1.5.1.exe
+  : sha1sum XPS_9350_1.5.1.exe 
+  : 03c2a6ecd20d7f76aa624320e4c524f12be04d1b  XPS_9350_1.5.1.exe
+  : sha256sum XPS_9350_1.5.1.exe 
+  : 9b00614be18245bce72c9df8879cd3519f15a10f5d4c748b697e0cb35a0f03cb  XPS_9350_1.5.1.exe
   Download and store on a USB flash drive, reboot, hit =F12=, check
   "BIOS Flash update", and follow instructions. To check current
   version of BIOS:
   : sudo dmidecode | less
+
 - Firmware updates with [[https://github.com/hughsie/fwupd][fwupd]] (Dell provides firmware updates via Linux Vendor
   Firmware Service (LVFS)):
   : sudo apt install fwupd
@@ -481,7 +484,7 @@ Legacy boot) and follow the instructions. General guidelines:
     (ÆæÀàÉéÈèÑñŒœÙù «» “” ¡¿, etc.), and most Greek letters
     (αβγδσΔΦΨΣ, etc.):
   : sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
-  : sudo cp keyboard/keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
+  : sudo cp Keyboard/keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
   Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
   international with dead keys)" as Input Source in Settings > Region
   & Language (for French, add "French (alternative, Latin-9 only)";

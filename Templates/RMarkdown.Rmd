@@ -1,0 +1,30 @@
+% Title
+% Author
+% Date
+
+
+<!-- R & knitr options -->
+
+```{r r-init, include = FALSE, cache = FALSE}
+options(formatR.comment = FALSE, formatR.arrow = TRUE, width = 80, 
+    digits = 7, config.pandoc = "/home/mathieu/.pandoc/config.pandoc")
+opts_chunk$set(comment = NA, error = FALSE, cache = TRUE, tidy = TRUE, 
+    fig.path = "img/", fig.align = "center", fig.show = "hold", 
+    fig.width = 9, fig.height = 9)
+```
+
+
+[see @Basille_2008 for more details]
+
+
+
+
+## R session information
+
+```{r r-exit, echo = FALSE}
+print(sessionInfo(), locale = FALSE)
+```
+
+
+## References
+
