@@ -484,11 +484,12 @@ Legacy boot) and follow the instructions. General guidelines:
     (αβγδσΔΦΨΣ, etc.):
   : sudo mv /usr/share/X11/xkb/symbols/us /usr/share/X11/xkb/symbols/us.bkp
   : sudo cp Keyboard/keyboard-DELL-XPS-13-9350_us /usr/share/X11/xkb/symbols/us
-  Then restart Gnome Shell (Alt + F2 r) and choose "English (US,
-  international with dead keys)" as Input Source in Settings > Region
-  & Language (for French, add "French (alternative, Latin-9 only)";
-  for Greek alphabet, add "Greek (extended)"). Note that the Menu
-  button doesn't seem to work in Nautilus.
+  
+  Then in Gnome Settings > Region & Language, choose "English (US,
+  international with dead keys)" as Input Source; remove English (US);
+  add "French (alternative, Latin-9 only)" for French; add "Greek
+  (extended)" for Greek alphabet. Note that the Menu button doesn't
+  seem to work in Nautilus.
 
 
 * Installing a full system
