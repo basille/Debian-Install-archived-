@@ -238,7 +238,8 @@ Legacy boot) and follow the instructions. General guidelines:
 - Remove the system beep: Sound > Sound Effects, turn
   off the Alert volume.
 - Keyboard shortcuts:
-  - Disable Hide window and Switch video display:
+  - Disable Hide window and Switch video display (not necessarily
+    available):
   #+BEGIN_SRC sh
     gsettings set org.gnome.desktop.wm.keybindings minimize ['']
     gsettings set org.gnome.settings-daemon.plugins.media-keys video-out ''
@@ -341,6 +342,7 @@ Legacy boot) and follow the instructions. General guidelines:
     curl -L https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
     curl -L https://packagecloud.io/slacktechnologies/slack/gpgkey | sudo apt-key add - 
     sudo apt install apt-listbugs
+    sudo apt update
   #+END_SRC
 - Check the preferences (no repository should be left at 500):
   #+BEGIN_SRC sh
