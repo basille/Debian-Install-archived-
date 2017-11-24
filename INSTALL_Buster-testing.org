@@ -189,10 +189,9 @@ Legacy boot) and follow the instructions. General guidelines:
   : fi
   #+END_QUOTE
 - Install Tilix, PowerLine, =python-nautilus= (for "Open Tilix here"
-  in Nautilus), =most= (=man= needs =most=), =curl= and =rsync=, and
-  add a missing symlink:
+  in Nautilus), =curl= and =rsync=, and add a missing symlink:
   #+BEGIN_SRC sh
-    sudo apt install tilix python-powerline python-nautilus most curl rsync
+    sudo apt install tilix python-powerline python-nautilus curl rsync
     sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
   #+END_SRC
 - Tilix configuration (notably Automatically copy text to clipboard
@@ -211,7 +210,7 @@ Legacy boot) and follow the instructions. General guidelines:
   #+END_SRC
   * Copy Nord color theme in the right folder:
   #+BEGIN_SRC sh
-    sudo cp tilix/nord.json /usr/share/tilix/schemes/
+    sudo cp Tilix/nord.json /usr/share/tilix/schemes/
   #+END_SRC
   * Profile: Default
     * General: Terminal bell: Icon
@@ -494,7 +493,7 @@ Legacy boot) and follow the instructions. General guidelines:
 
 ** Miscellaneous
 
-  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron flatpak fortune-mod git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate ntp privoxy subversion transmission tree units unrar virtualbox wakeonlan
+  : sudo apt install autoconf build-essential cmake cmake-curses-gui cowsay debian-goodies detox disper dos2unix elinks espeak etcher-electron flatpak fortune-mod git git-flow gnome-common gparted gtick hibernate libcanberra-gtk3-0:i386 mlocate most ntp privoxy subversion transmission tree units unrar virtualbox wakeonlan
 
 Git to list files in subfolders:
 
