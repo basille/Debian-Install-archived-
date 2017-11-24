@@ -1,6 +1,6 @@
 ## ======================================================= ##
 ##                                                         ##
-##                          GOOGLE                         ##
+##                      GOOGLE CHROME                      ##
 ##                                                         ##
 ## ======================================================= ##
 ## URL:                                                    ##
@@ -10,7 +10,4 @@
 ## $ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 ## ======================================================= ##
 
-# Chrome
 deb http://dl.google.com/linux/chrome/deb/ stable main
-# Earth
-deb http://dl.google.com/linux/earth/deb/ stable main

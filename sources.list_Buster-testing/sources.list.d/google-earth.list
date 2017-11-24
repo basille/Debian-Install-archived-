@@ -1,0 +1,13 @@
+## ======================================================= ##
+##                                                         ##
+##                       GOOGLE EARTH                      ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## https://www.google.com/linuxrepositories/               ##
+## ======================================================= ##
+## Key:                                                    ##
+## $ wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+## ======================================================= ##
+
+deb http://dl.google.com/linux/earth/deb/ stable main
