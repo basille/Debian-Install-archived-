@@ -191,7 +191,7 @@ Legacy boot) and follow the instructions. General guidelines:
 - Install Tilix, PowerLine, =python-nautilus= (for "Open Tilix here"
   in Nautilus), =curl= and =rsync=, and add a missing symlink:
   #+BEGIN_SRC sh
-    sudo apt install tilix python-powerline python-nautilus curl rsync
+    sudo apt install tilix powerline python-nautilus curl rsync
     sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
   #+END_SRC
 - Tilix configuration (notably Automatically copy text to clipboard
@@ -199,7 +199,6 @@ Legacy boot) and follow the instructions. General guidelines:
   version; of the window; =Ctrl+Shift+D+ to add terminal down;
   =Ctrl+Shift+R= to add terminal right):
   #+BEGIN_SRC sh
-    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
     gsettings set com.gexperts.Tilix.Settings unsafe-paste-alert false
     gsettings set com.gexperts.Tilix.Settings copy-on-select true
     gsettings set com.gexperts.Tilix.Settings terminal-title-style 'none'
@@ -215,10 +214,10 @@ Legacy boot) and follow the instructions. General guidelines:
   * Profile: Default
     * General: Terminal bell: Icon
     * Color: Color scheme: Nord, and add some transparency
-  * Shortcuts: in Gnome preferences > Keyboard, add two Custom
+  * Shortcuts: in Gnome Settings > Devices > Keyboard, add two Custom
     shortcuts (at the bottom of the list):
-    * Tilix / =tilix= / Super+T
-    * Tilix (Quake mode) / =tilix --quake= / ~
+    * Tilix / =tilix= / =Super+T=
+    * Tilix (Quake mode) / =tilix --quake= / =`= (above =Tab=)
 - Get insulted on errors for password:
   #+BEGIN_SRC sh
     sudo visudo
