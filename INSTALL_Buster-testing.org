@@ -426,9 +426,11 @@ Legacy boot) and follow the instructions. General guidelines:
   : vm.swappiness = 1
   #+END_QUOTE
   
-- Non-free firmware (WIFI + missing firmware for module i915):
+- WIFI
   : sudo apt install firmware-brcm80211 
   : sudo modprobe -r brcmsmac ; sudo modprobe brcmsmac
+
+- Missing firmware for module i915 (necessary?):
   : wget https://01.org/sites/default/files/downloads/intelr-graphics-linux/sklgucver61.tar.bz2 && \
   : tar xvjf sklgucver61.tar.bz2 && cd skl_guc_ver6_1/ && sudo ./install.sh
   : cd
