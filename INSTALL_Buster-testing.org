@@ -23,7 +23,6 @@ computer. Keep in mind, however, that:
      - [[#others][Others]]
    - [[#apt-and-upgrade][APT and upgrade]]
    - [[#hardware][Hardware]]
-     - [[#all-laptops][All laptops]]
      - [[#specific-dell-latitude-e5430][Specific Dell Latitude E5430]]
      - [[#specific-dell-xps-13][Specific Dell XPS 13]]
    - [[#internationalization][Internationalization]]
@@ -358,8 +357,6 @@ Legacy boot) and follow the instructions. General guidelines:
 
 
 ** Hardware
-
-*** All laptops
 
 - *Laptop stuff* (battery, wifi, non-free firmware):
   : sudo apt install firmware-linux-free firmware-linux-nonfree firmware-iwlwifi tlp tlp-rdw 
