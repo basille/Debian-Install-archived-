@@ -1,0 +1,10 @@
+## ======================================================= ##
+##                                                         ##
+##                  MENDELEY DESKTOP                       ##
+##                                                         ##
+## ======================================================= ##
+## URL:                                                    ##
+## https://www.mendeley.com/download-mendeley-desktop/debian/instructions/
+## ======================================================= ##
+
+deb https://desktop-download.mendeley.com/download/apt stable main
