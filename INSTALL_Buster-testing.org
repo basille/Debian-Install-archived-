@@ -48,6 +48,7 @@ computer. Keep in mind, however, that:
      - [[#google-stuff][Google Stuff]]
      - [[#skype][Skype]]
      - [[#rockbox-utility][Rockbox utility]]
+     - [[#iphone][iPhone]]
    - [[#final-stage][Final stage]]
  - [[#admin-operations][Admin operations]]
    - [[#backup][Backup]]
@@ -978,6 +979,32 @@ adds their own repository setting, which is annoying::
   : rm -R RockboxUtility-v1.4.0-64bit
 - Launch =rockbox=
 - Install Ambiance theme (activate icons).
+
+
+*** iPhone
+
+  : sudo apt install libimobiledevice6 libimobiledevice-utils libusbmuxd4 ifuse gvfs-fuse 
+  : sudo mkdir /media/iPhone/
+  : sudo chown $USER:$USER /media/iPhone/
+
+Then, connect the phone with an USB cable and pair it:
+
+  : idevicepair pair
+
+Confirm the pairing by clicking on the dialog box on the phone
+screen. To mount the iPhone, run:
+
+  : ifuse /media/iPhone
+
+To unmount, run:
+
+  : fusermount -u /your/preferred/mountpoint 
+
+or:
+
+  : fusermount -u /your/preferred/mountpoint 
+
+for lazy unmount. 
 
 
 ** Final stage
