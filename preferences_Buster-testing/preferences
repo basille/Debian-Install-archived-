@@ -151,3 +151,25 @@ Pin-Priority: 907
 Package: *
 Pin: origin packagecloud.io
 Pin-Priority: 908
+
+
+## ======================================================= ##
+##                                                         ##
+##                     IRIDIUM BROWSER                     ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin downloads.iridiumbrowser.de
+Pin-Priority: 909
+
+
+## ======================================================= ##
+##                                                         ##
+##                           MENDELEY                      ##
+##                                                         ##
+## ======================================================= ##
+
+Package: *
+Pin: origin desktop-download.mendeley.com
+Pin-Priority: 910

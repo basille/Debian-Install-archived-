@@ -18,53 +18,53 @@ mind, however, that:
 
 
 * Table of contents                                                     :TOC_3:
- - [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
-   - [[#download-the-installer][Download the installer]]
-     - [[#the-debian-way][The Debian way]]
-     - [[#the-easy-way][The easy way]]
-   - [[#install-debian][Install Debian]]
-   - [[#terminal-setup][Terminal setup]]
-   - [[#system-settings][System settings]]
-   - [[#apt-and-upgrade][APT and upgrade]]
-   - [[#hardware][Hardware]]
-   - [[#internationalization][Internationalization]]
- - [[#installing-a-full-system][Installing a full system]]
-   - [[#miscellaneous][Miscellaneous]]
-   - [[#gnome-extensions][Gnome extensions]]
-   - [[#web][Web]]
-     - [[#firefox][Firefox]]
-     - [[#thunderbird][Thunderbird]]
-     - [[#nextcloud-integration][NextCloud integration]]
-     - [[#others][Others]]
-   - [[#internet-admin][Internet admin]]
-     - [[#vpn][VPN]]
-     - [[#ssh][SSH]]
-     - [[#gftp][Gftp]]
-     - [[#clients-for-nextcloud-and-dropbox][Clients for NextCloud and Dropbox]]
-     - [[#windows-share][Windows share]]
-     - [[#revelation][Revelation]]
-   - [[#multimedia][Multimedia]]
-   - [[#office][Office]]
-     - [[#hugo][Hugo]]
-     - [[#fonts][Fonts]]
-     - [[#latex-and-pdf][LaTeX and PDF]]
-     - [[#emacs][Emacs]]
-     - [[#jabref-configuration][JabRef configuration]]
-     - [[#gnote-configuration][Gnote configuration]]
-   - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
-     - [[#gdal-geos-and-proj4][GDAL, GEOS and PROJ.4]]
-     - [[#r][R]]
-     - [[#qgis-and-postgis][QGIS and PostGIS]]
-   - [[#other][Other]]
-     - [[#google-stuff][Google Stuff]]
-     - [[#skype][Skype]]
-     - [[#rockbox-utility][Rockbox utility]]
-   - [[#final-stage][Final stage]]
- - [[#admin-operations][Admin operations]]
-   - [[#backup][Backup]]
-   - [[#recovery][Recovery]]
-   - [[#removing-old-kernels][Removing old kernels]]
- - [[#useful-resources][Useful resources]]
+- [[#installing-debian-with-the-base-gnome-desktop][Installing Debian with the base Gnome desktop]]
+  - [[#download-the-installer][Download the installer]]
+    - [[#the-debian-way][The Debian way]]
+    - [[#the-easy-way][The easy way]]
+  - [[#install-debian][Install Debian]]
+  - [[#terminal-setup][Terminal setup]]
+  - [[#system-settings][System settings]]
+  - [[#apt-and-upgrade][APT and upgrade]]
+  - [[#hardware][Hardware]]
+  - [[#internationalization][Internationalization]]
+- [[#installing-a-full-system][Installing a full system]]
+  - [[#miscellaneous][Miscellaneous]]
+  - [[#gnome-extensions][Gnome extensions]]
+  - [[#web][Web]]
+    - [[#firefox][Firefox]]
+    - [[#thunderbird][Thunderbird]]
+    - [[#nextcloud-integration][NextCloud integration]]
+    - [[#others][Others]]
+  - [[#internet-admin][Internet admin]]
+    - [[#vpn][VPN]]
+    - [[#ssh][SSH]]
+    - [[#gftp][Gftp]]
+    - [[#clients-for-nextcloud-and-dropbox][Clients for NextCloud and Dropbox]]
+    - [[#windows-share][Windows share]]
+    - [[#revelation][Revelation]]
+  - [[#multimedia][Multimedia]]
+  - [[#office][Office]]
+    - [[#hugo][Hugo]]
+    - [[#fonts][Fonts]]
+    - [[#latex-and-pdf][LaTeX and PDF]]
+    - [[#emacs][Emacs]]
+    - [[#jabref-configuration][JabRef configuration]]
+    - [[#gnote-configuration][Gnote configuration]]
+  - [[#r-qgis-and-postgis][R, QGIS and PostGIS]]
+    - [[#gdal-geos-and-proj4][GDAL, GEOS and PROJ.4]]
+    - [[#r][R]]
+    - [[#qgis-and-postgis][QGIS and PostGIS]]
+  - [[#other][Other]]
+    - [[#google-stuff][Google Stuff]]
+    - [[#skype][Skype]]
+    - [[#rockbox-utility][Rockbox utility]]
+  - [[#final-stage][Final stage]]
+- [[#admin-operations][Admin operations]]
+  - [[#backup][Backup]]
+  - [[#recovery][Recovery]]
+  - [[#removing-old-kernels][Removing old kernels]]
+- [[#useful-resources][Useful resources]]
 
 * Installing Debian with the base Gnome desktop
 
@@ -289,8 +289,8 @@ Legacy boot) and follow the instructions. General guidelines:
 ** APT and upgrade
 
 - Copy =sources.list= and =preferences= in =/etc/apt/=:
-  : sudo rsync -rt sources.list-Stretch-Testing/ /etc/apt/
-  : sudo cp preferences.stretch-testing /etc/apt/preferences
+  : sudo rsync -rt sources.list_Stretch-testing/ /etc/apt/
+  : sudo cp preferences_Stretch-testing/preferences /etc/apt/preferences
 - Avoid downloading translation indexes:
   : sudo nano /etc/apt/apt.conf.d/apt.conf
   And add:
@@ -490,7 +490,7 @@ package and a [[https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integ
 
 ** Web
 
-  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser mozplugger pipelight-multi
+  : sudo apt install firefox thunderbird lightning enigmail privoxy torbrowser-launcher chromium epiphany-browser iridium-browser mozplugger pipelight-multi
 
 *** Firefox
 
