@@ -46,7 +46,7 @@ computer. Keep in mind, however, that:
     - [[#r][R]]
   - [[#other][Other]]
     - [[#google-stuff][Google Stuff]]
-    - [[#skype][Skype]]
+    - [[#skype-slack-whatsapp-etc][Skype, Slack, WhatsApp, etc.]]
     - [[#rockbox-utility][Rockbox utility]]
     - [[#iphone][iPhone]]
   - [[#final-stage][Final stage]]
@@ -715,7 +715,7 @@ generated on the web).
 ** Multimedia
 
 - Pictures
-  : sudo apt install gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
+  : sudo apt install gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gthumb hugin imagemagick darktable rawtherapee phatch qtpfsgui 
 
 - Audio/video
   : sudo apt install audacity cuetools easytag flac ffmpeg gstreamer1.0-fluendo-mp3 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly monkeys-audio shntool soundconverter devede gnome-mpv mkvtoolnix pitivi frei0r-plugins gnome-video-effects-frei0r openshot sound-juicer sox subtitleeditor vlc vorbis-tools vorbisgain
@@ -959,7 +959,7 @@ setting, which is annoying:
   : sudo rm /etc/apt/sources.list.d/google-chrome.list
 
 
-*** Skype
+*** Skype, Slack, WhatsApp, etc.
 
 At last, Microsoft now provides a decent version of Skype for Linux
 (based on their new web version). Same as Google, the installation
@@ -968,7 +968,13 @@ adds their own repository setting, which is annoying::
   : sudo apt install skypeforlinux
   : sudo rm /etc/apt/sources.list.d/skype-unstable.list
 
+Check Franz for Slack, WhatsApp, etc.
 
+https://meetfranz.com/
+https://gist.github.com/jamiesoncj/756728b3ba7c07d7a90f843400af37bb
+
+
+  
 *** Rockbox utility
 
 - Download [[http://www.rockbox.org/download/][Rockbox utility]]
@@ -1015,7 +1021,7 @@ for lazy unmount.
   Applications: icedove, firefox, nautilus, gnote).
 - Final cleaning:
   : upgrade-full
-
+  
 
 * Admin operations
 
